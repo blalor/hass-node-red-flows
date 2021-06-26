@@ -321,7 +321,7 @@
         "type": "function",
         "z": "6c71644f.90490c",
         "name": "build PutObject",
-        "func": "node.warn(flow);\nmsg.Body = msg.payload;\nmsg.Bucket = flow.get(\"s3\").bucket;\nmsg.Key = flow.get(\"s3\").prefix + msg.filename;\n\nreturn msg;",
+        "func": "msg.Body = msg.payload;\nmsg.Bucket = flow.get(\"s3\").bucket;\nmsg.Key = flow.get(\"s3\").prefix + msg.filename;\n\nnode.warn(msg);\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
