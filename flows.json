@@ -44,7 +44,7 @@
                 "value": ""
             }
         ],
-        "entityidfilter": "binary_sensor.motion_front_door",
+        "entityidfilter": "binary_sensor.motion_front_door, binary_sensor.motion_garage_alley",
         "entityidfiltertype": "exact",
         "outputinitially": false,
         "state_type": "str",
