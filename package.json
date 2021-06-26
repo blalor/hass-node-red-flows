@@ -3,7 +3,8 @@
     "description": "My Node-RED flows for Home Assistant",
     "version": "0.0.1",
     "dependencies": {
-        "node-red-contrib-aws": "0.7.0"
+        "node-red-contrib-aws": "0.7.0",
+        "node-red-contrib-home-assistant-websocket": "0.33.1"
     },
     "node-red": {
         "settings": {
