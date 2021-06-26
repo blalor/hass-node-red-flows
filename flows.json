@@ -164,8 +164,15 @@
                 "t": "set",
                 "p": "filename",
                 "pt": "msg",
-                "to": "\"hass-notif-imgs/motion_snapshot_\" \t    & $now(\"[Y0001]-[M01]-[D01]T[H01]_[m01]_[s01]Z\") \t    & \"_\"\t    & $split(msg.camera_entity_id, \".\")[1]\t    & \".jpg\"",
+                "to": "\"motion_snapshot_\" \t    & $now(\"[Y0001]-[M01]-[D01]T[H01]_[m01]_[s01]Z\") \t    & \"_\"\t    & $split(msg.camera_entity_id, \".\")[1]\t    & \".jpg\"",
                 "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "s3",
+                "pt": "flow",
+                "to": "{\"bucket\": \"blalor-imgs\", \"prefix\": \"hass-notif-imgs/\" }",
+                "tot": "json"
             }
         ],
         "action": "",
@@ -186,6 +193,7 @@
         "id": "22b532a0.3b8d26",
         "type": "api-call-service",
         "z": "6c71644f.90490c",
+        "d": true,
         "name": "notify my iPhone",
         "server": "1fb2958d.14f89a",
         "version": 3,
@@ -313,7 +321,7 @@
         "type": "function",
         "z": "6c71644f.90490c",
         "name": "build PutObject",
-        "func": "msg.Body = msg.payload;\nmsg.Bucket = \"blalor-imgs\";\nmsg.Key = msg.filename;\n\nreturn msg;",
+        "func": "msg.Body = msg.payload;\nmsg.Bucket = flow.s3.bucket;\nmsg.Key = flow.s3.prefix + msg.filename;\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
