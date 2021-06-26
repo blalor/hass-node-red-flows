@@ -1,1 +1,370 @@
-[{"id":"6c71644f.90490c","type":"tab","label":"motion notifications","disabled":false,"info":""},{"id":"1fb2958d.14f89a","type":"server","name":"Home Assistant","version":1,"legacy":false,"addon":true,"rejectUnauthorizedCerts":true,"ha_boolean":"y|yes|true|on|home|open","connectionDelay":true,"cacheJson":true},{"id":"29d06907.d67a1e","type":"aws-config"},{"id":"7a6f1441.9bac74","type":"server-state-changed","z":"6c71644f.90490c","name":"motion detected","server":"1fb2958d.14f89a","version":3,"exposeToHomeAssistant":false,"haConfig":[{"property":"name","value":""},{"property":"icon","value":""}],"entityidfilter":"binary_sensor.motion_front_door","entityidfiltertype":"exact","outputinitially":false,"state_type":"str","haltifstate":"on","halt_if_type":"str","halt_if_compare":"is","outputs":2,"output_only_on_state_change":true,"for":0,"forType":"num","forUnits":"minutes","ignorePrevStateNull":false,"ignorePrevStateUnknown":false,"ignorePrevStateUnavailable":false,"ignoreCurrentStateUnknown":false,"ignoreCurrentStateUnavailable":false,"outputProperties":[{"property":"payload","propertyType":"msg","value":"","valueType":"entityState"},{"property":"data","propertyType":"msg","value":"","valueType":"eventData"},{"property":"topic","propertyType":"msg","value":"","valueType":"triggerId"}],"x":100,"y":80,"wires":[["3b92f41c.15286c"],[]]},{"id":"5662f68e.29e62","type":"api-call-service","z":"6c71644f.90490c","name":"","server":"1fb2958d.14f89a","version":3,"debugenabled":false,"service_domain":"notify","service":"persistent_notification","entityId":"","data":"{\t   \"message\": $substringAfter(topic, \"binary_sensor.motion_\") & \" \" & data.new_state.attributes.event_object,\t   \"title\": data.new_state.attributes.friendly_name\t}","dataType":"jsonata","mergecontext":"","mustacheAltTags":false,"outputProperties":[],"queue":"none","x":480,"y":140,"wires":[[]]},{"id":"8cfc62ab.42de7","type":"inject","z":"6c71644f.90490c","name":"motion","props":[{"p":"payload"},{"p":"data","v":"{\"entity_id\":\"binary_sensor.motion_front_door\",\"old_state\":{\"entity_id\":\"binary_sensor.motion_front_door\",\"state\":\"on\",\"attributes\":{\"attribution\":\"Powered by Unifi Protect Server\",\"device_model\":\"UVC G4 Doorbell\",\"last_tripped_time\":\"2021-06-24 13:33:51\",\"event_score\":60,\"event_length\":0,\"event_object\":\"vehicle\",\"friendly_name\":\"Motion Front door\",\"device_class\":\"motion\"},\"last_changed\":\"2021-06-24T17:33:58.129315+00:00\",\"last_updated\":\"2021-06-24T17:33:58.129315+00:00\",\"context\":{\"id\":\"8c58f79713391379f139419d9fa4bad5\",\"parent_id\":null,\"user_id\":null},\"original_state\":\"on\"},\"new_state\":{\"entity_id\":\"binary_sensor.motion_front_door\",\"state\":\"off\",\"attributes\":{\"attribution\":\"Powered by Unifi Protect Server\",\"device_model\":\"UVC G4 Doorbell\",\"last_tripped_time\":\"2021-06-24 13:33:51\",\"event_score\":60,\"event_length\":12.37,\"event_object\":\"vehicle\",\"friendly_name\":\"Motion Front door\",\"device_class\":\"motion\"},\"last_changed\":\"2021-06-24T17:34:02.640208+00:00\",\"last_updated\":\"2021-06-24T17:34:02.640208+00:00\",\"context\":{\"id\":\"a88da8f739fd65279ead3ec5d29d39c4\",\"parent_id\":null,\"user_id\":null},\"original_state\":\"off\",\"timeSinceChangedMs\":5}}","vt":"json"},{"p":"topic","vt":"str"}],"repeat":"","crontab":"","once":false,"onceDelay":0.1,"topic":"binary_sensor.motion_front_door","payload":"off","payloadType":"str","x":90,"y":40,"wires":[["3b92f41c.15286c"]]},{"id":"5c1a8d29.db4a24","type":"change","z":"6c71644f.90490c","name":"","rules":[{"t":"set","p":"camera_entity_id","pt":"msg","to":"\"camera.\" & $substringAfter(topic, \"binary_sensor.motion_\")","tot":"jsonata"},{"t":"set","p":"filename","pt":"msg","to":"\"hass-notif-imgs/motion_snapshot_\" \t    & $now(\"[Y0001]-[M01]-[D01]T[H01]_[m01]_[s01]Z\") \t    & \"_\"\t    & $split(msg.camera_entity_id, \".\")[1]\t    & \".jpg\"","tot":"jsonata"}],"action":"","property":"","from":"","to":"","reg":false,"x":160,"y":160,"wires":[["5662f68e.29e62","3296c10a.9b412e","a21c3dcf.8d583"]]},{"id":"33563f68.4a91a8","type":"amazon s3 out","z":"6c71644f.90490c","aws":"29d06907.d67a1e","bucket":"blalor-imgs","filename":"","localFilename":"","region":"us-east-1","name":"","x":400,"y":240,"wires":[]},{"id":"22b532a0.3b8d26","type":"api-call-service","z":"6c71644f.90490c","name":"","server":"1fb2958d.14f89a","version":3,"debugenabled":true,"service_domain":"notify","service":"mobile_app_camilla_12_0","entityId":"","data":"{\t   \"title\": data.new_state.attributes.friendly_name,\t   \"message\": $substringAfter(topic, \"binary_sensor.motion_\"),\t   \"data\": {\t       \"subtitle\": data.new_state.attributes.event_object,\t       \"push\": {\t           \"thread-id\": \"home-motion\"\t      },\t       \"image\": \"https://s3.amazonaws.com/blalor-imgs/\" &\t       filename\t    }\t}\t","dataType":"jsonata","mergecontext":"","mustacheAltTags":false,"outputProperties":[],"queue":"none","x":810,"y":280,"wires":[[]]},{"id":"e77825d7.5bdea8","type":"delay","z":"6c71644f.90490c","name":"","pauseType":"delay","timeout":"2","timeoutUnits":"seconds","rate":"1","nbRateUnits":"1","rateUnits":"second","randomFirst":"1","randomLast":"5","randomUnits":"seconds","drop":false,"x":560,"y":280,"wires":[["22b532a0.3b8d26"]]},{"id":"3296c10a.9b412e","type":"ha-api","z":"6c71644f.90490c","name":"get camera entity","server":"1fb2958d.14f89a","version":1,"debugenabled":false,"protocol":"http","method":"get","path":"camera_proxy/{{{ camera_entity_id }}}","data":"{}","dataType":"jsonata","responseType":"arraybuffer","outputProperties":[{"property":"payload","propertyType":"msg","value":"","valueType":"results"}],"x":150,"y":240,"wires":[["33563f68.4a91a8","e77825d7.5bdea8"]]},{"id":"f2e00e8.d6c64f","type":"comment","z":"6c71644f.90490c","name":"no output ports","info":"https://github.com/node-red/node-red-web-nodes/issues/281","x":580,"y":240,"wires":[]},{"id":"a21c3dcf.8d583","type":"debug","z":"6c71644f.90490c","name":"","active":false,"tosidebar":true,"console":false,"tostatus":false,"complete":"true","targetType":"full","statusVal":"","statusType":"auto","x":390,"y":200,"wires":[]},{"id":"3b92f41c.15286c","type":"switch","z":"6c71644f.90490c","name":"is not a vehicle?","property":"data.new_state.attributes.event_object","propertyType":"msg","rules":[{"t":"neq","v":"vehicle","vt":"str"}],"checkall":"true","repair":false,"outputs":1,"x":300,"y":60,"wires":[["5c1a8d29.db4a24"]]}]
+[
+    {
+        "id": "6c71644f.90490c",
+        "type": "tab",
+        "label": "motion notifications",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "1fb2958d.14f89a",
+        "type": "server",
+        "name": "Home Assistant",
+        "version": 1,
+        "legacy": false,
+        "addon": true,
+        "rejectUnauthorizedCerts": true,
+        "ha_boolean": "y|yes|true|on|home|open",
+        "connectionDelay": true,
+        "cacheJson": true
+    },
+    {
+        "id": "4c58280.c1ed4d8",
+        "type": "amazon config",
+        "name": "AWS-withConfig",
+        "region": "us-east-1",
+        "proxyRequired": false,
+        "proxy": ""
+    },
+    {
+        "id": "7a6f1441.9bac74",
+        "type": "server-state-changed",
+        "z": "6c71644f.90490c",
+        "name": "motion detected",
+        "server": "1fb2958d.14f89a",
+        "version": 3,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "binary_sensor.motion_front_door",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 100,
+        "y": 80,
+        "wires": [
+            [
+                "3b92f41c.15286c"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "5662f68e.29e62",
+        "type": "api-call-service",
+        "z": "6c71644f.90490c",
+        "name": "in-hass notification",
+        "server": "1fb2958d.14f89a",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "notify",
+        "service": "persistent_notification",
+        "entityId": "",
+        "data": "{\t   \"message\": $substringAfter(topic, \"binary_sensor.motion_\") & \" \" & data.new_state.attributes.event_object,\t   \"title\": data.new_state.attributes.friendly_name\t}",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 430,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8cfc62ab.42de7",
+        "type": "inject",
+        "z": "6c71644f.90490c",
+        "name": "motion",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "data",
+                "v": "{\"entity_id\":\"binary_sensor.motion_front_door\",\"old_state\":{\"entity_id\":\"binary_sensor.motion_front_door\",\"state\":\"on\",\"attributes\":{\"attribution\":\"Powered by Unifi Protect Server\",\"device_model\":\"UVC G4 Doorbell\",\"last_tripped_time\":\"2021-06-24 13:33:51\",\"event_score\":60,\"event_length\":0,\"event_object\":\"vehicle\",\"friendly_name\":\"Motion Front door\",\"device_class\":\"motion\"},\"last_changed\":\"2021-06-24T17:33:58.129315+00:00\",\"last_updated\":\"2021-06-24T17:33:58.129315+00:00\",\"context\":{\"id\":\"8c58f79713391379f139419d9fa4bad5\",\"parent_id\":null,\"user_id\":null},\"original_state\":\"on\"},\"new_state\":{\"entity_id\":\"binary_sensor.motion_front_door\",\"state\":\"off\",\"attributes\":{\"attribution\":\"Powered by Unifi Protect Server\",\"device_model\":\"UVC G4 Doorbell\",\"last_tripped_time\":\"2021-06-24 13:33:51\",\"event_score\":60,\"event_length\":12.37,\"event_object\":\"not_a_vehicle\",\"friendly_name\":\"Motion Front door\",\"device_class\":\"motion\"},\"last_changed\":\"2021-06-24T17:34:02.640208+00:00\",\"last_updated\":\"2021-06-24T17:34:02.640208+00:00\",\"context\":{\"id\":\"a88da8f739fd65279ead3ec5d29d39c4\",\"parent_id\":null,\"user_id\":null},\"original_state\":\"off\",\"timeSinceChangedMs\":5}}",
+                "vt": "json"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "binary_sensor.motion_front_door",
+        "payload": "off",
+        "payloadType": "str",
+        "x": 90,
+        "y": 40,
+        "wires": [
+            [
+                "3b92f41c.15286c"
+            ]
+        ]
+    },
+    {
+        "id": "5c1a8d29.db4a24",
+        "type": "change",
+        "z": "6c71644f.90490c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "camera_entity_id",
+                "pt": "msg",
+                "to": "\"camera.\" & $substringAfter(topic, \"binary_sensor.motion_\")",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "filename",
+                "pt": "msg",
+                "to": "\"hass-notif-imgs/motion_snapshot_\" \t    & $now(\"[Y0001]-[M01]-[D01]T[H01]_[m01]_[s01]Z\") \t    & \"_\"\t    & $split(msg.camera_entity_id, \".\")[1]\t    & \".jpg\"",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 160,
+        "y": 160,
+        "wires": [
+            [
+                "5662f68e.29e62",
+                "3296c10a.9b412e"
+            ]
+        ]
+    },
+    {
+        "id": "22b532a0.3b8d26",
+        "type": "api-call-service",
+        "z": "6c71644f.90490c",
+        "name": "notify my iPhone",
+        "server": "1fb2958d.14f89a",
+        "version": 3,
+        "debugenabled": true,
+        "service_domain": "notify",
+        "service": "mobile_app_camilla_12_0",
+        "entityId": "",
+        "data": "{\t   \"title\": data.new_state.attributes.friendly_name,\t   \"message\": $substringAfter(topic, \"binary_sensor.motion_\"),\t   \"data\": {\t       \"subtitle\": data.new_state.attributes.event_object,\t       \"push\": {\t           \"thread-id\": \"home-motion\"\t      },\t       \"image\": \"https://s3.amazonaws.com/\" & Bucket & \"/\" &\t       Key\t    }\t}\t",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 810,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3296c10a.9b412e",
+        "type": "ha-api",
+        "z": "6c71644f.90490c",
+        "name": "get camera entity",
+        "server": "1fb2958d.14f89a",
+        "version": 1,
+        "debugenabled": false,
+        "protocol": "http",
+        "method": "get",
+        "path": "camera_proxy/{{{ camera_entity_id }}}",
+        "data": "{}",
+        "dataType": "jsonata",
+        "responseType": "arraybuffer",
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "results"
+            }
+        ],
+        "x": 150,
+        "y": 240,
+        "wires": [
+            [
+                "cdcd22b2.55961"
+            ]
+        ]
+    },
+    {
+        "id": "3b92f41c.15286c",
+        "type": "switch",
+        "z": "6c71644f.90490c",
+        "name": "is not a vehicle?",
+        "property": "data.new_state.attributes.event_object",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "vehicle",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 300,
+        "y": 60,
+        "wires": [
+            [
+                "5c1a8d29.db4a24"
+            ]
+        ]
+    },
+    {
+        "id": "e4a86753.94dcf8",
+        "type": "AWS S3",
+        "z": "6c71644f.90490c",
+        "aws": "4c58280.c1ed4d8",
+        "operation": "PutObject",
+        "Bucket": "",
+        "Key": "",
+        "UploadId": "",
+        "CopySource": "",
+        "Id": "",
+        "Delete": "",
+        "AccelerateConfiguration": "",
+        "AnalyticsConfiguration": "",
+        "CORSConfiguration": "",
+        "ServerSideEncryptionConfiguration": "",
+        "IntelligentTieringConfiguration": "",
+        "InventoryConfiguration": "",
+        "BucketLoggingStatus": "",
+        "MetricsConfiguration": "",
+        "NotificationConfiguration": "",
+        "OwnershipControls": "",
+        "Policy": "",
+        "ReplicationConfiguration": "",
+        "RequestPaymentConfiguration": "",
+        "Tagging": "",
+        "VersioningConfiguration": "",
+        "WebsiteConfiguration": "",
+        "PublicAccessBlockConfiguration": "",
+        "Expression": "",
+        "ExpressionType": "",
+        "InputSerialization": "",
+        "OutputSerialization": "",
+        "PartNumber": "",
+        "name": "upload to s3",
+        "x": 570,
+        "y": 240,
+        "wires": [
+            [
+                "22b532a0.3b8d26"
+            ],
+            [
+                "9544fb61.5ab438",
+                "42154f6c.cdcad8"
+            ]
+        ],
+        "icon": "font-awesome/fa-cloud-upload"
+    },
+    {
+        "id": "cdcd22b2.55961",
+        "type": "function",
+        "z": "6c71644f.90490c",
+        "name": "build PutObject",
+        "func": "msg.Body = msg.payload;\nmsg.Bucket = \"blalor-imgs\";\nmsg.Key = msg.filename;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 240,
+        "wires": [
+            [
+                "e4a86753.94dcf8"
+            ]
+        ]
+    },
+    {
+        "id": "9544fb61.5ab438",
+        "type": "debug",
+        "z": "6c71644f.90490c",
+        "name": "err",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 790,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "42154f6c.cdcad8",
+        "type": "api-call-service",
+        "z": "6c71644f.90490c",
+        "name": "show error",
+        "server": "1fb2958d.14f89a",
+        "version": 3,
+        "debugenabled": true,
+        "service_domain": "notify",
+        "service": "persistent_notification",
+        "entityId": "",
+        "data": "{\"title\": err.code, \"message\": err.message}",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 800,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    }
+]
