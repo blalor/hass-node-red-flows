@@ -2,7 +2,9 @@
     "name": "hass-flows",
     "description": "My Node-RED flows for Home Assistant",
     "version": "0.0.1",
-    "dependencies": {},
+    "dependencies": {
+        "node-red-contrib-aws": "0.7.0"
+    },
     "node-red": {
         "settings": {
             "flowFile": "flows.json",
