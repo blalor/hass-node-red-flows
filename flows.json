@@ -107,8 +107,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 850,
-        "y": 80,
+        "x": 630,
+        "y": 360,
         "wires": [
             []
         ]
@@ -180,8 +180,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 620,
-        "y": 80,
+        "x": 400,
+        "y": 360,
         "wires": [
             [
                 "5662f68e.29e62",
@@ -206,8 +206,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 810,
-        "y": 240,
+        "x": 570,
+        "y": 540,
         "wires": [
             []
         ]
@@ -234,8 +234,8 @@
                 "valueType": "results"
             }
         ],
-        "x": 630,
-        "y": 140,
+        "x": 410,
+        "y": 420,
         "wires": [
             [
                 "cdcd22b2.55961"
@@ -263,7 +263,7 @@
         "y": 60,
         "wires": [
             [
-                "5c1a8d29.db4a24"
+                "9807f009.32ba08"
             ]
         ]
     },
@@ -302,8 +302,8 @@
         "OutputSerialization": "",
         "PartNumber": "",
         "name": "upload to s3",
-        "x": 570,
-        "y": 240,
+        "x": 330,
+        "y": 540,
         "wires": [
             [
                 "22b532a0.3b8d26"
@@ -326,8 +326,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 380,
-        "y": 240,
+        "x": 140,
+        "y": 540,
         "wires": [
             [
                 "e4a86753.94dcf8"
@@ -347,8 +347,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 790,
-        "y": 300,
+        "x": 550,
+        "y": 600,
         "wires": []
     },
     {
@@ -368,8 +368,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 800,
-        "y": 360,
+        "x": 560,
+        "y": 660,
         "wires": [
             []
         ]
@@ -433,7 +433,7 @@
         "y": 140,
         "wires": [
             [
-                "5c1a8d29.db4a24"
+                "b91cfe5b.ab617"
             ],
             []
         ]
@@ -497,9 +497,84 @@
         "y": 200,
         "wires": [
             [
-                "5c1a8d29.db4a24"
+                "1d1cc78.7d0e139"
             ],
             []
+        ]
+    },
+    {
+        "id": "9807f009.32ba08",
+        "type": "trigger",
+        "z": "6c71644f.90490c",
+        "name": "once/5m",
+        "op1": "",
+        "op2": "",
+        "op1type": "pay",
+        "op2type": "nul",
+        "duration": "5",
+        "extend": true,
+        "overrideDelay": false,
+        "units": "min",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 580,
+        "y": 60,
+        "wires": [
+            [
+                "5c1a8d29.db4a24"
+            ]
+        ]
+    },
+    {
+        "id": "b91cfe5b.ab617",
+        "type": "trigger",
+        "z": "6c71644f.90490c",
+        "name": "once/5m",
+        "op1": "",
+        "op2": "",
+        "op1type": "pay",
+        "op2type": "nul",
+        "duration": "5",
+        "extend": true,
+        "overrideDelay": false,
+        "units": "min",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 580,
+        "y": 140,
+        "wires": [
+            [
+                "5c1a8d29.db4a24"
+            ]
+        ]
+    },
+    {
+        "id": "1d1cc78.7d0e139",
+        "type": "trigger",
+        "z": "6c71644f.90490c",
+        "name": "once/5m",
+        "op1": "",
+        "op2": "",
+        "op1type": "pay",
+        "op2type": "nul",
+        "duration": "5",
+        "extend": true,
+        "overrideDelay": false,
+        "units": "min",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 580,
+        "y": 200,
+        "wires": [
+            [
+                "5c1a8d29.db4a24"
+            ]
         ]
     }
 ]
