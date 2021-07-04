@@ -7,6 +7,13 @@
         "info": ""
     },
     {
+        "id": "8e4e09de.5dedc8",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "1fb2958d.14f89a",
         "type": "server",
         "name": "Home Assistant",
@@ -25,6 +32,20 @@
         "region": "us-east-1",
         "proxyRequired": false,
         "proxy": ""
+    },
+    {
+        "id": "4ec90f43.a67098",
+        "type": "influxdb",
+        "hostname": "192.168.42.11",
+        "port": "8086",
+        "protocol": "http",
+        "database": "skyaware",
+        "name": "quongo",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "1.x",
+        "url": "http://localhost:8086",
+        "rejectUnauthorized": true
     },
     {
         "id": "7a6f1441.9bac74",
@@ -82,7 +103,7 @@
             }
         ],
         "x": 140,
-        "y": 80,
+        "y": 140,
         "wires": [
             [
                 "3b92f41c.15286c"
@@ -94,6 +115,7 @@
         "id": "5662f68e.29e62",
         "type": "api-call-service",
         "z": "6c71644f.90490c",
+        "d": true,
         "name": "in-hass notification",
         "server": "1fb2958d.14f89a",
         "version": 3,
@@ -108,7 +130,7 @@
         "outputProperties": [],
         "queue": "none",
         "x": 630,
-        "y": 360,
+        "y": 420,
         "wires": [
             []
         ]
@@ -140,7 +162,7 @@
         "payload": "off",
         "payloadType": "str",
         "x": 90,
-        "y": 40,
+        "y": 100,
         "wires": [
             [
                 "3b92f41c.15286c"
@@ -169,10 +191,17 @@
             },
             {
                 "t": "set",
-                "p": "s3",
-                "pt": "flow",
-                "to": "{\"bucket\": \"blalor-imgs\", \"prefix\": \"hass-notif-imgs/\" }",
-                "tot": "json"
+                "p": "is_critical",
+                "pt": "msg",
+                "to": "0",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "message",
+                "pt": "msg",
+                "to": "$substringAfter(topic, \"binary_sensor.motion_\")",
+                "tot": "jsonata"
             }
         ],
         "action": "",
@@ -181,7 +210,7 @@
         "to": "",
         "reg": false,
         "x": 400,
-        "y": 360,
+        "y": 420,
         "wires": [
             [
                 "5662f68e.29e62",
@@ -196,18 +225,18 @@
         "name": "notify my iPhone",
         "server": "1fb2958d.14f89a",
         "version": 3,
-        "debugenabled": true,
+        "debugenabled": false,
         "service_domain": "notify",
         "service": "mobile_app_camilla_12_0",
         "entityId": "",
-        "data": "{\t   \"title\": data.new_state.attributes.friendly_name,\t   \"message\": $substringAfter(topic, \"binary_sensor.motion_\"),\t   \"data\": {\t       \"subtitle\": data.new_state.attributes.event_object,\t       \"push\": {\t           \"thread-id\": \"home-motion\"\t      },\t       \"image\": \"https://s3.amazonaws.com/\" & Bucket & \"/\" &\t       Key\t    }\t}\t",
+        "data": "{\t   \"title\": data.new_state.attributes.friendly_name,\t   \"message\": message,\t   \"data\": {\t       \"subtitle\": data.new_state.attributes.event_object,\t       \"push\": {\t           \"thread-id\": \"home-motion-\" & topic,\t           \"sound\": {\t                \"name\": \"default\",\t                \"critical\": is_critical,\t                \"volume\": 1\t           }\t       },\t       \"image\": \"https://s3.amazonaws.com/\" & Bucket & \"/\" &\t       Key\t    }\t}\t",
         "dataType": "jsonata",
         "mergecontext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
         "x": 570,
-        "y": 540,
+        "y": 600,
         "wires": [
             []
         ]
@@ -235,10 +264,11 @@
             }
         ],
         "x": 410,
-        "y": 420,
+        "y": 480,
         "wires": [
             [
-                "cdcd22b2.55961"
+                "cdcd22b2.55961",
+                "17801fb8.a006b8"
             ]
         ]
     },
@@ -260,7 +290,7 @@
         "repair": false,
         "outputs": 1,
         "x": 380,
-        "y": 60,
+        "y": 120,
         "wires": [
             [
                 "9807f009.32ba08"
@@ -303,7 +333,7 @@
         "PartNumber": "",
         "name": "upload to s3",
         "x": 330,
-        "y": 540,
+        "y": 600,
         "wires": [
             [
                 "22b532a0.3b8d26"
@@ -327,7 +357,7 @@
         "finalize": "",
         "libs": [],
         "x": 140,
-        "y": 540,
+        "y": 600,
         "wires": [
             [
                 "e4a86753.94dcf8"
@@ -348,7 +378,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 550,
-        "y": 600,
+        "y": 660,
         "wires": []
     },
     {
@@ -369,7 +399,7 @@
         "outputProperties": [],
         "queue": "none",
         "x": 560,
-        "y": 660,
+        "y": 720,
         "wires": [
             []
         ]
@@ -430,7 +460,7 @@
             }
         ],
         "x": 140,
-        "y": 140,
+        "y": 200,
         "wires": [
             [
                 "b91cfe5b.ab617"
@@ -494,7 +524,7 @@
             }
         ],
         "x": 140,
-        "y": 200,
+        "y": 260,
         "wires": [
             [
                 "1d1cc78.7d0e139"
@@ -520,7 +550,7 @@
         "topic": "topic",
         "outputs": 1,
         "x": 580,
-        "y": 60,
+        "y": 120,
         "wires": [
             [
                 "5c1a8d29.db4a24"
@@ -545,7 +575,7 @@
         "topic": "topic",
         "outputs": 1,
         "x": 580,
-        "y": 140,
+        "y": 200,
         "wires": [
             [
                 "5c1a8d29.db4a24"
@@ -570,11 +600,731 @@
         "topic": "topic",
         "outputs": 1,
         "x": 580,
-        "y": 200,
+        "y": 260,
         "wires": [
             [
                 "5c1a8d29.db4a24"
             ]
         ]
+    },
+    {
+        "id": "7b41b747.6cb21",
+        "type": "http request",
+        "z": "8e4e09de.5dedc8",
+        "name": "skyaware978",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://192.168.42.58/skyaware978/data/aircraft.json",
+        "tls": "",
+        "persist": true,
+        "proxy": "",
+        "authType": "",
+        "x": 130,
+        "y": 100,
+        "wires": [
+            [
+                "26ea157d.c6467a"
+            ]
+        ]
+    },
+    {
+        "id": "ffb0c10.246174",
+        "type": "http request",
+        "z": "8e4e09de.5dedc8",
+        "name": "dump1090",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://192.168.42.58/dump1090/data/aircraft.json",
+        "tls": "",
+        "persist": true,
+        "proxy": "",
+        "authType": "",
+        "x": 130,
+        "y": 140,
+        "wires": [
+            [
+                "59639fc1.9c4b48"
+            ]
+        ]
+    },
+    {
+        "id": "afd05963.8a9948",
+        "type": "inject",
+        "z": "8e4e09de.5dedc8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 40,
+        "wires": [
+            [
+                "7b41b747.6cb21",
+                "ffb0c10.246174"
+            ]
+        ]
+    },
+    {
+        "id": "acf0ce6e.b3793",
+        "type": "ha-entity",
+        "z": "8e4e09de.5dedc8",
+        "name": "aircraft_978",
+        "server": "1fb2958d.14f89a",
+        "version": 1,
+        "debugenabled": false,
+        "outputs": 1,
+        "entityType": "sensor",
+        "config": [
+            {
+                "property": "name",
+                "value": "aircraft_978"
+            },
+            {
+                "property": "device_class",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": "mdi:airplane"
+            },
+            {
+                "property": "unit_of_measurement",
+                "value": "count"
+            }
+        ],
+        "state": "$count(payload.aircraft)",
+        "stateType": "jsonata",
+        "attributes": [
+            {
+                "property": "now",
+                "value": "payload.now",
+                "valueType": "msg"
+            },
+            {
+                "property": "messages",
+                "value": "payload.messages",
+                "valueType": "msg"
+            }
+        ],
+        "resend": true,
+        "outputLocation": "",
+        "outputLocationType": "none",
+        "inputOverride": "allow",
+        "outputOnStateChange": false,
+        "outputPayload": "$entity().state ? \"on\": \"off\"",
+        "outputPayloadType": "jsonata",
+        "x": 530,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "deae8479.c40408",
+        "type": "ha-entity",
+        "z": "8e4e09de.5dedc8",
+        "name": "aircraft_1090",
+        "server": "1fb2958d.14f89a",
+        "version": 1,
+        "debugenabled": false,
+        "outputs": 1,
+        "entityType": "sensor",
+        "config": [
+            {
+                "property": "name",
+                "value": "aircraft_1090"
+            },
+            {
+                "property": "device_class",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": "mdi:airplane"
+            },
+            {
+                "property": "unit_of_measurement",
+                "value": "count"
+            }
+        ],
+        "state": "$count(payload.aircraft)",
+        "stateType": "jsonata",
+        "attributes": [
+            {
+                "property": "now",
+                "value": "payload.now",
+                "valueType": "msg"
+            },
+            {
+                "property": "messages",
+                "value": "payload.messages",
+                "valueType": "msg"
+            }
+        ],
+        "resend": true,
+        "outputLocation": "",
+        "outputLocationType": "none",
+        "inputOverride": "allow",
+        "outputOnStateChange": false,
+        "outputPayload": "$entity().state ? \"on\": \"off\"",
+        "outputPayloadType": "jsonata",
+        "x": 530,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5394059f.b5361c",
+        "type": "function",
+        "z": "8e4e09de.5dedc8",
+        "name": "Split array into individual planes",
+        "func": "var m = [];\nfor (var i in msg.payload.aircraft) {\n    m.push({\n        payload: msg.payload.aircraft[i],\n        timestamp: msg.timestamp,\n        source: msg.source,\n    });\n}\nreturn [m];",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 290,
+        "y": 420,
+        "wires": [
+            [
+                "2ae90fc7.b57198",
+                "5e7a4a2b.fa27e4"
+            ]
+        ]
+    },
+    {
+        "id": "2ae90fc7.b57198",
+        "type": "change",
+        "z": "8e4e09de.5dedc8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.name",
+                "pt": "msg",
+                "to": "payload.hex & \" \" & payload.flight",
+                "tot": "jsonata"
+            },
+            {
+                "t": "move",
+                "p": "payload.bearing",
+                "pt": "msg",
+                "to": "payload.track",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.icon",
+                "pt": "msg",
+                "to": "plane",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload.layer",
+                "pt": "msg",
+                "to": "ADSB",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload.speed",
+                "pt": "msg",
+                "to": "payload.gs",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.label",
+                "pt": "msg",
+                "to": "payload.flight",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.alt",
+                "pt": "msg",
+                "to": "payload.alt_geom",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.action",
+                "pt": "msg",
+                "to": "send",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 280,
+        "y": 520,
+        "wires": [
+            [
+                "d8476fc2.2f007"
+            ]
+        ]
+    },
+    {
+        "id": "a322656d.2b5a88",
+        "type": "worldmap",
+        "z": "8e4e09de.5dedc8",
+        "name": "",
+        "lat": "",
+        "lon": "",
+        "zoom": "",
+        "layer": "OSM grey",
+        "cluster": "0",
+        "maxage": "90",
+        "panit": "false",
+        "hiderightclick": "false",
+        "coords": "deg",
+        "showgrid": "true",
+        "path": "",
+        "x": 850,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "5e7a4a2b.fa27e4",
+        "type": "debug",
+        "z": "8e4e09de.5dedc8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 530,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "9694aa93.4bf0c8",
+        "type": "debug",
+        "z": "8e4e09de.5dedc8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "f2ba1073.0b4828",
+        "type": "geofence",
+        "z": "8e4e09de.5dedc8",
+        "name": "",
+        "mode": "circle",
+        "inside": "true",
+        "rad": 2593.4578028042665,
+        "points": [],
+        "centre": {
+            "latitude": 37.57394103928162,
+            "longitude": -77.48988541961808
+        },
+        "floor": "",
+        "ceiling": "3000",
+        "worldmap": true,
+        "outputs": 2,
+        "x": 660,
+        "y": 480,
+        "wires": [
+            [
+                "8a2d1d33.0c5788"
+            ],
+            [
+                "ecc0eb72.864ff8",
+                "a322656d.2b5a88"
+            ]
+        ]
+    },
+    {
+        "id": "8a2d1d33.0c5788",
+        "type": "debug",
+        "z": "8e4e09de.5dedc8",
+        "name": "filtered",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 830,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "ecc0eb72.864ff8",
+        "type": "debug",
+        "z": "8e4e09de.5dedc8",
+        "name": "fence",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 830,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "d8476fc2.2f007",
+        "type": "switch",
+        "z": "8e4e09de.5dedc8",
+        "name": "has position",
+        "property": "payload.lat and payload.lon",
+        "propertyType": "jsonata",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 470,
+        "y": 520,
+        "wires": [
+            [
+                "f2ba1073.0b4828",
+                "9694aa93.4bf0c8",
+                "a322656d.2b5a88",
+                "4c0fd75f.339948"
+            ]
+        ]
+    },
+    {
+        "id": "fa5e2384.699c2",
+        "type": "influxdb out",
+        "z": "8e4e09de.5dedc8",
+        "influxdb": "4ec90f43.a67098",
+        "name": "",
+        "measurement": "aircraft",
+        "precision": "ms",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 860,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "4c0fd75f.339948",
+        "type": "function",
+        "z": "8e4e09de.5dedc8",
+        "name": "",
+        "func": "/*\nIf msg.payload is an array containing two objects,\nthe first object will be written as the set of named fields,\nthe second is the set of named tags.\n*/\np = msg.payload;\n\nfields = {\n    lat: p.lat,\n    lon: p.lon,\n    rssi: p.rssi,\n    time: Math.round((msg.timestamp - p.seen_pos) * 1000), // ugh\n};\n\nif (p.alt_baro) {\n    fields.alt_baro = p.alt_baro;\n}\n    \nif (p.alt_geom) {\n    fields.alt_geom = p.alt_geom;\n}\n\nif (p.gs) {\n    fields.gs = p.gs;\n}\n\n\ntags = {\n    hex: p.hex,\n    source: msg.source,\n};\n\nif (p.squawk) {\n    tags.squawk = p.squawk;\n}\n\nif (p.emergency) {\n    tags.emergency = p.emergency;\n}\n\nif (p.flight) {\n    tags.flight = p.flight;\n}\n\nif (p.category) {\n    tags.category = p.category;\n}\n\nmsg = {\n    payload: [\n        // fields\n        fields,\n    \n        // tags\n        tags,\n]};\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 660,
+        "wires": [
+            [
+                "fa5e2384.699c2"
+            ]
+        ]
+    },
+    {
+        "id": "26ea157d.c6467a",
+        "type": "change",
+        "z": "8e4e09de.5dedc8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "source",
+                "pt": "msg",
+                "to": "skyaware978",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "timestamp",
+                "pt": "msg",
+                "to": "payload.now",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 300,
+        "y": 100,
+        "wires": [
+            [
+                "acf0ce6e.b3793",
+                "e3fd6b99.b748f8",
+                "5394059f.b5361c"
+            ]
+        ]
+    },
+    {
+        "id": "59639fc1.9c4b48",
+        "type": "change",
+        "z": "8e4e09de.5dedc8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "source",
+                "pt": "msg",
+                "to": "dump1090",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "timestamp",
+                "pt": "msg",
+                "to": "payload.now",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 300,
+        "y": 140,
+        "wires": [
+            [
+                "deae8479.c40408",
+                "5394059f.b5361c",
+                "e3fd6b99.b748f8"
+            ]
+        ]
+    },
+    {
+        "id": "e3fd6b99.b748f8",
+        "type": "debug",
+        "z": "8e4e09de.5dedc8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 490,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "c2140346.9061e8",
+        "type": "server-events",
+        "z": "6c71644f.90490c",
+        "name": "doorbell rang",
+        "server": "1fb2958d.14f89a",
+        "version": 1,
+        "event_type": "unifiprotect_doorbell",
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "waitForRunning": true,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "$outputData(\"eventData\").event_type",
+                "valueType": "jsonata"
+            }
+        ],
+        "x": 90,
+        "y": 380,
+        "wires": [
+            [
+                "f5de0832.ca3af",
+                "bea87f39.bb9c18"
+            ]
+        ]
+    },
+    {
+        "id": "f8f5cb6c.5798a8",
+        "type": "inject",
+        "z": "6c71644f.90490c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "unifiprotect_doorbell",
+        "payload": "{\"event_type\":\"unifiprotect_doorbell\",\"entity_id\":\"binary_sensor.doorbell_front_door\",\"event\":{\"ring\":true,\"entity_id\":\"binary_sensor.doorbell_front_door\"},\"origin\":\"LOCAL\",\"time_fired\":\"2021-06-29T13:53:14.017139+00:00\",\"context\":{\"id\":\"69931d2e480598c20d9366043e51c273\",\"parent_id\":null,\"user_id\":null}}",
+        "payloadType": "json",
+        "x": 90,
+        "y": 340,
+        "wires": [
+            [
+                "f5de0832.ca3af",
+                "bea87f39.bb9c18"
+            ]
+        ]
+    },
+    {
+        "id": "f5de0832.ca3af",
+        "type": "change",
+        "z": "6c71644f.90490c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "camera_entity_id",
+                "pt": "msg",
+                "to": "\"camera.\" & $substringAfter(payload.entity_id, \"binary_sensor.doorbell_\")",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "filename",
+                "pt": "msg",
+                "to": "\"doorbell_snapshot_\" \t    & $now(\"[Y0001]-[M01]-[D01]T[H01]_[m01]_[s01]Z\") \t    & \"_\"\t    & $split(msg.camera_entity_id, \".\")[1]\t    & \".jpg\"",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "is_critical",
+                "pt": "msg",
+                "to": "1",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "message",
+                "pt": "msg",
+                "to": "🔔 someone's at the door",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 160,
+        "y": 460,
+        "wires": [
+            [
+                "3296c10a.9b412e"
+            ]
+        ]
+    },
+    {
+        "id": "bea87f39.bb9c18",
+        "type": "debug",
+        "z": "6c71644f.90490c",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 230,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "ac4bc382.ee2b48",
+        "type": "config",
+        "z": "6c71644f.90490c",
+        "name": "",
+        "properties": [
+            {
+                "p": "s3",
+                "pt": "flow",
+                "to": "{     \"bucket\": \"blalor-imgs\",     \"prefix\": \"hass-notif-imgs/\" }",
+                "tot": "json"
+            }
+        ],
+        "active": true,
+        "x": 90,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "17801fb8.a006b8",
+        "type": "debug",
+        "z": "6c71644f.90490c",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 620,
+        "y": 500,
+        "wires": []
     }
 ]
