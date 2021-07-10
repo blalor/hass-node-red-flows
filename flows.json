@@ -9,7 +9,7 @@
     {
         "id": "8e4e09de.5dedc8",
         "type": "tab",
-        "label": "Flow 1",
+        "label": "skyaware",
         "disabled": false,
         "info": ""
     },
@@ -129,8 +129,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 630,
-        "y": 420,
+        "x": 990,
+        "y": 140,
         "wires": [
             []
         ]
@@ -209,8 +209,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 400,
-        "y": 420,
+        "x": 760,
+        "y": 180,
         "wires": [
             [
                 "5662f68e.29e62",
@@ -235,8 +235,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 570,
-        "y": 600,
+        "x": 1650,
+        "y": 180,
         "wires": [
             []
         ]
@@ -263,12 +263,13 @@
                 "valueType": "results"
             }
         ],
-        "x": 410,
-        "y": 480,
+        "x": 990,
+        "y": 220,
         "wires": [
             [
                 "cdcd22b2.55961",
-                "17801fb8.a006b8"
+                "17801fb8.a006b8",
+                "a1c6a8a6.870ca"
             ]
         ]
     },
@@ -332,8 +333,8 @@
         "OutputSerialization": "",
         "PartNumber": "",
         "name": "upload to s3",
-        "x": 330,
-        "y": 600,
+        "x": 1410,
+        "y": 240,
         "wires": [
             [
                 "22b532a0.3b8d26"
@@ -356,8 +357,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 140,
-        "y": 600,
+        "x": 1220,
+        "y": 240,
         "wires": [
             [
                 "e4a86753.94dcf8"
@@ -377,8 +378,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 550,
-        "y": 660,
+        "x": 1670,
+        "y": 240,
         "wires": []
     },
     {
@@ -398,8 +399,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 560,
-        "y": 720,
+        "x": 1690,
+        "y": 280,
         "wires": [
             []
         ]
@@ -574,8 +575,8 @@
         "bytopic": "all",
         "topic": "topic",
         "outputs": 1,
-        "x": 580,
-        "y": 200,
+        "x": 360,
+        "y": 180,
         "wires": [
             [
                 "5c1a8d29.db4a24"
@@ -599,8 +600,8 @@
         "bytopic": "all",
         "topic": "topic",
         "outputs": 1,
-        "x": 580,
-        "y": 260,
+        "x": 360,
+        "y": 240,
         "wires": [
             [
                 "5c1a8d29.db4a24"
@@ -728,8 +729,8 @@
         "outputOnStateChange": false,
         "outputPayload": "$entity().state ? \"on\": \"off\"",
         "outputPayloadType": "jsonata",
-        "x": 530,
-        "y": 100,
+        "x": 490,
+        "y": 40,
         "wires": [
             []
         ]
@@ -783,8 +784,8 @@
         "outputOnStateChange": false,
         "outputPayload": "$entity().state ? \"on\": \"off\"",
         "outputPayloadType": "jsonata",
-        "x": 530,
-        "y": 140,
+        "x": 490,
+        "y": 160,
         "wires": [
             []
         ]
@@ -800,12 +801,12 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 290,
-        "y": 420,
+        "x": 730,
+        "y": 120,
         "wires": [
             [
-                "2ae90fc7.b57198",
-                "5e7a4a2b.fa27e4"
+                "5e7a4a2b.fa27e4",
+                "d8476fc2.2f007"
             ]
         ]
     },
@@ -824,9 +825,16 @@
             },
             {
                 "t": "move",
+                "p": "payload.track",
+                "pt": "msg",
+                "to": "payload.heading",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
                 "p": "payload.bearing",
                 "pt": "msg",
-                "to": "payload.track",
+                "to": "payload.heading",
                 "tot": "msg"
             },
             {
@@ -845,31 +853,17 @@
             },
             {
                 "t": "set",
+                "p": "payload.label",
+                "pt": "msg",
+                "to": "payload.flight & \" \" & payload.alt",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
                 "p": "payload.speed",
                 "pt": "msg",
                 "to": "payload.gs",
                 "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "payload.label",
-                "pt": "msg",
-                "to": "payload.flight",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "payload.alt",
-                "pt": "msg",
-                "to": "payload.alt_geom",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "payload.action",
-                "pt": "msg",
-                "to": "send",
-                "tot": "str"
             }
         ],
         "action": "",
@@ -877,11 +871,15 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 280,
-        "y": 520,
+        "x": 1140,
+        "y": 160,
         "wires": [
             [
-                "d8476fc2.2f007"
+                "9694aa93.4bf0c8",
+                "4c0fd75f.339948",
+                "d8ba4108.07e18",
+                "a322656d.2b5a88",
+                "bb59003c.d7ac68"
             ]
         ]
     },
@@ -890,10 +888,10 @@
         "type": "worldmap",
         "z": "8e4e09de.5dedc8",
         "name": "",
-        "lat": "",
-        "lon": "",
+        "lat": "37.5731",
+        "lon": "-77.4899",
         "zoom": "",
-        "layer": "OSM grey",
+        "layer": "OSM",
         "cluster": "0",
         "maxage": "90",
         "panit": "false",
@@ -901,8 +899,8 @@
         "coords": "deg",
         "showgrid": "true",
         "path": "",
-        "x": 850,
-        "y": 540,
+        "x": 1550,
+        "y": 260,
         "wires": []
     },
     {
@@ -918,8 +916,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 530,
-        "y": 400,
+        "x": 930,
+        "y": 80,
         "wires": []
     },
     {
@@ -935,71 +933,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 670,
-        "y": 600,
-        "wires": []
-    },
-    {
-        "id": "f2ba1073.0b4828",
-        "type": "geofence",
-        "z": "8e4e09de.5dedc8",
-        "name": "",
-        "mode": "circle",
-        "inside": "true",
-        "rad": 2593.4578028042665,
-        "points": [],
-        "centre": {
-            "latitude": 37.57394103928162,
-            "longitude": -77.48988541961808
-        },
-        "floor": "",
-        "ceiling": "3000",
-        "worldmap": true,
-        "outputs": 2,
-        "x": 660,
-        "y": 480,
-        "wires": [
-            [
-                "8a2d1d33.0c5788"
-            ],
-            [
-                "ecc0eb72.864ff8",
-                "a322656d.2b5a88"
-            ]
-        ]
-    },
-    {
-        "id": "8a2d1d33.0c5788",
-        "type": "debug",
-        "z": "8e4e09de.5dedc8",
-        "name": "filtered",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 830,
-        "y": 460,
-        "wires": []
-    },
-    {
-        "id": "ecc0eb72.864ff8",
-        "type": "debug",
-        "z": "8e4e09de.5dedc8",
-        "name": "fence",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 830,
-        "y": 500,
+        "x": 1310,
+        "y": 280,
         "wires": []
     },
     {
@@ -1017,14 +952,11 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 470,
-        "y": 520,
+        "x": 970,
+        "y": 160,
         "wires": [
             [
-                "f2ba1073.0b4828",
-                "9694aa93.4bf0c8",
-                "a322656d.2b5a88",
-                "4c0fd75f.339948"
+                "2ae90fc7.b57198"
             ]
         ]
     },
@@ -1042,8 +974,8 @@
         "retentionPolicyV18Flux": "",
         "org": "organisation",
         "bucket": "bucket",
-        "x": 860,
-        "y": 660,
+        "x": 1480,
+        "y": 340,
         "wires": []
     },
     {
@@ -1057,8 +989,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 660,
-        "y": 660,
+        "x": 1280,
+        "y": 340,
         "wires": [
             [
                 "fa5e2384.699c2"
@@ -1096,8 +1028,7 @@
         "wires": [
             [
                 "acf0ce6e.b3793",
-                "e3fd6b99.b748f8",
-                "5394059f.b5361c"
+                "ae0edcc6.900b6"
             ]
         ]
     },
@@ -1132,8 +1063,7 @@
         "wires": [
             [
                 "deae8479.c40408",
-                "5394059f.b5361c",
-                "e3fd6b99.b748f8"
+                "ae0edcc6.900b6"
             ]
         ]
     },
@@ -1150,8 +1080,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 490,
-        "y": 40,
+        "x": 650,
+        "y": 80,
         "wires": []
     },
     {
@@ -1192,8 +1122,7 @@
         "y": 380,
         "wires": [
             [
-                "f5de0832.ca3af",
-                "bea87f39.bb9c18"
+                "117ffffa.58b3a8"
             ]
         ]
     },
@@ -1222,8 +1151,7 @@
         "y": 340,
         "wires": [
             [
-                "f5de0832.ca3af",
-                "bea87f39.bb9c18"
+                "117ffffa.58b3a8"
             ]
         ]
     },
@@ -1267,8 +1195,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 160,
-        "y": 460,
+        "x": 760,
+        "y": 280,
         "wires": [
             [
                 "3296c10a.9b412e"
@@ -1288,8 +1216,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 230,
-        "y": 320,
+        "x": 390,
+        "y": 400,
         "wires": []
     },
     {
@@ -1323,8 +1251,443 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 620,
-        "y": 500,
+        "x": 1190,
+        "y": 200,
         "wires": []
+    },
+    {
+        "id": "117ffffa.58b3a8",
+        "type": "fan",
+        "z": "6c71644f.90490c",
+        "name": "",
+        "x": 270,
+        "y": 360,
+        "wires": [
+            [
+                "bea87f39.bb9c18",
+                "f5de0832.ca3af"
+            ]
+        ]
+    },
+    {
+        "id": "ae0edcc6.900b6",
+        "type": "fan",
+        "z": "8e4e09de.5dedc8",
+        "name": "",
+        "x": 490,
+        "y": 100,
+        "wires": [
+            [
+                "5394059f.b5361c",
+                "e3fd6b99.b748f8"
+            ]
+        ]
+    },
+    {
+        "id": "4c2eab3e.8298d4",
+        "type": "api-call-service",
+        "z": "8e4e09de.5dedc8",
+        "name": "in-hass notification",
+        "server": "1fb2958d.14f89a",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "notify",
+        "service": "persistent_notification",
+        "entityId": "",
+        "data": "{\t    \"title\": \"low-flyer \" & payload.hex & \" \" & payload.flight,\t    \"message\": \"passing over \" & payload.lat & \",\" & payload.lon & \" moving \" & payload.gs & \" at \" & payload.alt_geom & \"' ASL, at \" & $fromMillis(timestamp * 1000)\t}",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1730,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4dccd86e.1676c8",
+        "type": "trigger",
+        "z": "8e4e09de.5dedc8",
+        "name": "once/5m",
+        "op1": "",
+        "op2": "",
+        "op1type": "pay",
+        "op2type": "nul",
+        "duration": "5",
+        "extend": true,
+        "overrideDelay": false,
+        "units": "min",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 1540,
+        "y": 100,
+        "wires": [
+            [
+                "4c2eab3e.8298d4"
+            ]
+        ]
+    },
+    {
+        "id": "431cbf62.65f4d",
+        "type": "file",
+        "z": "8e4e09de.5dedc8",
+        "name": "",
+        "filename": "/tmp/filtered_flights.json",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "utf8",
+        "x": 1590,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c2b9da92.e5727",
+        "type": "inject",
+        "z": "8e4e09de.5dedc8",
+        "name": "reset",
+        "props": [
+            {
+                "p": "reset",
+                "v": "true",
+                "vt": "bool"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 1430,
+        "y": 40,
+        "wires": [
+            [
+                "4dccd86e.1676c8"
+            ]
+        ]
+    },
+    {
+        "id": "b5ce440c.ce6f9",
+        "type": "status",
+        "z": "8e4e09de.5dedc8",
+        "name": "",
+        "scope": [
+            "4c2eab3e.8298d4"
+        ],
+        "x": 80,
+        "y": 260,
+        "wires": [
+            [
+                "cd60e5ac.2003a"
+            ]
+        ]
+    },
+    {
+        "id": "cd60e5ac.2003a",
+        "type": "debug",
+        "z": "8e4e09de.5dedc8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 210,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "6c3be341.3c355c",
+        "type": "file",
+        "z": "6c71644f.90490c",
+        "name": "",
+        "filename": "",
+        "appendNewline": false,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 1200,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a1c6a8a6.870ca",
+        "type": "change",
+        "z": "6c71644f.90490c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "filename",
+                "pt": "msg",
+                "to": "\"/media/\" & msg.filename",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1160,
+        "y": 280,
+        "wires": [
+            [
+                "6c3be341.3c355c"
+            ]
+        ]
+    },
+    {
+        "id": "18f6e019.e068d8",
+        "type": "inject",
+        "z": "8e4e09de.5dedc8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "timestamp",
+                "v": "$toMillis($now())/1000\t",
+                "vt": "jsonata"
+            },
+            {
+                "p": "source",
+                "v": "dump1090",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"hex\":\"a6a425\",\"flight\":\"NKS930  \",\"alt_baro\":1500,\"alt_geom\":1675,\"gs\":169.8,\"baro_rate\":-1280,\"category\":\"A3\",\"nav_qnh\":1019.2,\"nav_altitude_mcp\":1696,\"nav_heading\":87.2,\"lat\":37.57395400685966,\"lon\":-77.48991018535888,\"nic\":8,\"rc\":186,\"seen_pos\":11.3,\"version\":2,\"nic_baro\":1,\"nac_p\":10,\"nac_v\":4,\"sil\":3,\"sil_type\":\"perhour\",\"gva\":2,\"sda\":2,\"mlat\":[],\"tisb\":[],\"messages\":1034,\"seen\":4.2,\"rssi\":-12.4,\"name\":\"a6a425 NKS930  \",\"heading\":145.6,\"bearing\":145.6,\"icon\":\"plane\",\"layer\":\"ADSB\",\"alt\":510.54,\"label\":\"NKS930   510.54\",\"speed\":169.8}",
+        "payloadType": "json",
+        "x": 1130,
+        "y": 100,
+        "wires": [
+            [
+                "d8ba4108.07e18"
+            ]
+        ]
+    },
+    {
+        "id": "d8ba4108.07e18",
+        "type": "function",
+        "z": "8e4e09de.5dedc8",
+        "name": "geofence",
+        "func": "var loc = {\n    latitude: msg.payload.lat,\n    longitude: msg.payload.lon,\n    elevation: msg.payload.alt_geom, // ft\n};\n\nvar fence = {\n    latitude: 37.57395400685966,\n    longitude: -77.48991018535888,\n    radius: 3400, // meters; ~distance to the river\n    ceiling: 2500, // feet, because I'm lazy\n};\n\nvar fence_msg = {\n    payload: {\n        name: \"GeoFence\",\n        layer: \"geofence\",\n        fillOpacity: 0.05,\n        fillColor: \"#404040\",\n        clickable: true,\n        //editable: true\n        lat: fence.latitude,\n        lon: fence.longitude,\n        radius: fence.radius,\n    },\n};\n\nif ( geolib.isPointWithinRadius(loc, fence, fence.radius) ) {\n    if (loc.elevation <= fence.ceiling) {\n        return [msg, fence_msg];\n    }\n}\n",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "geolib",
+                "module": "geolib"
+            }
+        ],
+        "x": 1340,
+        "y": 100,
+        "wires": [
+            [
+                "4dccd86e.1676c8",
+                "431cbf62.65f4d",
+                "6d9a477f.c171c",
+                "ed1ccafd.cbb06"
+            ],
+            [
+                "a322656d.2b5a88"
+            ]
+        ]
+    },
+    {
+        "id": "6d9a477f.c171c",
+        "type": "debug",
+        "z": "8e4e09de.5dedc8",
+        "name": "inside fence",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1550,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "ed1ccafd.cbb06",
+        "type": "worldmap-tracks",
+        "z": "8e4e09de.5dedc8",
+        "name": "",
+        "depth": "100",
+        "layer": "combined",
+        "smooth": false,
+        "x": 1350,
+        "y": 160,
+        "wires": [
+            [
+                "a322656d.2b5a88"
+            ]
+        ]
+    },
+    {
+        "id": "22785560.825c72",
+        "type": "inject",
+        "z": "8e4e09de.5dedc8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 1090,
+        "y": 40,
+        "wires": [
+            [
+                "fcf1ed10.a77dc"
+            ]
+        ]
+    },
+    {
+        "id": "fcf1ed10.a77dc",
+        "type": "function",
+        "z": "8e4e09de.5dedc8",
+        "name": "",
+        "func": "async function processLineByLine() {\n  const fileStream = fs.createReadStream('/tmp/filtered_flights.json');\n\n  const rl = readline.createInterface({\n    input: fileStream,\n    crlfDelay: Infinity\n  });\n  // Note: we use the crlfDelay option to recognize all instances of CR LF\n  // ('\\r\\n') in input.txt as a single line break.\n\n  for await (const line of rl) {\n    node.send({ payload: JSON.parse(line) });\n  }\n}\n\nprocessLineByLine();\nnode.done();\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "fs",
+                "module": "fs"
+            },
+            {
+                "var": "readline",
+                "module": "readline"
+            }
+        ],
+        "x": 1250,
+        "y": 40,
+        "wires": [
+            [
+                "d8ba4108.07e18",
+                "a322656d.2b5a88"
+            ]
+        ]
+    },
+    {
+        "id": "bb59003c.d7ac68",
+        "type": "geofence",
+        "z": "8e4e09de.5dedc8",
+        "name": "",
+        "mode": "circle",
+        "inside": "true",
+        "rad": 702.217078047325,
+        "points": [],
+        "centre": {
+            "latitude": 37.57395400685966,
+            "longitude": -77.48991018535888
+        },
+        "floor": "",
+        "ceiling": "762",
+        "worldmap": true,
+        "outputs": 2,
+        "x": 1390,
+        "y": 500,
+        "wires": [
+            [
+                "568f416.ab5534"
+            ],
+            [
+                "a322656d.2b5a88"
+            ]
+        ]
+    },
+    {
+        "id": "568f416.ab5534",
+        "type": "file",
+        "z": "8e4e09de.5dedc8",
+        "name": "",
+        "filename": "/tmp/fenced_flights.json",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "utf8",
+        "x": 1630,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a79aa51e.72e288",
+        "type": "worldmap in",
+        "z": "8e4e09de.5dedc8",
+        "name": "",
+        "path": "/worldmap",
+        "events": "connect",
+        "x": 1020,
+        "y": 480,
+        "wires": [
+            [
+                "edc90c9c.19a7a"
+            ]
+        ]
+    },
+    {
+        "id": "edc90c9c.19a7a",
+        "type": "change",
+        "z": "8e4e09de.5dedc8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.action",
+                "pt": "msg",
+                "to": "send",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1190,
+        "y": 540,
+        "wires": [
+            [
+                "bb59003c.d7ac68"
+            ]
+        ]
     }
 ]
