@@ -14,6 +14,13 @@
         "info": ""
     },
     {
+        "id": "33b1c56c.5e36fa",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "1fb2958d.14f89a",
         "type": "server",
         "name": "Home Assistant",
@@ -423,7 +430,7 @@
                 "value": ""
             }
         ],
-        "entityidfilter": "binary_sensor.motion_garage_alley",
+        "entityidfilter": "binary_sensor.motion_garage_alley_camera",
         "entityidfiltertype": "exact",
         "outputinitially": false,
         "state_type": "str",
@@ -487,7 +494,7 @@
                 "value": ""
             }
         ],
-        "entityidfilter": "binary_sensor.motion_parking_pad",
+        "entityidfilter": "binary_sensor.motion_parking_pad_camera",
         "entityidfiltertype": "exact",
         "outputinitially": false,
         "state_type": "str",
@@ -622,7 +629,7 @@
         "proxy": "",
         "authType": "",
         "x": 130,
-        "y": 100,
+        "y": 160,
         "wires": [
             [
                 "26ea157d.c6467a"
@@ -643,7 +650,7 @@
         "proxy": "",
         "authType": "",
         "x": 130,
-        "y": 140,
+        "y": 200,
         "wires": [
             [
                 "59639fc1.9c4b48"
@@ -672,7 +679,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 120,
-        "y": 40,
+        "y": 100,
         "wires": [
             [
                 "7b41b747.6cb21",
@@ -730,7 +737,7 @@
         "outputPayload": "$entity().state ? \"on\": \"off\"",
         "outputPayloadType": "jsonata",
         "x": 490,
-        "y": 40,
+        "y": 100,
         "wires": [
             []
         ]
@@ -785,7 +792,7 @@
         "outputPayload": "$entity().state ? \"on\": \"off\"",
         "outputPayloadType": "jsonata",
         "x": 490,
-        "y": 160,
+        "y": 220,
         "wires": [
             []
         ]
@@ -802,7 +809,7 @@
         "finalize": "",
         "libs": [],
         "x": 730,
-        "y": 120,
+        "y": 180,
         "wires": [
             [
                 "5e7a4a2b.fa27e4",
@@ -822,20 +829,6 @@
                 "pt": "msg",
                 "to": "payload.hex & \" \" & payload.flight",
                 "tot": "jsonata"
-            },
-            {
-                "t": "move",
-                "p": "payload.track",
-                "pt": "msg",
-                "to": "payload.heading",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "payload.bearing",
-                "pt": "msg",
-                "to": "payload.heading",
-                "tot": "msg"
             },
             {
                 "t": "set",
@@ -864,6 +857,27 @@
                 "pt": "msg",
                 "to": "payload.gs",
                 "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.alt",
+                "pt": "msg",
+                "to": "payload.alt_geom / 3.2808",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "payload.iconColor",
+                "pt": "msg",
+                "to": "source = \"dump1090\" ? \"blue\" : \"green\"",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "payload.bearing",
+                "pt": "msg",
+                "to": "payload.track",
+                "tot": "msg"
             }
         ],
         "action": "",
@@ -872,14 +886,12 @@
         "to": "",
         "reg": false,
         "x": 1140,
-        "y": 160,
+        "y": 220,
         "wires": [
             [
                 "9694aa93.4bf0c8",
                 "4c0fd75f.339948",
-                "d8ba4108.07e18",
-                "a322656d.2b5a88",
-                "bb59003c.d7ac68"
+                "ea89cfa8.14cd6"
             ]
         ]
     },
@@ -899,8 +911,8 @@
         "coords": "deg",
         "showgrid": "true",
         "path": "",
-        "x": 1550,
-        "y": 260,
+        "x": 1890,
+        "y": 180,
         "wires": []
     },
     {
@@ -917,7 +929,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 930,
-        "y": 80,
+        "y": 140,
         "wires": []
     },
     {
@@ -933,8 +945,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1310,
-        "y": 280,
+        "x": 1370,
+        "y": 220,
         "wires": []
     },
     {
@@ -953,7 +965,7 @@
         "repair": false,
         "outputs": 1,
         "x": 970,
-        "y": 160,
+        "y": 220,
         "wires": [
             [
                 "2ae90fc7.b57198"
@@ -974,8 +986,8 @@
         "retentionPolicyV18Flux": "",
         "org": "organisation",
         "bucket": "bucket",
-        "x": 1480,
-        "y": 340,
+        "x": 1600,
+        "y": 320,
         "wires": []
     },
     {
@@ -989,8 +1001,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1280,
-        "y": 340,
+        "x": 1400,
+        "y": 320,
         "wires": [
             [
                 "fa5e2384.699c2"
@@ -1024,7 +1036,7 @@
         "to": "",
         "reg": false,
         "x": 300,
-        "y": 100,
+        "y": 160,
         "wires": [
             [
                 "acf0ce6e.b3793",
@@ -1059,7 +1071,7 @@
         "to": "",
         "reg": false,
         "x": 300,
-        "y": 140,
+        "y": 200,
         "wires": [
             [
                 "deae8479.c40408",
@@ -1081,7 +1093,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 650,
-        "y": 80,
+        "y": 140,
         "wires": []
     },
     {
@@ -1275,7 +1287,7 @@
         "z": "8e4e09de.5dedc8",
         "name": "",
         "x": 490,
-        "y": 100,
+        "y": 160,
         "wires": [
             [
                 "5394059f.b5361c",
@@ -1294,14 +1306,14 @@
         "service_domain": "notify",
         "service": "persistent_notification",
         "entityId": "",
-        "data": "{\t    \"title\": \"low-flyer \" & payload.hex & \" \" & payload.flight,\t    \"message\": \"passing over \" & payload.lat & \",\" & payload.lon & \" moving \" & payload.gs & \" at \" & payload.alt_geom & \"' ASL, at \" & $fromMillis(timestamp * 1000)\t}",
+        "data": "{\t    \"title\": \"low-flyer \" & payload.hex & \" \" & payload.flight,\t    \"message\": \"passing over \" & payload.lat & \",\" & payload.lon & \" moving \" & payload.gs & \"kts at \" & payload.alt_geom & \"' ASL, at \" & $fromMillis(timestamp * 1000)\t}",
         "dataType": "jsonata",
         "mergecontext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 1730,
-        "y": 100,
+        "x": 1990,
+        "y": 40,
         "wires": [
             []
         ]
@@ -1323,8 +1335,8 @@
         "bytopic": "all",
         "topic": "topic",
         "outputs": 1,
-        "x": 1540,
-        "y": 100,
+        "x": 1800,
+        "y": 40,
         "wires": [
             [
                 "4c2eab3e.8298d4"
@@ -1341,8 +1353,8 @@
         "createDir": false,
         "overwriteFile": "false",
         "encoding": "utf8",
-        "x": 1590,
-        "y": 160,
+        "x": 1850,
+        "y": 120,
         "wires": [
             []
         ]
@@ -1364,7 +1376,7 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 1430,
+        "x": 1610,
         "y": 40,
         "wires": [
             [
@@ -1381,7 +1393,7 @@
             "4c2eab3e.8298d4"
         ],
         "x": 80,
-        "y": 260,
+        "y": 320,
         "wires": [
             [
                 "cd60e5ac.2003a"
@@ -1402,7 +1414,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 210,
-        "y": 260,
+        "y": 320,
         "wires": []
     },
     {
@@ -1440,7 +1452,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1160,
+        "x": 1210,
         "y": 280,
         "wires": [
             [
@@ -1475,41 +1487,11 @@
         "topic": "",
         "payload": "{\"hex\":\"a6a425\",\"flight\":\"NKS930  \",\"alt_baro\":1500,\"alt_geom\":1675,\"gs\":169.8,\"baro_rate\":-1280,\"category\":\"A3\",\"nav_qnh\":1019.2,\"nav_altitude_mcp\":1696,\"nav_heading\":87.2,\"lat\":37.57395400685966,\"lon\":-77.48991018535888,\"nic\":8,\"rc\":186,\"seen_pos\":11.3,\"version\":2,\"nic_baro\":1,\"nac_p\":10,\"nac_v\":4,\"sil\":3,\"sil_type\":\"perhour\",\"gva\":2,\"sda\":2,\"mlat\":[],\"tisb\":[],\"messages\":1034,\"seen\":4.2,\"rssi\":-12.4,\"name\":\"a6a425 NKS930  \",\"heading\":145.6,\"bearing\":145.6,\"icon\":\"plane\",\"layer\":\"ADSB\",\"alt\":510.54,\"label\":\"NKS930   510.54\",\"speed\":169.8}",
         "payloadType": "json",
-        "x": 1130,
-        "y": 100,
+        "x": 1210,
+        "y": 140,
         "wires": [
             [
-                "d8ba4108.07e18"
-            ]
-        ]
-    },
-    {
-        "id": "d8ba4108.07e18",
-        "type": "function",
-        "z": "8e4e09de.5dedc8",
-        "name": "geofence",
-        "func": "var loc = {\n    latitude: msg.payload.lat,\n    longitude: msg.payload.lon,\n    elevation: msg.payload.alt_geom, // ft\n};\n\nvar fence = {\n    latitude: 37.57395400685966,\n    longitude: -77.48991018535888,\n    radius: 3400, // meters; ~distance to the river\n    ceiling: 2500, // feet, because I'm lazy\n};\n\nvar fence_msg = {\n    payload: {\n        name: \"GeoFence\",\n        layer: \"geofence\",\n        fillOpacity: 0.05,\n        fillColor: \"#404040\",\n        clickable: true,\n        //editable: true\n        lat: fence.latitude,\n        lon: fence.longitude,\n        radius: fence.radius,\n    },\n};\n\nif ( geolib.isPointWithinRadius(loc, fence, fence.radius) ) {\n    if (loc.elevation <= fence.ceiling) {\n        return [msg, fence_msg];\n    }\n}\n",
-        "outputs": 2,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [
-            {
-                "var": "geolib",
-                "module": "geolib"
-            }
-        ],
-        "x": 1340,
-        "y": 100,
-        "wires": [
-            [
-                "4dccd86e.1676c8",
-                "431cbf62.65f4d",
-                "6d9a477f.c171c",
-                "ed1ccafd.cbb06"
-            ],
-            [
-                "a322656d.2b5a88"
+                "ea89cfa8.14cd6"
             ]
         ]
     },
@@ -1518,7 +1500,7 @@
         "type": "debug",
         "z": "8e4e09de.5dedc8",
         "name": "inside fence",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -1526,8 +1508,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1550,
-        "y": 200,
+        "x": 1810,
+        "y": 80,
         "wires": []
     },
     {
@@ -1538,11 +1520,11 @@
         "depth": "100",
         "layer": "combined",
         "smooth": false,
-        "x": 1350,
-        "y": 160,
+        "x": 1590,
+        "y": 220,
         "wires": [
             [
-                "a322656d.2b5a88"
+                "d89e05bd.b9b6a8"
             ]
         ]
     },
@@ -1567,7 +1549,7 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 1090,
+        "x": 1020,
         "y": 40,
         "wires": [
             [
@@ -1579,7 +1561,7 @@
         "id": "fcf1ed10.a77dc",
         "type": "function",
         "z": "8e4e09de.5dedc8",
-        "name": "",
+        "name": "inject filtered_flights",
         "func": "async function processLineByLine() {\n  const fileStream = fs.createReadStream('/tmp/filtered_flights.json');\n\n  const rl = readline.createInterface({\n    input: fileStream,\n    crlfDelay: Infinity\n  });\n  // Note: we use the crlfDelay option to recognize all instances of CR LF\n  // ('\\r\\n') in input.txt as a single line break.\n\n  for await (const line of rl) {\n    node.send({ payload: JSON.parse(line) });\n  }\n}\n\nprocessLineByLine();\nnode.done();\n",
         "outputs": 1,
         "noerr": 0,
@@ -1595,12 +1577,11 @@
                 "module": "readline"
             }
         ],
-        "x": 1250,
-        "y": 40,
+        "x": 1160,
+        "y": 100,
         "wires": [
             [
-                "d8ba4108.07e18",
-                "a322656d.2b5a88"
+                "ea89cfa8.14cd6"
             ]
         ]
     },
@@ -1621,31 +1602,17 @@
         "ceiling": "762",
         "worldmap": true,
         "outputs": 2,
-        "x": 1390,
-        "y": 500,
+        "x": 1600,
+        "y": 100,
         "wires": [
             [
-                "568f416.ab5534"
+                "4dccd86e.1676c8",
+                "431cbf62.65f4d",
+                "6d9a477f.c171c"
             ],
             [
                 "a322656d.2b5a88"
             ]
-        ]
-    },
-    {
-        "id": "568f416.ab5534",
-        "type": "file",
-        "z": "8e4e09de.5dedc8",
-        "name": "",
-        "filename": "/tmp/fenced_flights.json",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "false",
-        "encoding": "utf8",
-        "x": 1630,
-        "y": 500,
-        "wires": [
-            []
         ]
     },
     {
@@ -1655,8 +1622,8 @@
         "name": "",
         "path": "/worldmap",
         "events": "connect",
-        "x": 1020,
-        "y": 480,
+        "x": 1240,
+        "y": 40,
         "wires": [
             [
                 "edc90c9c.19a7a"
@@ -1667,7 +1634,7 @@
         "id": "edc90c9c.19a7a",
         "type": "change",
         "z": "8e4e09de.5dedc8",
-        "name": "",
+        "name": "action: send",
         "rules": [
             {
                 "t": "set",
@@ -1682,12 +1649,424 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1190,
-        "y": 540,
+        "x": 1410,
+        "y": 40,
         "wires": [
             [
                 "bb59003c.d7ac68"
             ]
+        ]
+    },
+    {
+        "id": "ea89cfa8.14cd6",
+        "type": "fan",
+        "z": "8e4e09de.5dedc8",
+        "name": "all flights",
+        "x": 1420,
+        "y": 160,
+        "wires": [
+            [
+                "bb59003c.d7ac68",
+                "ed1ccafd.cbb06",
+                "a322656d.2b5a88"
+            ]
+        ]
+    },
+    {
+        "id": "d89e05bd.b9b6a8",
+        "type": "change",
+        "z": "8e4e09de.5dedc8",
+        "name": "format track",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.color",
+                "pt": "msg",
+                "to": "#c291e0",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload.dashArray",
+                "pt": "msg",
+                "to": "[5,10]",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1730,
+        "y": 220,
+        "wires": [
+            [
+                "a322656d.2b5a88"
+            ]
+        ]
+    },
+    {
+        "id": "56397e0a.20aca",
+        "type": "server-state-changed",
+        "z": "33b1c56c.5e36fa",
+        "name": "",
+        "server": "1fb2958d.14f89a",
+        "version": 3,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "sensor.vzero_current_progress",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "true",
+        "halt_if_type": "jsonata",
+        "halt_if_compare": "jsonata",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 360,
+        "y": 80,
+        "wires": [
+            [
+                "edd5d3fc.46fbf"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "22138957.8954b6",
+        "type": "server-state-changed",
+        "z": "33b1c56c.5e36fa",
+        "name": "",
+        "server": "1fb2958d.14f89a",
+        "version": 3,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "sensor.vzero_state",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "true",
+        "halt_if_type": "jsonata",
+        "halt_if_compare": "jsonata",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 400,
+        "y": 200,
+        "wires": [
+            [
+                "edd5d3fc.46fbf"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "edd5d3fc.46fbf",
+        "type": "debug",
+        "z": "33b1c56c.5e36fa",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 710,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "f8e0390.090b348",
+        "type": "api-current-state",
+        "z": "33b1c56c.5e36fa",
+        "name": "",
+        "server": "1fb2958d.14f89a",
+        "version": 2,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "sensor.vzero_current_progress",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 370,
+        "y": 140,
+        "wires": [
+            [
+                "edd5d3fc.46fbf"
+            ]
+        ]
+    },
+    {
+        "id": "62397cf.e6bae84",
+        "type": "inject",
+        "z": "33b1c56c.5e36fa",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 260,
+        "wires": [
+            [
+                "f8e0390.090b348",
+                "fed4d6f8.143388",
+                "4c4a82e7.ee180c"
+            ]
+        ]
+    },
+    {
+        "id": "fed4d6f8.143388",
+        "type": "api-current-state",
+        "z": "33b1c56c.5e36fa",
+        "name": "",
+        "server": "1fb2958d.14f89a",
+        "version": 2,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "sensor.vzero_state",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 400,
+        "y": 260,
+        "wires": [
+            [
+                "edd5d3fc.46fbf"
+            ]
+        ]
+    },
+    {
+        "id": "4c4a82e7.ee180c",
+        "type": "api-current-state",
+        "z": "33b1c56c.5e36fa",
+        "name": "",
+        "server": "1fb2958d.14f89a",
+        "version": 2,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "sensor.voron_v0_state",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 390,
+        "y": 380,
+        "wires": [
+            [
+                "edd5d3fc.46fbf"
+            ]
+        ]
+    },
+    {
+        "id": "2ff4dbf9.bce24c",
+        "type": "server-state-changed",
+        "z": "33b1c56c.5e36fa",
+        "name": "",
+        "server": "1fb2958d.14f89a",
+        "version": 3,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "sensor.voron_v0_state",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "true",
+        "halt_if_type": "jsonata",
+        "halt_if_compare": "jsonata",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 390,
+        "y": 320,
+        "wires": [
+            [
+                "edd5d3fc.46fbf"
+            ],
+            []
         ]
     }
 ]
