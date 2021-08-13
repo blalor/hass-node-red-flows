@@ -236,7 +236,7 @@
         "service_domain": "notify",
         "service": "mobile_app_camilla_12_0",
         "entityId": "",
-        "data": "{\t   \"title\": data.new_state.attributes.friendly_name,\t   \"message\": message,\t   \"data\": {\t       \"subtitle\": data.new_state.attributes.event_object,\t       \"push\": {\t           \"thread-id\": \"home-motion-\" & topic,\t           \"sound\": {\t                \"name\": \"default\",\t                \"critical\": is_critical,\t                \"volume\": 1\t           }\t       },\t       \"image\": \"https://s3.amazonaws.com/\" & Bucket & \"/\" &\t       Key\t    }\t}\t",
+        "data": "{\t   \"title\": data.new_state.attributes.friendly_name,\t   \"message\": message,\t   \"data\": {\t       \"subtitle\": data.new_state.attributes.event_object,\t       \"push\": {\t           \"thread-id\": \"home-motion-\" & topic,\t           \"sound\": {\t                \"name\": \"default\",\t                \"critical\": is_critical,\t                \"volume\": 1\t           }\t       },\t       \"url\": \"unifi-protect://\",\t       \"image\": \"https://s3.amazonaws.com/\" & Bucket & \"/\" &\t       Key\t    }\t}\t",
         "dataType": "jsonata",
         "mergecontext": "",
         "mustacheAltTags": false,
@@ -276,7 +276,8 @@
             [
                 "cdcd22b2.55961",
                 "17801fb8.a006b8",
-                "a1c6a8a6.870ca"
+                "a1c6a8a6.870ca",
+                "2beff0bd2c5053cc"
             ]
         ]
     },
@@ -2068,5 +2069,21 @@
             ],
             []
         ]
+    },
+    {
+        "id": "2beff0bd2c5053cc",
+        "type": "image",
+        "z": "6c71644f.90490c",
+        "name": "preview",
+        "width": "240",
+        "data": "payload",
+        "dataType": "msg",
+        "thumbnail": true,
+        "active": true,
+        "pass": false,
+        "outputs": 0,
+        "x": 1160,
+        "y": 380,
+        "wires": []
     }
 ]
