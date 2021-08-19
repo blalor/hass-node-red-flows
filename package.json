@@ -10,7 +10,9 @@
         "node-red-contrib-fan": "1.0.2",
         "node-red-contrib-image-output": "0.6.2",
         "node-red-contrib-web-worldmap": "2.15.4",
-        "node-red-node-geofence": "0.2.2"
+        "node-red-node-geofence": "0.2.2",
+        "node-red-contrib-deepstack": "0.1.2",
+        "node-red-contrib-influxdb": "0.6.1"
     },
     "node-red": {
         "settings": {

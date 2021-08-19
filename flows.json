@@ -55,6 +55,15 @@
         "rejectUnauthorized": true
     },
     {
+        "id": "b575cd279cd084cc",
+        "type": "deepstack-server",
+        "proto": "http",
+        "host": "192.168.50.51",
+        "port": "80",
+        "version": "v1",
+        "rejectUnauthorized": true
+    },
+    {
         "id": "7a6f1441.9bac74",
         "type": "server-state-changed",
         "z": "6c71644f.90490c",
@@ -113,32 +122,8 @@
         "y": 140,
         "wires": [
             [
-                "3b92f41c.15286c"
+                "7dcbe468e50a4a5c"
             ],
-            []
-        ]
-    },
-    {
-        "id": "5662f68e.29e62",
-        "type": "api-call-service",
-        "z": "6c71644f.90490c",
-        "d": true,
-        "name": "in-hass notification",
-        "server": "1fb2958d.14f89a",
-        "version": 3,
-        "debugenabled": false,
-        "service_domain": "notify",
-        "service": "persistent_notification",
-        "entityId": "",
-        "data": "{\t   \"message\": $substringAfter(topic, \"binary_sensor.motion_\") & \" \" & data.new_state.attributes.event_object,\t   \"title\": data.new_state.attributes.friendly_name\t}",
-        "dataType": "jsonata",
-        "mergecontext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "x": 990,
-        "y": 140,
-        "wires": [
             []
         ]
     },
@@ -172,7 +157,7 @@
         "y": 100,
         "wires": [
             [
-                "3b92f41c.15286c"
+                "7dcbe468e50a4a5c"
             ]
         ]
     },
@@ -216,12 +201,11 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 760,
+        "x": 560,
         "y": 180,
         "wires": [
             [
-                "5662f68e.29e62",
-                "3296c10a.9b412e"
+                "f750214c6fc0671a"
             ]
         ]
     },
@@ -242,8 +226,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 1650,
-        "y": 180,
+        "x": 1350,
+        "y": 260,
         "wires": [
             []
         ]
@@ -270,39 +254,14 @@
                 "valueType": "results"
             }
         ],
-        "x": 990,
-        "y": 220,
+        "x": 690,
+        "y": 300,
         "wires": [
             [
                 "cdcd22b2.55961",
                 "17801fb8.a006b8",
                 "a1c6a8a6.870ca",
                 "2beff0bd2c5053cc"
-            ]
-        ]
-    },
-    {
-        "id": "3b92f41c.15286c",
-        "type": "switch",
-        "z": "6c71644f.90490c",
-        "name": "is not a vehicle?",
-        "property": "data.new_state.attributes.event_object",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "neq",
-                "v": "vehicle",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 380,
-        "y": 120,
-        "wires": [
-            [
-                "9807f009.32ba08"
             ]
         ]
     },
@@ -341,8 +300,8 @@
         "OutputSerialization": "",
         "PartNumber": "",
         "name": "upload to s3",
-        "x": 1410,
-        "y": 240,
+        "x": 1110,
+        "y": 320,
         "wires": [
             [
                 "22b532a0.3b8d26"
@@ -365,8 +324,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1220,
-        "y": 240,
+        "x": 920,
+        "y": 320,
         "wires": [
             [
                 "e4a86753.94dcf8"
@@ -386,8 +345,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1670,
-        "y": 240,
+        "x": 1370,
+        "y": 320,
         "wires": []
     },
     {
@@ -407,8 +366,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 1690,
-        "y": 280,
+        "x": 1390,
+        "y": 360,
         "wires": [
             []
         ]
@@ -472,7 +431,7 @@
         "y": 200,
         "wires": [
             [
-                "b91cfe5b.ab617"
+                "5c1a8d29.db4a24"
             ],
             []
         ]
@@ -536,84 +495,9 @@
         "y": 260,
         "wires": [
             [
-                "1d1cc78.7d0e139"
+                "5c1a8d29.db4a24"
             ],
             []
-        ]
-    },
-    {
-        "id": "9807f009.32ba08",
-        "type": "trigger",
-        "z": "6c71644f.90490c",
-        "name": "once/5m",
-        "op1": "",
-        "op2": "",
-        "op1type": "pay",
-        "op2type": "nul",
-        "duration": "5",
-        "extend": true,
-        "overrideDelay": false,
-        "units": "min",
-        "reset": "",
-        "bytopic": "all",
-        "topic": "topic",
-        "outputs": 1,
-        "x": 580,
-        "y": 120,
-        "wires": [
-            [
-                "5c1a8d29.db4a24"
-            ]
-        ]
-    },
-    {
-        "id": "b91cfe5b.ab617",
-        "type": "trigger",
-        "z": "6c71644f.90490c",
-        "name": "once/5m",
-        "op1": "",
-        "op2": "",
-        "op1type": "pay",
-        "op2type": "nul",
-        "duration": "5",
-        "extend": true,
-        "overrideDelay": false,
-        "units": "min",
-        "reset": "",
-        "bytopic": "all",
-        "topic": "topic",
-        "outputs": 1,
-        "x": 360,
-        "y": 180,
-        "wires": [
-            [
-                "5c1a8d29.db4a24"
-            ]
-        ]
-    },
-    {
-        "id": "1d1cc78.7d0e139",
-        "type": "trigger",
-        "z": "6c71644f.90490c",
-        "name": "once/5m",
-        "op1": "",
-        "op2": "",
-        "op1type": "pay",
-        "op2type": "nul",
-        "duration": "5",
-        "extend": true,
-        "overrideDelay": false,
-        "units": "min",
-        "reset": "",
-        "bytopic": "all",
-        "topic": "topic",
-        "outputs": 1,
-        "x": 360,
-        "y": 240,
-        "wires": [
-            [
-                "5c1a8d29.db4a24"
-            ]
         ]
     },
     {
@@ -1208,8 +1092,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 760,
-        "y": 280,
+        "x": 460,
+        "y": 360,
         "wires": [
             [
                 "3296c10a.9b412e"
@@ -1264,8 +1148,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1190,
-        "y": 200,
+        "x": 890,
+        "y": 280,
         "wires": []
     },
     {
@@ -1428,8 +1312,8 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 1200,
-        "y": 320,
+        "x": 900,
+        "y": 400,
         "wires": [
             []
         ]
@@ -1453,8 +1337,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1210,
-        "y": 280,
+        "x": 910,
+        "y": 360,
         "wires": [
             [
                 "6c3be341.3c355c"
@@ -2082,8 +1966,298 @@
         "active": true,
         "pass": false,
         "outputs": 0,
-        "x": 1160,
-        "y": 380,
+        "x": 860,
+        "y": 460,
         "wires": []
+    },
+    {
+        "id": "b9e0e81708b86986",
+        "type": "deepstack-object-detection",
+        "z": "6c71644f.90490c",
+        "name": "",
+        "server": "b575cd279cd084cc",
+        "confidence": "50",
+        "drawPredictions": true,
+        "outlineColor": "pink",
+        "filters": [],
+        "outputs": 1,
+        "x": 990,
+        "y": 140,
+        "wires": [
+            [
+                "bbbec2c9cafe46e8",
+                "45a4eaeb0f764fd5"
+            ]
+        ]
+    },
+    {
+        "id": "d951b6796defd6bc",
+        "type": "deepstack-face-recognition",
+        "z": "6c71644f.90490c",
+        "name": "",
+        "server": "b575cd279cd084cc",
+        "confidence": "70",
+        "drawPredictions": true,
+        "outlineColor": "green",
+        "filters": [],
+        "outputs": 1,
+        "x": 990,
+        "y": 200,
+        "wires": [
+            [
+                "a5d9a463cdd1ac28",
+                "5f999f186ada0784"
+            ]
+        ]
+    },
+    {
+        "id": "7dcbe468e50a4a5c",
+        "type": "fan",
+        "z": "6c71644f.90490c",
+        "name": "",
+        "x": 370,
+        "y": 120,
+        "wires": [
+            [
+                "5c1a8d29.db4a24"
+            ]
+        ]
+    },
+    {
+        "id": "f750214c6fc0671a",
+        "type": "ha-api",
+        "z": "6c71644f.90490c",
+        "name": "get camera entity",
+        "server": "1fb2958d.14f89a",
+        "version": 1,
+        "debugenabled": false,
+        "protocol": "http",
+        "method": "get",
+        "path": "camera_proxy/{{{ camera_entity_id }}}",
+        "data": "{}",
+        "dataType": "jsonata",
+        "responseType": "arraybuffer",
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "results"
+            }
+        ],
+        "x": 770,
+        "y": 180,
+        "wires": [
+            [
+                "b9e0e81708b86986",
+                "d951b6796defd6bc"
+            ]
+        ]
+    },
+    {
+        "id": "bbbec2c9cafe46e8",
+        "type": "change",
+        "z": "6c71644f.90490c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "filename",
+                "pt": "msg",
+                "to": "\"object_\" & filename",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1210,
+        "y": 100,
+        "wires": [
+            [
+                "f19219c005fb0c34"
+            ]
+        ]
+    },
+    {
+        "id": "a5d9a463cdd1ac28",
+        "type": "change",
+        "z": "6c71644f.90490c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "filename",
+                "pt": "msg",
+                "to": "\"face_\" & filename",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1210,
+        "y": 180,
+        "wires": [
+            [
+                "f19219c005fb0c34"
+            ]
+        ]
+    },
+    {
+        "id": "f19219c005fb0c34",
+        "type": "fan",
+        "z": "6c71644f.90490c",
+        "name": "",
+        "x": 1390,
+        "y": 140,
+        "wires": [
+            [
+                "9914e0cca5bd1874",
+                "9c4346daf927d0e2"
+            ]
+        ]
+    },
+    {
+        "id": "5f999f186ada0784",
+        "type": "image",
+        "z": "6c71644f.90490c",
+        "name": "preview",
+        "width": "240",
+        "data": "outlinedImage",
+        "dataType": "msg",
+        "thumbnail": true,
+        "active": true,
+        "pass": false,
+        "outputs": 0,
+        "x": 1180,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "45a4eaeb0f764fd5",
+        "type": "image",
+        "z": "6c71644f.90490c",
+        "name": "preview",
+        "width": "240",
+        "data": "outlinedImage",
+        "dataType": "msg",
+        "thumbnail": true,
+        "active": true,
+        "pass": false,
+        "outputs": 0,
+        "x": 1180,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "9914e0cca5bd1874",
+        "type": "function",
+        "z": "6c71644f.90490c",
+        "name": "prepare outlined image",
+        "func": "msg.Body = msg.outlinedImage;\nmsg.Bucket = flow.get(\"s3\").bucket;\nmsg.Key = flow.get(\"s3\").prefix + msg.filename;\n\n// node.warn(msg);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1610,
+        "y": 100,
+        "wires": [
+            [
+                "800059b2b536b21f"
+            ]
+        ]
+    },
+    {
+        "id": "800059b2b536b21f",
+        "type": "AWS S3",
+        "z": "6c71644f.90490c",
+        "aws": "4c58280.c1ed4d8",
+        "operation": "PutObject",
+        "Bucket": "",
+        "Key": "",
+        "UploadId": "",
+        "CopySource": "",
+        "Id": "",
+        "Delete": "",
+        "AccelerateConfiguration": "",
+        "AnalyticsConfiguration": "",
+        "CORSConfiguration": "",
+        "ServerSideEncryptionConfiguration": "",
+        "IntelligentTieringConfiguration": "",
+        "InventoryConfiguration": "",
+        "BucketLoggingStatus": "",
+        "MetricsConfiguration": "",
+        "NotificationConfiguration": "",
+        "OwnershipControls": "",
+        "Policy": "",
+        "ReplicationConfiguration": "",
+        "RequestPaymentConfiguration": "",
+        "Tagging": "",
+        "VersioningConfiguration": "",
+        "WebsiteConfiguration": "",
+        "PublicAccessBlockConfiguration": "",
+        "Expression": "",
+        "ExpressionType": "",
+        "InputSerialization": "",
+        "OutputSerialization": "",
+        "PartNumber": "",
+        "name": "upload to s3",
+        "x": 1830,
+        "y": 140,
+        "wires": [
+            [],
+            [
+                "95b0b556c192d613"
+            ]
+        ],
+        "icon": "font-awesome/fa-cloud-upload"
+    },
+    {
+        "id": "95b0b556c192d613",
+        "type": "api-call-service",
+        "z": "6c71644f.90490c",
+        "name": "show error",
+        "server": "1fb2958d.14f89a",
+        "version": 3,
+        "debugenabled": true,
+        "service_domain": "notify",
+        "service": "persistent_notification",
+        "entityId": "",
+        "data": "{\"title\": err.code, \"message\": err.message}",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 2010,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9c4346daf927d0e2",
+        "type": "function",
+        "z": "6c71644f.90490c",
+        "name": "prepare payload",
+        "func": "msg.Body = JSON.stringify(msg.payload);\nmsg.Bucket = flow.get(\"s3\").bucket;\nmsg.Key = flow.get(\"s3\").prefix + msg.filename + \".json\";\n\n// node.warn(msg);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1600,
+        "y": 160,
+        "wires": [
+            [
+                "800059b2b536b21f"
+            ]
+        ]
     }
 ]
