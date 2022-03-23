@@ -14,23 +14,128 @@
         "info": ""
     },
     {
-        "id": "33b1c56c.5e36fa",
+        "id": "efaed6095d445392",
+        "type": "tab",
+        "label": "voron v0",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "6f1ebe1822580f11",
+        "type": "tab",
+        "label": "vcore3",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "6262a64468718f73",
         "type": "tab",
         "label": "Flow 1",
         "disabled": false,
-        "info": ""
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "429b7a553657396c",
+        "type": "tab",
+        "label": "monitoring",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "b34df73523bd7dfb",
+        "type": "tab",
+        "label": "UniFi Protect",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "8ee3d653bff5e3e5",
+        "type": "subflow",
+        "name": "printer notifications",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 50,
+                "y": 30,
+                "wires": [
+                    {
+                        "id": "e9bf244afc398f1b"
+                    }
+                ]
+            }
+        ],
+        "out": [],
+        "env": [
+            {
+                "name": "notif_id",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "label": {
+                        "en-US": "ID"
+                    }
+                }
+            },
+            {
+                "name": "notif_title",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "label": {
+                        "en-US": "title"
+                    }
+                }
+            },
+            {
+                "name": "notif_message",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "label": {
+                        "en-US": "message"
+                    }
+                }
+            },
+            {
+                "name": "camera_id",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "icon": "font-awesome/fa-video-camera"
+                }
+            },
+            {
+                "name": "moon_fullModel",
+                "type": "json",
+                "value": "",
+                "ui": {
+                    "icon": "font-awesome/fa-moon-o",
+                    "label": {
+                        "en-US": "full model"
+                    }
+                }
+            }
+        ],
+        "meta": {},
+        "color": "#DDAA99"
     },
     {
         "id": "1fb2958d.14f89a",
         "type": "server",
         "name": "Home Assistant",
-        "version": 1,
-        "legacy": false,
-        "addon": true,
+        "version": 2,
+        "addon": false,
         "rejectUnauthorizedCerts": true,
         "ha_boolean": "y|yes|true|on|home|open",
         "connectionDelay": true,
-        "cacheJson": true
+        "cacheJson": true,
+        "heartbeat": false,
+        "heartbeatInterval": 30
     },
     {
         "id": "4c58280.c1ed4d8",
@@ -41,18 +146,164 @@
         "proxy": ""
     },
     {
-        "id": "4ec90f43.a67098",
+        "id": "61afaa8ff2a47189",
+        "type": "moonNode-connector",
+        "server": "voron-v0.iot.beta5.org:7125"
+    },
+    {
+        "id": "63a02432e8112030",
+        "type": "moonNode-connector",
+        "server": "vcore3.iot.beta5.org"
+    },
+    {
+        "id": "1279c405858f966e",
+        "type": "ha-entity-config",
+        "server": "1fb2958d.14f89a",
+        "name": "vcore3_heat_soak_cancel",
+        "version": 2,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": "V-Core 3 Heat Soak Cancel"
+            },
+            {
+                "property": "icon",
+                "value": "mdi:printer-3d-nozzle-heat-outline"
+            },
+            {
+                "property": "device_class",
+                "value": ""
+            }
+        ],
+        "entityType": "button"
+    },
+    {
+        "id": "6a9c966b66b0321c",
+        "type": "ha-entity-config",
+        "server": "1fb2958d.14f89a",
+        "name": "vcore3_heat_soak_45m_110deg",
+        "version": 2,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": "V-Core 3 Heat Soak 45m @ 110°"
+            },
+            {
+                "property": "icon",
+                "value": "mdi:printer-3d-nozzle-heat-outline"
+            },
+            {
+                "property": "device_class",
+                "value": ""
+            }
+        ],
+        "entityType": "button"
+    },
+    {
+        "id": "c9d6062829ddc012",
         "type": "influxdb",
-        "hostname": "192.168.42.11",
+        "hostname": "influxdb.iot.beta5.org",
         "port": "8086",
         "protocol": "http",
-        "database": "skyaware",
-        "name": "quongo",
+        "database": "database",
+        "name": "",
         "usetls": false,
         "tls": "",
-        "influxdbVersion": "1.x",
-        "url": "http://localhost:8086",
+        "influxdbVersion": "2.0",
+        "url": "http://influxdb.iot.beta5.org:8086",
         "rejectUnauthorized": true
+    },
+    {
+        "id": "bdab178cf02ef0af",
+        "type": "unifi-access-controller",
+        "name": "UDM-Pro",
+        "controllerIp": "192.168.50.1",
+        "controllerPort": "",
+        "controllerType": "UniFiOSConsole"
+    },
+    {
+        "id": "d5858a856817f92e",
+        "type": "api-call-service",
+        "z": "8ee3d653bff5e3e5",
+        "d": true,
+        "name": "in-hass notif",
+        "server": "1fb2958d.14f89a",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "persistent_notification",
+        "service": "create",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [],
+        "data": "{\t   \"notification_id\": $env(\"notif_id\") & \"_job_status\"\t       ,\t   \"title\": $env(\"notif_title\"),\t   \"message\": $env(\"notif_message\")\t}\t",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 690,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "85688eadd98c41a1",
+        "type": "api-call-service",
+        "z": "8ee3d653bff5e3e5",
+        "d": true,
+        "name": "notify my iPhone",
+        "server": "1fb2958d.14f89a",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "notify",
+        "service": "mobile_app_camilla_13_0",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [],
+        "data": "{\t   \"title\": $env(\"notif_title\"),\t   \"message\": $env(\"notif_message\"),\t   \"data\": {\t       \"subtitle\": payload.fullModel.print_stats.filename,\t       \"push\": {\t           \"thread-id\": $env(\"notif_id\")\t       },\t       \"@todo:image\": \"https://s3.amazonaws.com/\" & \"Bucket\" & \"/\" & \"Key\",\t       \"entity_id\": $env(\"camera_id\")\t    }\t}\t",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 710,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e9bf244afc398f1b",
+        "type": "fan",
+        "z": "8ee3d653bff5e3e5",
+        "name": "",
+        "x": 430,
+        "y": 80,
+        "wires": [
+            [
+                "d5858a856817f92e",
+                "85688eadd98c41a1",
+                "ed0a5df69bd99338"
+            ]
+        ]
+    },
+    {
+        "id": "ed0a5df69bd99338",
+        "type": "debug",
+        "z": "8ee3d653bff5e3e5",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "msg & \" \" & $env(\"notif_id\")",
+        "targetType": "jsonata",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 510,
+        "y": 180,
+        "wires": []
     },
     {
         "id": "7a6f1441.9bac74",
@@ -60,7 +311,7 @@
         "z": "6c71644f.90490c",
         "name": "motion detected: front door",
         "server": "1fb2958d.14f89a",
-        "version": 3,
+        "version": 4,
         "exposeToHomeAssistant": false,
         "haConfig": [
             {
@@ -113,7 +364,8 @@
         "y": 140,
         "wires": [
             [
-                "3b92f41c.15286c"
+                "3b92f41c.15286c",
+                "eb4f6969e4d6170b"
             ],
             []
         ]
@@ -125,14 +377,16 @@
         "d": true,
         "name": "in-hass notification",
         "server": "1fb2958d.14f89a",
-        "version": 3,
+        "version": 5,
         "debugenabled": false,
-        "service_domain": "notify",
+        "domain": "notify",
         "service": "persistent_notification",
-        "entityId": "",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [],
         "data": "{\t   \"message\": $substringAfter(topic, \"binary_sensor.motion_\") & \" \" & data.new_state.attributes.event_object,\t   \"title\": data.new_state.attributes.friendly_name\t}",
         "dataType": "jsonata",
-        "mergecontext": "",
+        "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
@@ -231,21 +485,25 @@
         "z": "6c71644f.90490c",
         "name": "notify my iPhone",
         "server": "1fb2958d.14f89a",
-        "version": 3,
+        "version": 5,
         "debugenabled": false,
-        "service_domain": "notify",
-        "service": "mobile_app_camilla_12_0",
-        "entityId": "",
-        "data": "{\t   \"title\": data.new_state.attributes.friendly_name,\t   \"message\": message,\t   \"data\": {\t       \"subtitle\": data.new_state.attributes.event_object,\t       \"push\": {\t           \"thread-id\": \"home-motion-\" & topic,\t           \"sound\": {\t                \"name\": \"default\",\t                \"critical\": is_critical,\t                \"volume\": 1\t           }\t       },\t       \"url\": \"unifi-protect://\",\t       \"image\": \"https://s3.amazonaws.com/\" & Bucket & \"/\" &\t       Key\t    }\t}\t",
+        "domain": "notify",
+        "service": "mobile_app_camilla_13_0",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [],
+        "data": "{\t   \"title\": data.new_state.attributes.friendly_name,\t   \"message\": message,\t   \"data\": {\t       \"subtitle\": data.new_state.attributes.event_object,\t       \"push\": {\t           \"thread-id\": \"home-motion-\" & topic,\t           \"sound\": {\t                \"name\": \"default\",\t                \"critical\": is_critical,\t                \"volume\": 1\t           }\t       },\t       \"url\": \"unifi-protect://\",\t       \"image\": \"https://s3.amazonaws.com/\" & Bucket & \"/\" & Key,\t       \"@todo:entity_id\": camera_entity_id\t    }\t}\t",
         "dataType": "jsonata",
-        "mergecontext": "",
+        "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
         "x": 1650,
         "y": 180,
         "wires": [
-            []
+            [
+                "182c79de78648a0c"
+            ]
         ]
     },
     {
@@ -396,14 +654,16 @@
         "z": "6c71644f.90490c",
         "name": "show error",
         "server": "1fb2958d.14f89a",
-        "version": 3,
+        "version": 5,
         "debugenabled": true,
-        "service_domain": "notify",
+        "domain": "notify",
         "service": "persistent_notification",
-        "entityId": "",
-        "data": "{\"title\": err.code, \"message\": err.message}",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [],
+        "data": "{\t   \"title\": err.code,\t   \"message\": err.message\t}",
         "dataType": "jsonata",
-        "mergecontext": "",
+        "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
@@ -417,9 +677,10 @@
         "id": "7d3b2b3.38c9854",
         "type": "server-state-changed",
         "z": "6c71644f.90490c",
+        "d": true,
         "name": "motion detected: garage/alley",
         "server": "1fb2958d.14f89a",
-        "version": 3,
+        "version": 4,
         "exposeToHomeAssistant": false,
         "haConfig": [
             {
@@ -481,9 +742,10 @@
         "id": "ef42fb76.2941f",
         "type": "server-state-changed",
         "z": "6c71644f.90490c",
+        "d": true,
         "name": "motion detected: parking pad",
         "server": "1fb2958d.14f89a",
-        "version": 3,
+        "version": 4,
         "exposeToHomeAssistant": false,
         "haConfig": [
             {
@@ -617,18 +879,397 @@
         ]
     },
     {
+        "id": "f8f5cb6c.5798a8",
+        "type": "inject",
+        "z": "6c71644f.90490c",
+        "name": "inject",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            },
+            {
+                "p": "data",
+                "v": "{\"entity_id\":\"binary_sensor.doorbell_front_door\",\"old_state\":{\"entity_id\":\"binary_sensor.doorbell_front_door\",\"state\":\"off\",\"attributes\":{\"last_tripped_time\":\"2022-03-10T19:01:53.613000+00:00\",\"attribution\":\"Powered by UniFi Protect Server\",\"device_class\":\"occupancy\",\"icon\":\"mdi:doorbell-video\",\"friendly_name\":\"Front Door Doorbell\"},\"last_changed\":\"2022-03-10T19:01:57.575567+00:00\",\"last_updated\":\"2022-03-10T19:01:57.575567+00:00\",\"context\":{\"id\":\"ed1e78f36e6732310a53a988a3bf5573\",\"parent_id\":null,\"user_id\":null},\"original_state\":\"off\"},\"new_state\":{\"entity_id\":\"binary_sensor.doorbell_front_door\",\"state\":\"on\",\"attributes\":{\"last_tripped_time\":\"2022-03-10T19:17:50.455000+00:00\",\"attribution\":\"Powered by UniFi Protect Server\",\"device_class\":\"occupancy\",\"icon\":\"mdi:doorbell-video\",\"friendly_name\":\"Front Door Doorbell\"},\"last_changed\":\"2022-03-10T19:17:50.509564+00:00\",\"last_updated\":\"2022-03-10T19:17:50.509564+00:00\",\"context\":{\"id\":\"dcda339d60e8dc5d2a13e0eb9837de44\",\"parent_id\":null,\"user_id\":null},\"original_state\":\"on\",\"timeSinceChangedMs\":4}}",
+                "vt": "json"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "binary_sensor.doorbell_front_door",
+        "payload": "on",
+        "payloadType": "str",
+        "x": 90,
+        "y": 340,
+        "wires": [
+            [
+                "117ffffa.58b3a8"
+            ]
+        ]
+    },
+    {
+        "id": "f5de0832.ca3af",
+        "type": "change",
+        "z": "6c71644f.90490c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "camera_entity_id",
+                "pt": "msg",
+                "to": "\"camera.\" & $substringAfter(data.entity_id, \"binary_sensor.doorbell_\")",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "filename",
+                "pt": "msg",
+                "to": "\"doorbell_snapshot_\" \t    & $now(\"[Y0001]-[M01]-[D01]T[H01]_[m01]_[s01]Z\") \t    & \"_\"\t    & $split(msg.camera_entity_id, \".\")[1]\t    & \".jpg\"",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "is_critical",
+                "pt": "msg",
+                "to": "1",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "message",
+                "pt": "msg",
+                "to": "🔔 someone's at the door",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 760,
+        "y": 280,
+        "wires": [
+            [
+                "3296c10a.9b412e"
+            ]
+        ]
+    },
+    {
+        "id": "bea87f39.bb9c18",
+        "type": "debug",
+        "z": "6c71644f.90490c",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 390,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "ac4bc382.ee2b48",
+        "type": "config",
+        "z": "6c71644f.90490c",
+        "name": "",
+        "properties": [
+            {
+                "p": "s3",
+                "pt": "flow",
+                "to": "{     \"bucket\": \"blalor-imgs\",     \"prefix\": \"hass-notif-imgs/\" }",
+                "tot": "json"
+            }
+        ],
+        "active": true,
+        "x": 90,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "17801fb8.a006b8",
+        "type": "debug",
+        "z": "6c71644f.90490c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1190,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "117ffffa.58b3a8",
+        "type": "fan",
+        "z": "6c71644f.90490c",
+        "name": "",
+        "x": 270,
+        "y": 360,
+        "wires": [
+            [
+                "bea87f39.bb9c18",
+                "f5de0832.ca3af",
+                "7b22b9da75632e79"
+            ]
+        ]
+    },
+    {
+        "id": "6c3be341.3c355c",
+        "type": "file",
+        "z": "6c71644f.90490c",
+        "name": "",
+        "filename": "",
+        "appendNewline": false,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 1200,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a1c6a8a6.870ca",
+        "type": "change",
+        "z": "6c71644f.90490c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "filename",
+                "pt": "msg",
+                "to": "\"/media/node-red/\" & msg.filename",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1210,
+        "y": 280,
+        "wires": [
+            [
+                "6c3be341.3c355c"
+            ]
+        ]
+    },
+    {
+        "id": "2beff0bd2c5053cc",
+        "type": "image",
+        "z": "6c71644f.90490c",
+        "name": "preview",
+        "width": "240",
+        "data": "payload",
+        "dataType": "msg",
+        "thumbnail": true,
+        "active": true,
+        "pass": false,
+        "outputs": 0,
+        "x": 1160,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "636b01dcb9becc4e",
+        "type": "file",
+        "z": "6c71644f.90490c",
+        "name": "write motion notifs",
+        "filename": "/media/node-red/motion-notifs.json",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "utf8",
+        "x": 2030,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "182c79de78648a0c",
+        "type": "function",
+        "z": "6c71644f.90490c",
+        "name": "",
+        "func": "\nreturn {payload: msg};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1840,
+        "y": 180,
+        "wires": [
+            [
+                "636b01dcb9becc4e"
+            ]
+        ]
+    },
+    {
+        "id": "6ef4b215938b0cab",
+        "type": "file",
+        "z": "6c71644f.90490c",
+        "name": "write front-door motion notifs",
+        "filename": "/media/node-red/front-door-motion-notifs.json",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "utf8",
+        "x": 560,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "eb4f6969e4d6170b",
+        "type": "function",
+        "z": "6c71644f.90490c",
+        "name": "",
+        "func": "\nreturn {payload: msg};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 60,
+        "wires": [
+            [
+                "6ef4b215938b0cab"
+            ]
+        ]
+    },
+    {
+        "id": "7b22b9da75632e79",
+        "type": "function",
+        "z": "6c71644f.90490c",
+        "name": "",
+        "func": "\nreturn {payload: msg};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 480,
+        "wires": [
+            [
+                "636d767f18815a82"
+            ]
+        ]
+    },
+    {
+        "id": "636d767f18815a82",
+        "type": "file",
+        "z": "6c71644f.90490c",
+        "name": "write front-door rings",
+        "filename": "/media/node-red/front-door-rings.json",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "utf8",
+        "x": 580,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3d18bde5f3ad58c3",
+        "type": "server-state-changed",
+        "z": "6c71644f.90490c",
+        "name": "doorbell rang",
+        "server": "1fb2958d.14f89a",
+        "version": 4,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "binary_sensor.doorbell_front_door",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 90,
+        "y": 380,
+        "wires": [
+            [
+                "117ffffa.58b3a8"
+            ],
+            []
+        ]
+    },
+    {
         "id": "7b41b747.6cb21",
         "type": "http request",
         "z": "8e4e09de.5dedc8",
+        "d": true,
         "name": "skyaware978",
         "method": "GET",
         "ret": "obj",
         "paytoqs": "ignore",
-        "url": "http://192.168.42.58/skyaware978/data/aircraft.json",
+        "url": "http://alarmpi.home.local/skyaware978/data/aircraft.json",
         "tls": "",
         "persist": true,
         "proxy": "",
         "authType": "",
+        "senderr": false,
         "x": 130,
         "y": 160,
         "wires": [
@@ -645,11 +1286,12 @@
         "method": "GET",
         "ret": "obj",
         "paytoqs": "ignore",
-        "url": "http://192.168.42.58/dump1090/data/aircraft.json",
+        "url": "http://alarmpi.home.local/dump1090/data/aircraft.json",
         "tls": "",
         "persist": true,
         "proxy": "",
         "authType": "",
+        "senderr": false,
         "x": 130,
         "y": 200,
         "wires": [
@@ -694,7 +1336,7 @@
         "z": "8e4e09de.5dedc8",
         "name": "aircraft_978",
         "server": "1fb2958d.14f89a",
-        "version": 1,
+        "version": 2,
         "debugenabled": false,
         "outputs": 1,
         "entityType": "sensor",
@@ -714,6 +1356,14 @@
             {
                 "property": "unit_of_measurement",
                 "value": "count"
+            },
+            {
+                "property": "state_class",
+                "value": ""
+            },
+            {
+                "property": "last_reset",
+                "value": ""
             }
         ],
         "state": "$count(payload.aircraft)",
@@ -749,7 +1399,7 @@
         "z": "8e4e09de.5dedc8",
         "name": "aircraft_1090",
         "server": "1fb2958d.14f89a",
-        "version": 1,
+        "version": 2,
         "debugenabled": false,
         "outputs": 1,
         "entityType": "sensor",
@@ -769,6 +1419,14 @@
             {
                 "property": "unit_of_measurement",
                 "value": "count"
+            },
+            {
+                "property": "state_class",
+                "value": ""
+            },
+            {
+                "property": "last_reset",
+                "value": ""
             }
         ],
         "state": "$count(payload.aircraft)",
@@ -904,7 +1562,7 @@
         "lat": "37.5731",
         "lon": "-77.4899",
         "zoom": "",
-        "layer": "OSM",
+        "layer": "OSMG",
         "cluster": "0",
         "maxage": "90",
         "panit": "false",
@@ -912,6 +1570,12 @@
         "coords": "deg",
         "showgrid": "true",
         "path": "",
+        "overlist": "DR,CO,RA,DN,HM",
+        "maplist": "OSMG,OSMC,EsriC,EsriS,EsriT,EsriO,EsriDG,NatGeo,UKOS,OpTop,SW",
+        "mapname": "",
+        "mapurl": "",
+        "mapopt": "",
+        "mapwms": false,
         "x": 1890,
         "y": 180,
         "wires": []
@@ -974,24 +1638,6 @@
         ]
     },
     {
-        "id": "fa5e2384.699c2",
-        "type": "influxdb out",
-        "z": "8e4e09de.5dedc8",
-        "influxdb": "4ec90f43.a67098",
-        "name": "",
-        "measurement": "aircraft",
-        "precision": "ms",
-        "retentionPolicy": "",
-        "database": "database",
-        "precisionV18FluxV20": "ms",
-        "retentionPolicyV18Flux": "",
-        "org": "organisation",
-        "bucket": "bucket",
-        "x": 1600,
-        "y": 320,
-        "wires": []
-    },
-    {
         "id": "4c0fd75f.339948",
         "type": "function",
         "z": "8e4e09de.5dedc8",
@@ -1005,9 +1651,7 @@
         "x": 1400,
         "y": 320,
         "wires": [
-            [
-                "fa5e2384.699c2"
-            ]
+            []
         ]
     },
     {
@@ -1098,191 +1742,6 @@
         "wires": []
     },
     {
-        "id": "c2140346.9061e8",
-        "type": "server-events",
-        "z": "6c71644f.90490c",
-        "name": "doorbell rang",
-        "server": "1fb2958d.14f89a",
-        "version": 1,
-        "event_type": "unifiprotect_doorbell",
-        "exposeToHomeAssistant": false,
-        "haConfig": [
-            {
-                "property": "name",
-                "value": ""
-            },
-            {
-                "property": "icon",
-                "value": ""
-            }
-        ],
-        "waitForRunning": true,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "eventData"
-            },
-            {
-                "property": "topic",
-                "propertyType": "msg",
-                "value": "$outputData(\"eventData\").event_type",
-                "valueType": "jsonata"
-            }
-        ],
-        "x": 90,
-        "y": 380,
-        "wires": [
-            [
-                "117ffffa.58b3a8"
-            ]
-        ]
-    },
-    {
-        "id": "f8f5cb6c.5798a8",
-        "type": "inject",
-        "z": "6c71644f.90490c",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "unifiprotect_doorbell",
-        "payload": "{\"event_type\":\"unifiprotect_doorbell\",\"entity_id\":\"binary_sensor.doorbell_front_door\",\"event\":{\"ring\":true,\"entity_id\":\"binary_sensor.doorbell_front_door\"},\"origin\":\"LOCAL\",\"time_fired\":\"2021-06-29T13:53:14.017139+00:00\",\"context\":{\"id\":\"69931d2e480598c20d9366043e51c273\",\"parent_id\":null,\"user_id\":null}}",
-        "payloadType": "json",
-        "x": 90,
-        "y": 340,
-        "wires": [
-            [
-                "117ffffa.58b3a8"
-            ]
-        ]
-    },
-    {
-        "id": "f5de0832.ca3af",
-        "type": "change",
-        "z": "6c71644f.90490c",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "camera_entity_id",
-                "pt": "msg",
-                "to": "\"camera.\" & $substringAfter(payload.entity_id, \"binary_sensor.doorbell_\")",
-                "tot": "jsonata"
-            },
-            {
-                "t": "set",
-                "p": "filename",
-                "pt": "msg",
-                "to": "\"doorbell_snapshot_\" \t    & $now(\"[Y0001]-[M01]-[D01]T[H01]_[m01]_[s01]Z\") \t    & \"_\"\t    & $split(msg.camera_entity_id, \".\")[1]\t    & \".jpg\"",
-                "tot": "jsonata"
-            },
-            {
-                "t": "set",
-                "p": "is_critical",
-                "pt": "msg",
-                "to": "1",
-                "tot": "num"
-            },
-            {
-                "t": "set",
-                "p": "message",
-                "pt": "msg",
-                "to": "🔔 someone's at the door",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 760,
-        "y": 280,
-        "wires": [
-            [
-                "3296c10a.9b412e"
-            ]
-        ]
-    },
-    {
-        "id": "bea87f39.bb9c18",
-        "type": "debug",
-        "z": "6c71644f.90490c",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 390,
-        "y": 400,
-        "wires": []
-    },
-    {
-        "id": "ac4bc382.ee2b48",
-        "type": "config",
-        "z": "6c71644f.90490c",
-        "name": "",
-        "properties": [
-            {
-                "p": "s3",
-                "pt": "flow",
-                "to": "{     \"bucket\": \"blalor-imgs\",     \"prefix\": \"hass-notif-imgs/\" }",
-                "tot": "json"
-            }
-        ],
-        "active": true,
-        "x": 90,
-        "y": 20,
-        "wires": []
-    },
-    {
-        "id": "17801fb8.a006b8",
-        "type": "debug",
-        "z": "6c71644f.90490c",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1190,
-        "y": 200,
-        "wires": []
-    },
-    {
-        "id": "117ffffa.58b3a8",
-        "type": "fan",
-        "z": "6c71644f.90490c",
-        "name": "",
-        "x": 270,
-        "y": 360,
-        "wires": [
-            [
-                "bea87f39.bb9c18",
-                "f5de0832.ca3af"
-            ]
-        ]
-    },
-    {
         "id": "ae0edcc6.900b6",
         "type": "fan",
         "z": "8e4e09de.5dedc8",
@@ -1302,14 +1761,16 @@
         "z": "8e4e09de.5dedc8",
         "name": "in-hass notification",
         "server": "1fb2958d.14f89a",
-        "version": 3,
+        "version": 5,
         "debugenabled": false,
-        "service_domain": "notify",
+        "domain": "notify",
         "service": "persistent_notification",
-        "entityId": "",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [],
         "data": "{\t    \"title\": \"low-flyer \" & payload.hex & \" \" & payload.flight,\t    \"message\": \"passing over \" & payload.lat & \",\" & payload.lon & \" moving \" & payload.gs & \"kts at \" & payload.alt_geom & \"' ASL, at \" & $fromMillis(timestamp * 1000)\t}",
         "dataType": "jsonata",
-        "mergecontext": "",
+        "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
@@ -1391,7 +1852,9 @@
         "z": "8e4e09de.5dedc8",
         "name": "",
         "scope": [
-            "4c2eab3e.8298d4"
+            "4c2eab3e.8298d4",
+            "7b41b747.6cb21",
+            "ffb0c10.246174"
         ],
         "x": 80,
         "y": 320,
@@ -1406,7 +1869,7 @@
         "type": "debug",
         "z": "8e4e09de.5dedc8",
         "name": "",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -1417,49 +1880,6 @@
         "x": 210,
         "y": 320,
         "wires": []
-    },
-    {
-        "id": "6c3be341.3c355c",
-        "type": "file",
-        "z": "6c71644f.90490c",
-        "name": "",
-        "filename": "",
-        "appendNewline": false,
-        "createDir": false,
-        "overwriteFile": "true",
-        "encoding": "none",
-        "x": 1200,
-        "y": 320,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "a1c6a8a6.870ca",
-        "type": "change",
-        "z": "6c71644f.90490c",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "filename",
-                "pt": "msg",
-                "to": "\"/media/\" & msg.filename",
-                "tot": "jsonata"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1210,
-        "y": 280,
-        "wires": [
-            [
-                "6c3be341.3c355c"
-            ]
-        ]
     },
     {
         "id": "18f6e019.e068d8",
@@ -1517,6 +1937,7 @@
         "id": "ed1ccafd.cbb06",
         "type": "worldmap-tracks",
         "z": "8e4e09de.5dedc8",
+        "d": true,
         "name": "",
         "depth": "100",
         "layer": "combined",
@@ -1708,137 +2129,89 @@
         ]
     },
     {
-        "id": "56397e0a.20aca",
-        "type": "server-state-changed",
-        "z": "33b1c56c.5e36fa",
-        "name": "",
-        "server": "1fb2958d.14f89a",
-        "version": 3,
-        "exposeToHomeAssistant": false,
-        "haConfig": [
-            {
-                "property": "name",
-                "value": ""
-            },
-            {
-                "property": "icon",
-                "value": ""
-            }
-        ],
-        "entityidfilter": "sensor.vzero_current_progress",
-        "entityidfiltertype": "exact",
-        "outputinitially": false,
-        "state_type": "str",
-        "haltifstate": "true",
-        "halt_if_type": "jsonata",
-        "halt_if_compare": "jsonata",
-        "outputs": 2,
-        "output_only_on_state_change": true,
-        "for": 0,
-        "forType": "num",
-        "forUnits": "minutes",
-        "ignorePrevStateNull": false,
-        "ignorePrevStateUnknown": false,
-        "ignorePrevStateUnavailable": false,
-        "ignoreCurrentStateUnknown": false,
-        "ignoreCurrentStateUnavailable": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "eventData"
-            },
-            {
-                "property": "topic",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "triggerId"
-            }
-        ],
-        "x": 360,
-        "y": 80,
+        "id": "d03ccd3532098c2a",
+        "type": "moonNode-monitor",
+        "z": "efaed6095d445392",
+        "d": true,
+        "name": "Voron v0 Monitor",
+        "server": "61afaa8ff2a47189",
+        "autoStart": true,
+        "x": 200,
+        "y": 160,
         "wires": [
             [
-                "edd5d3fc.46fbf"
+                "711dc6baecd5a933",
+                "32f480e13828bbd9",
+                "9b78542498788cc1",
+                "6cad3d89858a64db",
+                "d7fdaab3c08e636d",
+                "a9944d52da5ff028",
+                "0d5754d885fed0bb",
+                "c5ae9430a0088677",
+                "ee4fd193dd6d60c9",
+                "908b4ccd341163bc"
             ],
-            []
+            [
+                "89836447e1b31f95"
+            ]
         ]
     },
     {
-        "id": "22138957.8954b6",
-        "type": "server-state-changed",
-        "z": "33b1c56c.5e36fa",
-        "name": "",
-        "server": "1fb2958d.14f89a",
-        "version": 3,
-        "exposeToHomeAssistant": false,
-        "haConfig": [
-            {
-                "property": "name",
-                "value": ""
-            },
-            {
-                "property": "icon",
-                "value": ""
-            }
-        ],
-        "entityidfilter": "sensor.vzero_state",
-        "entityidfiltertype": "exact",
-        "outputinitially": false,
-        "state_type": "str",
-        "haltifstate": "true",
-        "halt_if_type": "jsonata",
-        "halt_if_compare": "jsonata",
-        "outputs": 2,
-        "output_only_on_state_change": true,
-        "for": 0,
-        "forType": "num",
-        "forUnits": "minutes",
-        "ignorePrevStateNull": false,
-        "ignorePrevStateUnknown": false,
-        "ignorePrevStateUnavailable": false,
-        "ignoreCurrentStateUnknown": false,
-        "ignoreCurrentStateUnavailable": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "eventData"
-            },
-            {
-                "property": "topic",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "triggerId"
-            }
-        ],
-        "x": 400,
-        "y": 200,
-        "wires": [
-            [
-                "edd5d3fc.46fbf"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "edd5d3fc.46fbf",
+        "id": "89836447e1b31f95",
         "type": "debug",
-        "z": "33b1c56c.5e36fa",
+        "z": "efaed6095d445392",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 250,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "711dc6baecd5a933",
+        "type": "debug",
+        "z": "efaed6095d445392",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 370,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "32f480e13828bbd9",
+        "type": "moonNode-event",
+        "z": "efaed6095d445392",
+        "name": "hotend actual",
+        "interval": "5",
+        "delta": "1",
+        "modelPath": "extruder.temperature",
+        "outputs": 1,
+        "x": 480,
+        "y": 160,
+        "wires": [
+            [
+                "f9a1347c1ad83467",
+                "fcb106c5dc394309"
+            ]
+        ]
+    },
+    {
+        "id": "f9a1347c1ad83467",
+        "type": "debug",
+        "z": "efaed6095d445392",
         "name": "",
         "active": true,
         "tosidebar": true,
@@ -1848,55 +2221,377 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 710,
-        "y": 220,
+        "x": 690,
+        "y": 160,
         "wires": []
     },
     {
-        "id": "f8e0390.090b348",
-        "type": "api-current-state",
-        "z": "33b1c56c.5e36fa",
-        "name": "",
-        "server": "1fb2958d.14f89a",
-        "version": 2,
+        "id": "9b78542498788cc1",
+        "type": "moonNode-event",
+        "z": "efaed6095d445392",
+        "name": "hotend target",
+        "interval": "5",
+        "delta": "1",
+        "modelPath": "extruder.target",
         "outputs": 1,
-        "halt_if": "",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "entity_id": "sensor.vzero_current_progress",
-        "state_type": "str",
-        "blockInputOverrides": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entity"
-            }
-        ],
-        "override_topic": false,
-        "state_location": "payload",
-        "override_payload": "msg",
-        "entity_location": "data",
-        "override_data": "msg",
-        "x": 370,
-        "y": 140,
+        "x": 480,
+        "y": 200,
         "wires": [
             [
-                "edd5d3fc.46fbf"
+                "b9345a2a19536c8c"
             ]
         ]
     },
     {
-        "id": "62397cf.e6bae84",
+        "id": "6cad3d89858a64db",
+        "type": "moonNode-event",
+        "z": "efaed6095d445392",
+        "name": "bed actual",
+        "interval": "5",
+        "delta": "1",
+        "modelPath": "heater_bed.temperature",
+        "outputs": 1,
+        "x": 470,
+        "y": 240,
+        "wires": [
+            [
+                "cdfed49fc12cf5e4"
+            ]
+        ]
+    },
+    {
+        "id": "d7fdaab3c08e636d",
+        "type": "moonNode-event",
+        "z": "efaed6095d445392",
+        "name": "bed target",
+        "interval": "5",
+        "delta": "1",
+        "modelPath": "heater_bed.target",
+        "outputs": 1,
+        "x": 470,
+        "y": 280,
+        "wires": [
+            [
+                "e7728edecf2f8ded"
+            ]
+        ]
+    },
+    {
+        "id": "a9944d52da5ff028",
+        "type": "moonNode-event",
+        "z": "efaed6095d445392",
+        "name": "state",
+        "interval": "0",
+        "delta": "0",
+        "modelPath": "print_stats.state",
+        "outputs": 1,
+        "x": 450,
+        "y": 320,
+        "wires": [
+            [
+                "2823aaca31d4e3e0"
+            ]
+        ]
+    },
+    {
+        "id": "0d5754d885fed0bb",
+        "type": "moonNode-event",
+        "z": "efaed6095d445392",
+        "name": "filename",
+        "interval": "0",
+        "delta": "0",
+        "modelPath": "print_stats.filename",
+        "outputs": 1,
+        "x": 460,
+        "y": 360,
+        "wires": [
+            [
+                "a2dfb939869f7602"
+            ]
+        ]
+    },
+    {
+        "id": "c5ae9430a0088677",
+        "type": "moonNode-event",
+        "z": "efaed6095d445392",
+        "name": "progress",
+        "interval": "5",
+        "delta": "0.1",
+        "modelPath": "display_status.progress",
+        "outputs": 1,
+        "x": 460,
+        "y": 400,
+        "wires": [
+            [
+                "40f91007597bbcbb"
+            ]
+        ]
+    },
+    {
+        "id": "7c55299f969d2a93",
+        "type": "moonNode-event",
+        "z": "efaed6095d445392",
+        "name": "duration",
+        "interval": "1",
+        "delta": "1",
+        "modelPath": "print_stats.total_duration",
+        "outputs": 1,
+        "x": 460,
+        "y": 440,
+        "wires": [
+            [
+                "1784f2f34d2183a8"
+            ]
+        ]
+    },
+    {
+        "id": "b9345a2a19536c8c",
+        "type": "debug",
+        "z": "efaed6095d445392",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 690,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "cdfed49fc12cf5e4",
+        "type": "debug",
+        "z": "efaed6095d445392",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 690,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "e7728edecf2f8ded",
+        "type": "debug",
+        "z": "efaed6095d445392",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 690,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "2823aaca31d4e3e0",
+        "type": "debug",
+        "z": "efaed6095d445392",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 690,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "a2dfb939869f7602",
+        "type": "debug",
+        "z": "efaed6095d445392",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 690,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "40f91007597bbcbb",
+        "type": "debug",
+        "z": "efaed6095d445392",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 690,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "1784f2f34d2183a8",
+        "type": "debug",
+        "z": "efaed6095d445392",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 690,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "fcb106c5dc394309",
+        "type": "ha-entity",
+        "z": "efaed6095d445392",
+        "name": "hotend actual",
+        "server": "1fb2958d.14f89a",
+        "version": 2,
+        "debugenabled": false,
+        "outputs": 1,
+        "entityType": "sensor",
+        "config": [
+            {
+                "property": "name",
+                "value": "NR: v0 Hotend Actual"
+            },
+            {
+                "property": "device_class",
+                "value": "temperature"
+            },
+            {
+                "property": "icon",
+                "value": "mdi:printer-3d-nozzle-heat"
+            },
+            {
+                "property": "unit_of_measurement",
+                "value": "°C"
+            },
+            {
+                "property": "state_class",
+                "value": ""
+            },
+            {
+                "property": "last_reset",
+                "value": ""
+            }
+        ],
+        "state": "moonNode.eventValue",
+        "stateType": "msg",
+        "attributes": [],
+        "resend": true,
+        "outputLocation": "",
+        "outputLocationType": "none",
+        "inputOverride": "allow",
+        "outputOnStateChange": false,
+        "outputPayload": "$entity().state ? \"on\": \"off\"",
+        "outputPayloadType": "jsonata",
+        "x": 800,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7b9efd3f69431bf6",
+        "type": "moonNode-command",
+        "z": "efaed6095d445392",
+        "name": "",
+        "command": "server.info",
+        "server": "61afaa8ff2a47189",
+        "stateless": false,
+        "x": 390,
+        "y": 540,
+        "wires": [
+            [
+                "2c5ce3a3020b8a7c"
+            ],
+            [
+                "cdcad3fa3ddd7fdb"
+            ],
+            [
+                "c0539f070dae4bc0"
+            ]
+        ]
+    },
+    {
+        "id": "2c5ce3a3020b8a7c",
+        "type": "debug",
+        "z": "efaed6095d445392",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 570,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "cdcad3fa3ddd7fdb",
+        "type": "debug",
+        "z": "efaed6095d445392",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 590,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "c0539f070dae4bc0",
+        "type": "debug",
+        "z": "efaed6095d445392",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 610,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "2e82cae2e8fb5809",
         "type": "inject",
-        "z": "33b1c56c.5e36fa",
+        "z": "efaed6095d445392",
         "name": "",
         "props": [
             {
@@ -1914,176 +2609,1358 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 140,
-        "y": 260,
+        "x": 90,
+        "y": 520,
         "wires": [
             [
-                "f8e0390.090b348",
-                "fed4d6f8.143388",
-                "4c4a82e7.ee180c"
+                "7b9efd3f69431bf6"
             ]
         ]
     },
     {
-        "id": "fed4d6f8.143388",
-        "type": "api-current-state",
-        "z": "33b1c56c.5e36fa",
+        "id": "7108e9cfe179ea3e",
+        "type": "ha-entity",
+        "z": "efaed6095d445392",
         "name": "",
         "server": "1fb2958d.14f89a",
         "version": 2,
-        "outputs": 1,
-        "halt_if": "",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "entity_id": "sensor.vzero_state",
-        "state_type": "str",
-        "blockInputOverrides": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entity"
-            }
-        ],
-        "override_topic": false,
-        "state_location": "payload",
-        "override_payload": "msg",
-        "entity_location": "data",
-        "override_data": "msg",
-        "x": 400,
-        "y": 260,
-        "wires": [
-            [
-                "edd5d3fc.46fbf"
-            ]
-        ]
-    },
-    {
-        "id": "4c4a82e7.ee180c",
-        "type": "api-current-state",
-        "z": "33b1c56c.5e36fa",
-        "name": "",
-        "server": "1fb2958d.14f89a",
-        "version": 2,
-        "outputs": 1,
-        "halt_if": "",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "entity_id": "sensor.voron_v0_state",
-        "state_type": "str",
-        "blockInputOverrides": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entity"
-            }
-        ],
-        "override_topic": false,
-        "state_location": "payload",
-        "override_payload": "msg",
-        "entity_location": "data",
-        "override_data": "msg",
-        "x": 390,
-        "y": 380,
-        "wires": [
-            [
-                "edd5d3fc.46fbf"
-            ]
-        ]
-    },
-    {
-        "id": "2ff4dbf9.bce24c",
-        "type": "server-state-changed",
-        "z": "33b1c56c.5e36fa",
-        "name": "",
-        "server": "1fb2958d.14f89a",
-        "version": 3,
-        "exposeToHomeAssistant": false,
-        "haConfig": [
+        "debugenabled": false,
+        "outputs": 2,
+        "entityType": "switch",
+        "config": [
             {
                 "property": "name",
+                "value": "v0_whatsit"
+            },
+            {
+                "property": "device_class",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": "mdi:robot"
+            },
+            {
+                "property": "unit_of_measurement",
+                "value": ""
+            },
+            {
+                "property": "state_class",
+                "value": ""
+            },
+            {
+                "property": "last_reset",
+                "value": ""
+            }
+        ],
+        "state": "payload",
+        "stateType": "msg",
+        "attributes": [],
+        "resend": true,
+        "outputLocation": "payload",
+        "outputLocationType": "none",
+        "inputOverride": "allow",
+        "outputOnStateChange": true,
+        "outputPayload": "$entity()",
+        "outputPayloadType": "jsonata",
+        "x": 200,
+        "y": 640,
+        "wires": [
+            [
+                "0bac30fcd4c6e048"
+            ],
+            [
+                "9aea15017cc3ef8b"
+            ]
+        ]
+    },
+    {
+        "id": "0bac30fcd4c6e048",
+        "type": "debug",
+        "z": "efaed6095d445392",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 340,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "9aea15017cc3ef8b",
+        "type": "debug",
+        "z": "efaed6095d445392",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 350,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "ee4fd193dd6d60c9",
+        "type": "moonNode-event",
+        "z": "efaed6095d445392",
+        "name": "HEAT_SOAK",
+        "interval": "1",
+        "delta": "1",
+        "modelPath": "[\"gcode_macro-HEAT_SOAK\"]",
+        "outputs": 1,
+        "x": 470,
+        "y": 480,
+        "wires": [
+            [
+                "02d50255e979b4df"
+            ]
+        ]
+    },
+    {
+        "id": "02d50255e979b4df",
+        "type": "debug",
+        "z": "efaed6095d445392",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 690,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "908b4ccd341163bc",
+        "type": "ha-entity",
+        "z": "efaed6095d445392",
+        "name": "heat soak stage",
+        "server": "1fb2958d.14f89a",
+        "version": 2,
+        "debugenabled": false,
+        "outputs": 1,
+        "entityType": "sensor",
+        "config": [
+            {
+                "property": "name",
+                "value": "v0_heat_soak_stage"
+            },
+            {
+                "property": "device_class",
                 "value": ""
             },
             {
                 "property": "icon",
                 "value": ""
+            },
+            {
+                "property": "unit_of_measurement",
+                "value": ""
+            },
+            {
+                "property": "state_class",
+                "value": ""
+            },
+            {
+                "property": "last_reset",
+                "value": ""
             }
         ],
-        "entityidfilter": "sensor.voron_v0_state",
-        "entityidfiltertype": "exact",
-        "outputinitially": false,
-        "state_type": "str",
-        "haltifstate": "true",
-        "halt_if_type": "jsonata",
-        "halt_if_compare": "jsonata",
-        "outputs": 2,
-        "output_only_on_state_change": true,
-        "for": 0,
-        "forType": "num",
-        "forUnits": "minutes",
-        "ignorePrevStateNull": false,
-        "ignorePrevStateUnknown": false,
-        "ignorePrevStateUnavailable": false,
-        "ignoreCurrentStateUnknown": false,
-        "ignoreCurrentStateUnavailable": false,
+        "state": "payload.fullModel[\"gcode_macro HEAT_SOAK\"].stage",
+        "stateType": "msg",
+        "attributes": [
+            {
+                "property": "elapsed",
+                "value": "payload.fullModel[\"gcode_macro HEAT_SOAK\"].total_time_elapsed",
+                "valueType": "msg"
+            }
+        ],
+        "resend": true,
+        "outputLocation": "payload",
+        "outputLocationType": "none",
+        "inputOverride": "allow",
+        "outputOnStateChange": false,
+        "outputPayload": "$entity().state ? \"on\": \"off\"",
+        "outputPayloadType": "jsonata",
+        "x": 800,
+        "y": 40,
+        "wires": [
+            [
+                "74a1ecf63eda9c75"
+            ]
+        ]
+    },
+    {
+        "id": "74a1ecf63eda9c75",
+        "type": "debug",
+        "z": "efaed6095d445392",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 950,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "92177d0f19a1753c",
+        "type": "moonNode-monitor",
+        "z": "6f1ebe1822580f11",
+        "name": "vcore3",
+        "server": "63a02432e8112030",
+        "autoStart": true,
+        "mObjSel": [
+            "print_stats",
+            "display_status",
+            "gcode_macro HEAT_SOAK",
+            "extruder"
+        ],
+        "mObjList": "{\"objects\":[{\"object\":\"webhooks\",\"selected\":false},{\"object\":\"configfile\",\"selected\":false},{\"object\":\"mcu\",\"selected\":false},{\"object\":\"heaters\",\"selected\":false},{\"object\":\"temperature_sensor Octopus\",\"selected\":false},{\"object\":\"idle_timeout\",\"selected\":false},{\"object\":\"temperature_host raspberry_pi\",\"selected\":false},{\"object\":\"temperature_sensor raspberry_pi\",\"selected\":false},{\"object\":\"gcode_move\",\"selected\":false},{\"object\":\"print_stats\",\"selected\":false},{\"object\":\"virtual_sdcard\",\"selected\":false},{\"object\":\"display_status\",\"selected\":false},{\"object\":\"pause_resume\",\"selected\":false},{\"object\":\"heater_bed\",\"selected\":false},{\"object\":\"fan\",\"selected\":false},{\"object\":\"heater_fan toolhead_cooling_fan\",\"selected\":false},{\"object\":\"controller_fan controller_fan\",\"selected\":false},{\"object\":\"bed_mesh\",\"selected\":false},{\"object\":\"z_tilt\",\"selected\":false},{\"object\":\"tmc2209 stepper_x\",\"selected\":false},{\"object\":\"tmc2209 stepper_y\",\"selected\":false},{\"object\":\"tmc2209 extruder\",\"selected\":false},{\"object\":\"tmc2209 stepper_z\",\"selected\":false},{\"object\":\"tmc2209 stepper_z1\",\"selected\":false},{\"object\":\"tmc2209 stepper_z2\",\"selected\":false},{\"object\":\"gcode_macro EuclidProbe\",\"selected\":false},{\"object\":\"probe\",\"selected\":false},{\"object\":\"gcode_macro _ASSERT_PROBE_STATE\",\"selected\":false},{\"object\":\"gcode_macro ASSERT_PROBE_DEPLOYED\",\"selected\":false},{\"object\":\"gcode_macro ASSERT_PROBE_STOWED\",\"selected\":false},{\"object\":\"gcode_macro EUCLID_PROBE_BEGIN_BATCH\",\"selected\":false},{\"object\":\"gcode_macro EUCLID_PROBE_END_BATCH\",\"selected\":false},{\"object\":\"gcode_macro DEPLOY_PROBE\",\"selected\":false},{\"object\":\"gcode_macro STOW_PROBE\",\"selected\":false},{\"object\":\"gcode_macro BED_MESH_CALIBRATE\",\"selected\":false},{\"object\":\"gcode_macro Z_TILT_ADJUST\",\"selected\":false},{\"object\":\"gcode_macro PROBE_CALIBRATE\",\"selected\":false},{\"object\":\"firmware_retraction\",\"selected\":false},{\"object\":\"gcode_macro _REPORT_POSITION\",\"selected\":false},{\"object\":\"gcode_macro CENTER\",\"selected\":false},{\"object\":\"gcode_macro LAZY_HOME\",\"selected\":false},{\"object\":\"gcode_macro RESET_VELOCITY\",\"selected\":false},{\"object\":\"gcode_macro SEARCH_VARS\",\"selected\":false},{\"object\":\"gcode_macro FIRST_LAYER_CALIBRATION\",\"selected\":false},{\"object\":\"gcode_macro _SET_FAN_SPEED\",\"selected\":false},{\"object\":\"gcode_macro _RUNOUT_INFO\",\"selected\":false},{\"object\":\"gcode_macro M115\",\"selected\":false},{\"object\":\"gcode_macro M117\",\"selected\":false},{\"object\":\"gcode_macro HEAT_SOAK\",\"selected\":false},{\"object\":\"gcode_macro CANCEL_HEAT_SOAK\",\"selected\":false},{\"object\":\"gcode_macro PROBE_ACCURACY_EVERYWHERE\",\"selected\":false},{\"object\":\"gcode_macro USE_INFILL_SQV\",\"selected\":false},{\"object\":\"gcode_macro SET_INFILL_SQV\",\"selected\":false},{\"object\":\"gcode_macro USE_NORMAL_SQV\",\"selected\":false},{\"object\":\"gcode_macro RatOS\",\"selected\":false},{\"object\":\"gcode_macro PAUSE\",\"selected\":false},{\"object\":\"gcode_macro RESUME\",\"selected\":false},{\"object\":\"gcode_macro CANCEL_PRINT\",\"selected\":false},{\"object\":\"gcode_macro PRIME_LINE\",\"selected\":false},{\"object\":\"gcode_macro _PARK\",\"selected\":false},{\"object\":\"gcode_macro M600\",\"selected\":false},{\"object\":\"gcode_macro UNLOAD_FILAMENT\",\"selected\":false},{\"object\":\"gcode_macro LOAD_FILAMENT\",\"selected\":false},{\"object\":\"gcode_macro START_PRINT\",\"selected\":false},{\"object\":\"gcode_macro END_PRINT\",\"selected\":false},{\"object\":\"gcode_macro GENERATE_SHAPER_GRAPHS\",\"selected\":false},{\"object\":\"gcode_macro COMPILE_FIRMARE\",\"selected\":false},{\"object\":\"gcode_macro CHANGE_HOSTNAME\",\"selected\":false},{\"object\":\"temperature_sensor chamber\",\"selected\":false},{\"object\":\"temperature_sensor motor_l\",\"selected\":false},{\"object\":\"filament_motion_sensor btt_sfs\",\"selected\":false},{\"object\":\"motion_report\",\"selected\":false},{\"object\":\"query_endstops\",\"selected\":false},{\"object\":\"system_stats\",\"selected\":false},{\"object\":\"toolhead\",\"selected\":false},{\"object\":\"extruder\",\"selected\":false}]}",
+        "x": 410,
+        "y": 340,
+        "wires": [
+            [
+                "6002357c43d4d015",
+                "de404bd93ca00f45",
+                "b9ceaf4ed364a968",
+                "dbd2c86c7dc30e49",
+                "ff2c7434b0170cd9",
+                "399344d4d2322d22"
+            ],
+            [
+                "3a36ab22613b21f6"
+            ]
+        ]
+    },
+    {
+        "id": "3a36ab22613b21f6",
+        "type": "debug",
+        "z": "6f1ebe1822580f11",
+        "name": "conn msgs",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 470,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "6002357c43d4d015",
+        "type": "debug",
+        "z": "6f1ebe1822580f11",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 770,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "de404bd93ca00f45",
+        "type": "moonNode-event",
+        "z": "6f1ebe1822580f11",
+        "name": "hotend actual",
+        "interval": "5",
+        "delta": ".1",
+        "modelPath": "extruder.temperature",
+        "outputs": 1,
+        "x": 860,
+        "y": 140,
+        "wires": [
+            [
+                "dfb1bca772564aa7",
+                "b0f44afe54fc079e"
+            ]
+        ]
+    },
+    {
+        "id": "dfb1bca772564aa7",
+        "type": "debug",
+        "z": "6f1ebe1822580f11",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1050,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "b9ceaf4ed364a968",
+        "type": "moonNode-event",
+        "z": "6f1ebe1822580f11",
+        "name": "state",
+        "interval": "0",
+        "delta": "0",
+        "modelPath": "print_stats.state",
+        "outputs": 1,
+        "x": 710,
+        "y": 400,
+        "wires": [
+            [
+                "f2f653c958a21271"
+            ]
+        ]
+    },
+    {
+        "id": "b0f44afe54fc079e",
+        "type": "ha-entity",
+        "z": "6f1ebe1822580f11",
+        "name": "hotend actual",
+        "server": "1fb2958d.14f89a",
+        "version": 2,
+        "debugenabled": false,
+        "outputs": 1,
+        "entityType": "sensor",
+        "config": [
+            {
+                "property": "name",
+                "value": "NR: vcore3 Hotend Actual"
+            },
+            {
+                "property": "device_class",
+                "value": "temperature"
+            },
+            {
+                "property": "icon",
+                "value": "mdi:printer-3d-nozzle-heat"
+            },
+            {
+                "property": "unit_of_measurement",
+                "value": "°C"
+            },
+            {
+                "property": "state_class",
+                "value": ""
+            },
+            {
+                "property": "last_reset",
+                "value": ""
+            }
+        ],
+        "state": "moonNode.eventValue",
+        "stateType": "msg",
+        "attributes": [],
+        "resend": true,
+        "outputLocation": "",
+        "outputLocationType": "none",
+        "inputOverride": "allow",
+        "outputOnStateChange": false,
+        "outputPayload": "$entity().state ? \"on\": \"off\"",
+        "outputPayloadType": "jsonata",
+        "x": 1080,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f2f653c958a21271",
+        "type": "switch",
+        "z": "6f1ebe1822580f11",
+        "name": "completes",
+        "property": "payload.patchModel.print_stats.state",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "complete",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 870,
+        "y": 380,
+        "wires": [
+            [
+                "2b4badb0172ab2fd",
+                "329f345a7612eeb6",
+                "359af246fd0890bb"
+            ]
+        ]
+    },
+    {
+        "id": "2b4badb0172ab2fd",
+        "type": "ha-api",
+        "z": "6f1ebe1822580f11",
+        "d": true,
+        "name": "get snapshot",
+        "server": "1fb2958d.14f89a",
+        "version": 1,
+        "debugenabled": false,
+        "protocol": "http",
+        "method": "get",
+        "path": "/api/camera_proxy/camera.v_core_3_enclosure",
+        "data": "{}",
+        "dataType": "json",
+        "responseType": "arraybuffer",
+        "outputProperties": [
+            {
+                "property": "snapshot",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "results"
+            }
+        ],
+        "x": 1070,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c35b0ab904483303",
+        "type": "inject",
+        "z": "6f1ebe1822580f11",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"fullModel\":{\"virtual_sdcard\":{\"progress\":1,\"file_position\":3511425,\"is_active\":false,\"file_path\":null,\"file_size\":3511425},\"pause_resume\":{\"is_paused\":false},\"display_status\":{\"progress\":1,\"message\":\"Done.\"},\"print_stats\":{\"print_duration\":3348.0411819490837,\"total_duration\":3769.900146160042,\"filament_used\":4041.6051200000047,\"filename\":\"fan tower_0.2mm_ABS_53m.gcode\",\"state\":\"complete\",\"message\":\"\"},\"toolhead\":{\"square_corner_velocity\":5,\"max_accel\":3000,\"homed_axes\":\"\",\"estimated_print_time\":370618.12118607224,\"max_velocity\":1000,\"print_time\":365901.0764497697,\"max_accel_to_decel\":7500,\"axis_minimum\":[-13,-5,-5,0],\"stalls\":0,\"axis_maximum\":[409,396,400,0],\"position\":[204.5,391,199.94,4041.6051200000047],\"extruder\":\"extruder\"},\"temperature_sensor chamber\":{\"measured_min_temp\":21.62,\"measured_max_temp\":35.57,\"temperature\":21.7},\"heater_bed\":{\"temperature\":26.53,\"power\":0,\"target\":0},\"extruder\":{\"pressure_advance\":0.1,\"target\":0,\"power\":0,\"can_extrude\":false,\"smooth_time\":0.04,\"temperature\":26.06}},\"patchModel\":{\"print_stats\":{\"state\":\"complete\"}},\"prevModel\":{\"virtual_sdcard\":{\"progress\":1,\"file_position\":3511425,\"is_active\":false,\"file_path\":null,\"file_size\":3511425},\"pause_resume\":{\"is_paused\":false},\"display_status\":{\"progress\":1,\"message\":\"Done.\"},\"print_stats\":{\"print_duration\":3348.0411819490837,\"total_duration\":3769.900146160042,\"filament_used\":4041.6051200000047,\"filename\":\"fan tower_0.2mm_ABS_53m.gcode\",\"state\":\"complete\",\"message\":\"\"},\"toolhead\":{\"square_corner_velocity\":5,\"max_accel\":3000,\"homed_axes\":\"\",\"estimated_print_time\":370617.8706009667,\"max_velocity\":1000,\"print_time\":365901.0764497697,\"max_accel_to_decel\":7500,\"axis_minimum\":[-13,-5,-5,0],\"stalls\":0,\"axis_maximum\":[409,396,400,0],\"position\":[204.5,391,199.94,4041.6051200000047],\"extruder\":\"extruder\"},\"temperature_sensor chamber\":{\"measured_min_temp\":21.62,\"measured_max_temp\":35.57,\"temperature\":21.76},\"heater_bed\":{\"temperature\":26.55,\"power\":0,\"target\":0},\"extruder\":{\"pressure_advance\":0.1,\"target\":0,\"power\":0,\"can_extrude\":false,\"smooth_time\":0.04,\"temperature\":26.06}}}",
+        "payloadType": "json",
+        "x": 730,
+        "y": 360,
+        "wires": [
+            [
+                "f2f653c958a21271"
+            ]
+        ]
+    },
+    {
+        "id": "329f345a7612eeb6",
+        "type": "api-call-service",
+        "z": "6f1ebe1822580f11",
+        "name": "notify my iPhone",
+        "server": "1fb2958d.14f89a",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "notify",
+        "service": "mobile_app_camilla_13_0",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [],
+        "data": "{\t   \"title\": \"v-core 3 print job status\",\t   \"message\": \"Print job completed\",\t   \"data\": {\t       \"subtitle\": payload.fullModel.print_stats.filename,\t       \"push\": {\t           \"thread-id\": \"vcore3_job_status\"\t       },\t       \"@todo:image\": \"https://s3.amazonaws.com/\" & \"Bucket\" & \"/\" & \"Key\",\t       \"@todo:entity_id\": camera_entity_id\t    }\t}\t",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1090,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dbd2c86c7dc30e49",
+        "type": "moonNode-event",
+        "z": "6f1ebe1822580f11",
+        "name": "progress",
+        "interval": "1",
+        "delta": "0.01",
+        "modelPath": "display_status.progress",
+        "outputs": 1,
+        "x": 720,
+        "y": 260,
+        "wires": [
+            [
+                "4c8e1da18cb3f2e7"
+            ]
+        ]
+    },
+    {
+        "id": "4c8e1da18cb3f2e7",
+        "type": "function",
+        "z": "6f1ebe1822580f11",
+        "name": "crosses 50%",
+        "func": "node.status({text: msg.moonNode.eventValue, shape: \"dot\", fill: \"blue\"});\n\n// pass message if we're crossing the threshold for the first time\nif ((msg.moonNode.eventValue >= 0.5) && (msg.moonNode.lastEventValue < 0.5)) {\n    return msg;\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 870,
+        "y": 260,
+        "wires": [
+            [
+                "81643160bf8fe082",
+                "52dac028ace43c45"
+            ]
+        ]
+    },
+    {
+        "id": "81643160bf8fe082",
+        "type": "api-call-service",
+        "z": "6f1ebe1822580f11",
+        "name": "notify my iPhone",
+        "server": "1fb2958d.14f89a",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "notify",
+        "service": "mobile_app_camilla_13_0",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [],
+        "data": "{\t   \"title\": \"v-core 3 print job status\",\t   \"message\": \"Print job at \" & $round(payload.fullModel.display_status.progress * 100) & \"%\",\t   \"data\": {\t       \"subtitle\": payload.fullModel.print_stats.filename,\t       \"push\": {\t           \"thread-id\": \"vcore3_job_status\"\t       },\t       \"@todo:image\": \"https://s3.amazonaws.com/\" & \"Bucket\" & \"/\" & \"Key\",\t       \"entity_id\": \"camera.v_core_3_enclosure\"\t    }\t}\t",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1090,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "52dac028ace43c45",
+        "type": "api-call-service",
+        "z": "6f1ebe1822580f11",
+        "name": "in-hass notif",
+        "server": "1fb2958d.14f89a",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "persistent_notification",
+        "service": "create",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [],
+        "data": "{\t   \"notification_id\": \"vcore3_job_status\"\t       ,\t   \"title\": \"v-core 3 print job status\",\t   \"message\": \"Print job at \" & $round(\t       payload.fullModel.display_status.progress * 100\t   ) & \"%\"\t}\t",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1070,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "359af246fd0890bb",
+        "type": "api-call-service",
+        "z": "6f1ebe1822580f11",
+        "name": "in-hass notif",
+        "server": "1fb2958d.14f89a",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "persistent_notification",
+        "service": "create",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [],
+        "data": "{\t   \"notification_id\": \"vcore3_job_status\",\t   \"title\": \"v-core 3 print job status\",\t   \"message\": \"Print job completed\"\t}\t",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1070,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ff2c7434b0170cd9",
+        "type": "function",
+        "z": "6f1ebe1822580f11",
+        "name": "heat soak completes",
+        "func": "var model = msg.payload.fullModel;\nif (model[\"gcode_macro HEAT_SOAK\"] != undefined) {\n    var stage = model[\"gcode_macro HEAT_SOAK\"].stage;\n    var lastStage = context.get(\"lastStage\");\n\n    if (stage != lastStage) {\n        node.status({text: \"stage \" + stage, shape: \"dot\", fill: \"blue\"});\n        context.set(\"lastStage\", stage);\n        \n        if ((lastStage === \"soaking\") && (stage === \"done\")) {\n            return msg;\n        }\n    }\n} else {\n    node.error(\"no macro data: \" + JSON.stringify(model));\n    node.status({text: \"missing data\", fill: \"red\", shape: \"ring\"});\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "context.set(\"lastStage\", \"-init-\");\n",
+        "finalize": "",
+        "libs": [],
+        "x": 840,
+        "y": 460,
+        "wires": [
+            [
+                "a97d4afabfecc162",
+                "214d86b8387542a2"
+            ]
+        ]
+    },
+    {
+        "id": "a97d4afabfecc162",
+        "type": "api-call-service",
+        "z": "6f1ebe1822580f11",
+        "name": "in-hass notif",
+        "server": "1fb2958d.14f89a",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "persistent_notification",
+        "service": "create",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [],
+        "data": "{\t   \"notification_id\": \"vcore3_job_heat_soak\",\t   \"title\": \"v-core 3 heat soak status\",\t   \"message\": \"Heat soak done\"\t}\t",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1070,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "214d86b8387542a2",
+        "type": "api-call-service",
+        "z": "6f1ebe1822580f11",
+        "name": "notify my iPhone",
+        "server": "1fb2958d.14f89a",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "notify",
+        "service": "mobile_app_camilla_13_0",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [],
+        "data": "{\t   \"title\": \"v-core 3 heat soak status\",\t   \"message\": \"Heat soak done\",\t   \"data\": {\t       \"push\": {\t           \"thread-id\": \"vcore3_job_heat_soak\"\t       },\t       \"@todo:image\": \"https://s3.amazonaws.com/\" & \"Bucket\" & \"/\" & \"Key\",\t       \"@todo:entity_id\": camera_entity_id\t    }\t}\t",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1090,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "30dbf459ba3b257e",
+        "type": "ha-button",
+        "z": "6f1ebe1822580f11",
+        "name": "pre-heat 110° for 45m",
+        "version": 0,
+        "debugenabled": false,
+        "outputs": 1,
+        "entityConfig": "6a9c966b66b0321c",
         "outputProperties": [
             {
                 "property": "payload",
                 "propertyType": "msg",
                 "value": "",
                 "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "eventData"
             },
             {
                 "property": "topic",
                 "propertyType": "msg",
                 "value": "",
                 "valueType": "triggerId"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
             }
         ],
-        "x": 390,
-        "y": 320,
+        "x": 330,
+        "y": 620,
         "wires": [
             [
-                "edd5d3fc.46fbf"
+                "a3b20635c837dd8f"
+            ]
+        ]
+    },
+    {
+        "id": "a3b20635c837dd8f",
+        "type": "moonNode-command",
+        "z": "6f1ebe1822580f11",
+        "name": "pre-heat 110°",
+        "command": "HEAT_SOAK TARGET=110 DURATION=45",
+        "server": "63a02432e8112030",
+        "stateless": true,
+        "x": 540,
+        "y": 620,
+        "wires": [
+            [
+                "eb5bb334eb696851"
             ],
+            [
+                "a990203946f947ab"
+            ],
+            [
+                "9ddd67cf0fa4e147"
+            ]
+        ]
+    },
+    {
+        "id": "a990203946f947ab",
+        "type": "debug",
+        "z": "6f1ebe1822580f11",
+        "name": "response data",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 809,
+        "y": 647,
+        "wires": []
+    },
+    {
+        "id": "9ddd67cf0fa4e147",
+        "type": "debug",
+        "z": "6f1ebe1822580f11",
+        "name": "error",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 770,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "eb5bb334eb696851",
+        "type": "debug",
+        "z": "6f1ebe1822580f11",
+        "name": "command out",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 780,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "aa600bf09aa0af4f",
+        "type": "moonNode-command",
+        "z": "6f1ebe1822580f11",
+        "name": "cancel heat soak",
+        "command": "CANCEL_HEAT_SOAK",
+        "server": "63a02432e8112030",
+        "stateless": true,
+        "x": 540,
+        "y": 800,
+        "wires": [
+            [
+                "297f4e9a7ad9c7b9"
+            ],
+            [
+                "d5aeb3d4aeffbf07"
+            ],
+            [
+                "71d95096827220fb"
+            ]
+        ]
+    },
+    {
+        "id": "d5aeb3d4aeffbf07",
+        "type": "debug",
+        "z": "6f1ebe1822580f11",
+        "name": "response data",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 799,
+        "y": 827,
+        "wires": []
+    },
+    {
+        "id": "71d95096827220fb",
+        "type": "debug",
+        "z": "6f1ebe1822580f11",
+        "name": "error",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 760,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "297f4e9a7ad9c7b9",
+        "type": "debug",
+        "z": "6f1ebe1822580f11",
+        "name": "command out",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 770,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "16f9acd8821e3dcd",
+        "type": "ha-button",
+        "z": "6f1ebe1822580f11",
+        "name": "cancel heat soak",
+        "version": 0,
+        "debugenabled": false,
+        "outputs": 1,
+        "entityConfig": "1279c405858f966e",
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "x": 320,
+        "y": 800,
+        "wires": [
+            [
+                "aa600bf09aa0af4f"
+            ]
+        ]
+    },
+    {
+        "id": "399344d4d2322d22",
+        "type": "trigger",
+        "z": "6f1ebe1822580f11",
+        "name": "watchdog",
+        "op1": "",
+        "op2": "arg wtf",
+        "op1type": "nul",
+        "op2type": "str",
+        "duration": "2",
+        "extend": true,
+        "overrideDelay": false,
+        "units": "s",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 420,
+        "y": 180,
+        "wires": [
+            [
+                "734bac74b9519be0",
+                "cde1e3bfa0a8d42d"
+            ]
+        ]
+    },
+    {
+        "id": "b3cfb0082c2efc19",
+        "type": "inject",
+        "z": "6f1ebe1822580f11",
+        "name": "restart monitoring",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 210,
+        "y": 140,
+        "wires": [
+            [
+                "734bac74b9519be0"
+            ]
+        ]
+    },
+    {
+        "id": "8c2341ad3eeabb94",
+        "type": "trigger",
+        "z": "6f1ebe1822580f11",
+        "name": "toggle connection",
+        "op1": "{\"monitorState\":\"OFF\"}",
+        "op2": "{\"monitorState\":\"ON\"}",
+        "op1type": "json",
+        "op2type": "json",
+        "duration": "2",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "s",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 250,
+        "y": 340,
+        "wires": [
+            [
+                "92177d0f19a1753c"
+            ]
+        ]
+    },
+    {
+        "id": "734bac74b9519be0",
+        "type": "fan",
+        "z": "6f1ebe1822580f11",
+        "name": "",
+        "x": 250,
+        "y": 280,
+        "wires": [
+            [
+                "8c2341ad3eeabb94"
+            ]
+        ]
+    },
+    {
+        "id": "cde1e3bfa0a8d42d",
+        "type": "api-call-service",
+        "z": "6f1ebe1822580f11",
+        "name": "in-hass notif",
+        "server": "1fb2958d.14f89a",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "persistent_notification",
+        "service": "create",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [],
+        "data": "{\t   \"notification_id\": \"vcore3_monitor_status\"\t       ,\t   \"title\": \"v-core 3 monitor watchdog timeout\",\t   \"message\": \"some new shit has come to light, man.\"\t}\t",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 590,
+        "y": 120,
+        "wires": [
             []
         ]
     },
     {
-        "id": "2beff0bd2c5053cc",
-        "type": "image",
-        "z": "6c71644f.90490c",
-        "name": "preview",
-        "width": "240",
-        "data": "payload",
-        "dataType": "msg",
-        "thumbnail": true,
-        "active": true,
-        "pass": false,
-        "outputs": 0,
-        "x": 1160,
-        "y": 380,
+        "id": "b7a34de0fc240b07",
+        "type": "subflow:8ee3d653bff5e3e5",
+        "z": "6262a64468718f73",
+        "name": "",
+        "env": [
+            {
+                "name": "notif_id",
+                "value": "qwerty",
+                "type": "str"
+            },
+            {
+                "name": "notif_title",
+                "value": "a title",
+                "type": "str"
+            },
+            {
+                "name": "notif_message",
+                "value": "a message",
+                "type": "str"
+            },
+            {
+                "name": "camera_id",
+                "value": "some_camera",
+                "type": "str"
+            },
+            {
+                "name": "moon_fullModel",
+                "value": "{\"help\":\"me\"}",
+                "type": "json"
+            }
+        ],
+        "x": 510,
+        "y": 160,
         "wires": []
+    },
+    {
+        "id": "287e5ff455a547f8",
+        "type": "inject",
+        "z": "6262a64468718f73",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 290,
+        "y": 120,
+        "wires": [
+            [
+                "b7a34de0fc240b07"
+            ]
+        ]
+    },
+    {
+        "id": "f4584b61fa26e6ac",
+        "type": "influxdb out",
+        "z": "429b7a553657396c",
+        "influxdb": "c9d6062829ddc012",
+        "name": "node-red-monitoring",
+        "measurement": "",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "org0",
+        "bucket": "node-red-monitoring",
+        "x": 740,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "993916ec05f984f8",
+        "type": "inject",
+        "z": "429b7a553657396c",
+        "name": "10s ticker",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "10",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 230,
+        "y": 340,
+        "wires": [
+            [
+                "b6f5d1f660c16e39",
+                "6e938e72e0a69c99",
+                "a71d70171ca1353e",
+                "becffabb4dba66e2"
+            ]
+        ]
+    },
+    {
+        "id": "b6f5d1f660c16e39",
+        "type": "function",
+        "z": "429b7a553657396c",
+        "name": "memoryUsage",
+        "func": "\nreturn {\n    measurement: \"process-memoryUsage\",\n    payload: [\n        // named fields\n        process.memoryUsage(),\n        \n        // named tags\n        {},\n    ],\n};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "process",
+                "module": "process"
+            }
+        ],
+        "x": 460,
+        "y": 380,
+        "wires": [
+            [
+                "f4584b61fa26e6ac"
+            ]
+        ]
+    },
+    {
+        "id": "6e938e72e0a69c99",
+        "type": "function",
+        "z": "429b7a553657396c",
+        "name": "heapStatistics",
+        "func": "\nreturn {\n    measurement: \"v8-heapStatistics\",\n    payload: [\n        // named fields\n        v8.getHeapStatistics(),\n        \n        // named tags\n        {},\n    ],\n};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "v8",
+                "module": "v8"
+            }
+        ],
+        "x": 460,
+        "y": 440,
+        "wires": [
+            [
+                "f4584b61fa26e6ac"
+            ]
+        ]
+    },
+    {
+        "id": "a71d70171ca1353e",
+        "type": "function",
+        "z": "429b7a553657396c",
+        "name": "cpuUsage",
+        "func": "\nreturn {\n    measurement: \"process-cpuUsage\",\n    payload: [\n        // named fields\n        process.cpuUsage(),\n        \n        // named tags\n        {},\n    ],\n};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "process",
+                "module": "process"
+            }
+        ],
+        "x": 450,
+        "y": 320,
+        "wires": [
+            [
+                "f4584b61fa26e6ac"
+            ]
+        ]
+    },
+    {
+        "id": "becffabb4dba66e2",
+        "type": "function",
+        "z": "429b7a553657396c",
+        "name": "resourceUsage",
+        "func": "\nreturn {\n    measurement: \"process-resourceUsage\",\n    payload: [\n        // named fields\n        process.resourceUsage(),\n        \n        // named tags\n        {},\n    ],\n};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "process",
+                "module": "process"
+            }
+        ],
+        "x": 460,
+        "y": 260,
+        "wires": [
+            [
+                "f4584b61fa26e6ac"
+            ]
+        ]
+    },
+    {
+        "id": "279a0cb88e1322da",
+        "type": "unifi-request",
+        "z": "b34df73523bd7dfb",
+        "d": true,
+        "name": "bootstrap GET",
+        "accessControllerNodeId": "bdab178cf02ef0af",
+        "endpoint": "/proxy/protect/api/bootstrap",
+        "method": "GET",
+        "data": "",
+        "dataType": "json",
+        "responseType": "json",
+        "x": 240,
+        "y": 180,
+        "wires": [
+            [
+                "aee393f44bb9a5f6",
+                "0d0118f922dd2c31",
+                "522fc78902c0514a"
+            ]
+        ]
+    },
+    {
+        "id": "ed32437cb3525587",
+        "type": "unifi-web-socket",
+        "z": "b34df73523bd7dfb",
+        "d": true,
+        "name": "protect updates",
+        "endpoint": "",
+        "accessControllerNodeId": "bdab178cf02ef0af",
+        "reconnectTimeout": 30000,
+        "x": 460,
+        "y": 120,
+        "wires": [
+            [
+                "50ab8965e0c4f219",
+                "522fc78902c0514a"
+            ],
+            [
+                "0b4cbc6e6543bf75",
+                "522fc78902c0514a"
+            ]
+        ]
+    },
+    {
+        "id": "afb5622f658f7603",
+        "type": "inject",
+        "z": "b34df73523bd7dfb",
+        "name": "connect",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 90,
+        "y": 80,
+        "wires": [
+            [
+                "279a0cb88e1322da"
+            ]
+        ]
+    },
+    {
+        "id": "aee393f44bb9a5f6",
+        "type": "debug",
+        "z": "b34df73523bd7dfb",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 390,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "0d0118f922dd2c31",
+        "type": "function",
+        "z": "b34df73523bd7dfb",
+        "name": "lastUpdateId",
+        "func": "if (\"lastUpdateId\" in msg.payload) {\n    return {\n        payload: {\n            endpoint: `/proxy/protect/ws/updates?lastUpdateId=${msg.payload.lastUpdateId}`\n        }\n    };\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 60,
+        "wires": [
+            [
+                "ed32437cb3525587"
+            ]
+        ]
+    },
+    {
+        "id": "50ab8965e0c4f219",
+        "type": "debug",
+        "z": "b34df73523bd7dfb",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 610,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "0b4cbc6e6543bf75",
+        "type": "debug",
+        "z": "b34df73523bd7dfb",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 610,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "522fc78902c0514a",
+        "type": "file",
+        "z": "b34df73523bd7dfb",
+        "name": "",
+        "filename": "/alloc/logs/protect-ws2.json",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "utf8",
+        "x": 860,
+        "y": 140,
+        "wires": [
+            []
+        ]
     }
 ]
