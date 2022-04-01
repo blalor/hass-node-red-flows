@@ -125,6 +125,1984 @@
         "color": "#DDAA99"
     },
     {
+        "id": "914734122ce79fcd",
+        "type": "subflow",
+        "name": "iOS Actionable Notification",
+        "info": "[Documentation](https://github.com/zachowj/node-red-contrib-home-assistant-websocket/discussions/379)\n",
+        "category": "home_assistant",
+        "in": [
+            {
+                "x": 60,
+                "y": 60,
+                "wires": [
+                    {
+                        "id": "f8d958779acdc007"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 1440,
+                "y": 160,
+                "wires": [
+                    {
+                        "id": "7bb055c340123ca6",
+                        "port": 0
+                    }
+                ]
+            },
+            {
+                "x": 1440,
+                "y": 200,
+                "wires": [
+                    {
+                        "id": "7bb055c340123ca6",
+                        "port": 1
+                    }
+                ]
+            },
+            {
+                "x": 1440,
+                "y": 240,
+                "wires": [
+                    {
+                        "id": "7bb055c340123ca6",
+                        "port": 2
+                    }
+                ]
+            },
+            {
+                "x": 1440,
+                "y": 280,
+                "wires": [
+                    {
+                        "id": "7bb055c340123ca6",
+                        "port": 3
+                    }
+                ]
+            }
+        ],
+        "env": [
+            {
+                "name": "group",
+                "type": "str",
+                "value": "None",
+                "ui": {
+                    "label": {
+                        "en-US": "Group Name"
+                    }
+                }
+            },
+            {
+                "name": "tag",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "label": {
+                        "en-US": "Tag (for replacing messages - optional)"
+                    }
+                }
+            },
+            {
+                "name": "service",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "label": {
+                        "en-US": "Notify Service"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str",
+                            "env"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "title",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "label": {
+                        "en-US": "Title"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str",
+                            "env"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "subtitle",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "label": {
+                        "en-US": "Subtitle (optional)"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str",
+                            "env"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "message",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "label": {
+                        "en-US": "Message"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str",
+                            "env"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "notificationUrl",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "label": {
+                        "en-US": "Notification URL (optional)"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str",
+                            "env"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "customSoundPreInstalled",
+                "type": "str",
+                "value": "default",
+                "ui": {
+                    "label": {
+                        "en-US": "Pre-installed Custom Sound"
+                    },
+                    "type": "select",
+                    "opts": {
+                        "opts": [
+                            {
+                                "l": {
+                                    "en-US": "default"
+                                },
+                                "v": "default"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "No Sound"
+                                },
+                                "v": "none"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Alexa-Back-Door-Opened.wav"
+                                },
+                                "v": "US-EN-Alexa-Back-Door-Opened.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Alexa-Back-Door-Unlocked.wav"
+                                },
+                                "v": "US-EN-Alexa-Back-Door-Unlocked.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Alexa-Basement-Door-Opened.wav"
+                                },
+                                "v": "US-EN-Alexa-Basement-Door-Opened.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Alexa-Basement-Door-Unlocked.wav"
+                                },
+                                "v": "US-EN-Alexa-Basement-Door-Unlocked.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Alexa-Boyfriend-Is-Arriving.wav"
+                                },
+                                "v": "US-EN-Alexa-Boyfriend-Is-Arriving.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Alexa-Daughter-Is-Arriving.wav"
+                                },
+                                "v": "US-EN-Alexa-Daughter-Is-Arriving.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Alexa-Front-Door-Opened.wav"
+                                },
+                                "v": "US-EN-Alexa-Front-Door-Opened.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Alexa-Front-Door-Unlocked.wav"
+                                },
+                                "v": "US-EN-Alexa-Front-Door-Unlocked.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Alexa-Garage-Door-Opened.wav"
+                                },
+                                "v": "US-EN-Alexa-Garage-Door-Opened.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Alexa-Girlfriend-Is-Arriving.wav"
+                                },
+                                "v": "US-EN-Alexa-Girlfriend-Is-Arriving.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Alexa-Good-Morning.wav"
+                                },
+                                "v": "US-EN-Alexa-Good-Morning.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Alexa-Good-Night.wav"
+                                },
+                                "v": "US-EN-Alexa-Good-Night.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Alexa-Husband-Is-Arriving.wav"
+                                },
+                                "v": "US-EN-Alexa-Husband-Is-Arriving.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Alexa-Mail-Has-Arrived.wav"
+                                },
+                                "v": "US-EN-Alexa-Mail-Has-Arrived.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Alexa-Motion-At-Back-Door.wav"
+                                },
+                                "v": "US-EN-Alexa-Motion-At-Back-Door.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Alexa-Motion-At-Front-Door.wav"
+                                },
+                                "v": "US-EN-Alexa-Motion-At-Front-Door.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Alexa-Motion-Detected-Generic.wav"
+                                },
+                                "v": "US-EN-Alexa-Motion-Detected-Generic.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Alexa-Motion-In-Back-Yard.wav"
+                                },
+                                "v": "US-EN-Alexa-Motion-In-Back-Yard.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Alexa-Motion-In-Basement.wav"
+                                },
+                                "v": "US-EN-Alexa-Motion-In-Basement.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Alexa-Motion-In-Front-Yard.wav"
+                                },
+                                "v": "US-EN-Alexa-Motion-In-Front-Yard.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Alexa-Motion-In-Garage.wav"
+                                },
+                                "v": "US-EN-Alexa-Motion-In-Garage.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Alexa-Patio-Door-Opened.wav"
+                                },
+                                "v": "US-EN-Alexa-Patio-Door-Opened.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Alexa-Patio-Door-Unlocked.wav"
+                                },
+                                "v": "US-EN-Alexa-Patio-Door-Unlocked.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Alexa-Smoke-Detected-Generic.wav"
+                                },
+                                "v": "US-EN-Alexa-Smoke-Detected-Generic.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Alexa-Smoke-Detected-In-Basement.wav"
+                                },
+                                "v": "US-EN-Alexa-Smoke-Detected-In-Basement.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Alexa-Smoke-Detected-In-Garage.wav"
+                                },
+                                "v": "US-EN-Alexa-Smoke-Detected-In-Garage.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Alexa-Smoke-Detected-In-Kitchen.wav"
+                                },
+                                "v": "US-EN-Alexa-Smoke-Detected-In-Kitchen.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Alexa-Son-Is-Arriving.wav"
+                                },
+                                "v": "US-EN-Alexa-Son-Is-Arriving.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Alexa-Water-Detected-Generic.wav"
+                                },
+                                "v": "US-EN-Alexa-Water-Detected-Generic.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Alexa-Water-Detected-In-Basement.wav"
+                                },
+                                "v": "US-EN-Alexa-Water-Detected-In-Basement.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Alexa-Water-Detected-In-Garage.wav"
+                                },
+                                "v": "US-EN-Alexa-Water-Detected-In-Garage.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Alexa-Water-Detected-In-Kitchen.wav"
+                                },
+                                "v": "US-EN-Alexa-Water-Detected-In-Kitchen.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Alexa-Welcome-Home.wav"
+                                },
+                                "v": "US-EN-Alexa-Welcome-Home.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Alexa-Wife-Is-Arriving.wav"
+                                },
+                                "v": "US-EN-Alexa-Wife-Is-Arriving.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Daisy-Back-Door-Motion.wav"
+                                },
+                                "v": "US-EN-Daisy-Back-Door-Motion.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Daisy-Back-Door-Open.wav"
+                                },
+                                "v": "US-EN-Daisy-Back-Door-Open.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Daisy-Front-Door-Motion.wav"
+                                },
+                                "v": "US-EN-Daisy-Front-Door-Motion.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Daisy-Front-Door-Open.wav"
+                                },
+                                "v": "US-EN-Daisy-Front-Door-Open.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Daisy-Front-Window-Open.wav"
+                                },
+                                "v": "US-EN-Daisy-Front-Window-Open.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Daisy-Garage-Door-Open.wav"
+                                },
+                                "v": "US-EN-Daisy-Garage-Door-Open.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Daisy-Guest-Bath-Leak.wav"
+                                },
+                                "v": "US-EN-Daisy-Guest-Bath-Leak.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Daisy-Kitchen-Sink-Leak.wav"
+                                },
+                                "v": "US-EN-Daisy-Kitchen-Sink-Leak.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Daisy-Kitchen-Window-Open.wav"
+                                },
+                                "v": "US-EN-Daisy-Kitchen-Window-Open.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Daisy-Laundry-Room-Leak.wav"
+                                },
+                                "v": "US-EN-Daisy-Laundry-Room-Leak.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Daisy-Master-Bath-Leak.wav"
+                                },
+                                "v": "US-EN-Daisy-Master-Bath-Leak.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Daisy-Master-Bedroom-Window-Open.wav"
+                                },
+                                "v": "US-EN-Daisy-Master-Bedroom-Window-Open.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Daisy-Office-Window-Open.wav"
+                                },
+                                "v": "US-EN-Daisy-Office-Window-Open.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Daisy-Refrigerator-Leak.wav"
+                                },
+                                "v": "US-EN-Daisy-Refrigerator-Leak.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Daisy-Water-Heater-Leak.wav"
+                                },
+                                "v": "US-EN-Daisy-Water-Heater-Leak.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Back-Door-Closed.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Back-Door-Closed.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Back-Door-Locked.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Back-Door-Locked.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Back-Door-Opened.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Back-Door-Opened.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Back-Door-Unlocked.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Back-Door-Unlocked.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Basement-Door-Closed.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Basement-Door-Closed.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Basement-Door-Locked.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Basement-Door-Locked.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Basement-Door-Opened.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Basement-Door-Opened.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Basement-Door-Unlocked.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Basement-Door-Unlocked.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Boss-Is-Arriving.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Boss-Is-Arriving.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Boyfriend-Is-Arriving.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Boyfriend-Is-Arriving.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Cleaning-Supplies-Closet-Opened.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Cleaning-Supplies-Closet-Opened.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Coworker-Is-Arriving.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Coworker-Is-Arriving.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Daughter-Is-Arriving.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Daughter-Is-Arriving.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Friend-Is-Arriving.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Friend-Is-Arriving.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Front-Door-Closed.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Front-Door-Closed.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Front-Door-Locked.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Front-Door-Locked.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Front-Door-Opened.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Front-Door-Opened.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Front-Door-Unlocked.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Front-Door-Unlocked.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Garage-Door-Closed.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Garage-Door-Closed.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Garage-Door-Opened.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Garage-Door-Opened.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Girlfriend-Is-Arriving.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Girlfriend-Is-Arriving.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Good-Morning.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Good-Morning.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Good-Night.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Good-Night.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Liquor-Cabinet-Opened.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Liquor-Cabinet-Opened.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Motion-Detected.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Motion-Detected.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Motion-In-Basement.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Motion-In-Basement.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Motion-In-Bedroom.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Motion-In-Bedroom.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Motion-In-Game-Room.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Motion-In-Game-Room.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Motion-In-Garage.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Motion-In-Garage.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Motion-In-Kitchen.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Motion-In-Kitchen.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Motion-In-Living-Room.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Motion-In-Living-Room.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Motion-In-Theater.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Motion-In-Theater.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Motion-In-Wine-Cellar.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Motion-In-Wine-Cellar.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Patio-Door-Closed.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Patio-Door-Closed.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Patio-Door-Locked.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Patio-Door-Locked.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Patio-Door-Opened.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Patio-Door-Opened.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Patio-Door-Unlocked.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Patio-Door-Unlocked.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Roommate-Is-Arriving.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Roommate-Is-Arriving.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Searching-For-Car-Keys.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Searching-For-Car-Keys.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Setting-The-Mood.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Setting-The-Mood.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Smartthings-Detected-A-Flood.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Smartthings-Detected-A-Flood.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Smartthings-Detected-Carbon-Monoxide.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Smartthings-Detected-Carbon-Monoxide.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Smartthings-Detected-Smoke.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Smartthings-Detected-Smoke.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Smoke-Detected-In-Basement.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Smoke-Detected-In-Basement.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Smoke-Detected-In-Garage.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Smoke-Detected-In-Garage.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Smoke-Detected-In-Kitchen.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Smoke-Detected-In-Kitchen.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Someone-Is-Arriving.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Someone-Is-Arriving.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Son-Is-Arriving.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Son-Is-Arriving.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Starting-Movie-Mode.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Starting-Movie-Mode.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Starting-Party-Mode.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Starting-Party-Mode.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Starting-Romance-Mode.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Starting-Romance-Mode.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Turning-Off-All-The-Lights.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Turning-Off-All-The-Lights.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Turning-Off-The-Air-Conditioner.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Turning-Off-The-Air-Conditioner.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Turning-Off-The-Bar-Lights.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Turning-Off-The-Bar-Lights.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Turning-Off-The-Chandelier.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Turning-Off-The-Chandelier.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Turning-Off-The-Family-Room-Lights.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Turning-Off-The-Family-Room-Lights.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Turning-Off-The-Hallway-Lights.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Turning-Off-The-Hallway-Lights.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Turning-Off-The-Kitchen-Light.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Turning-Off-The-Kitchen-Light.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Turning-Off-The-Light.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Turning-Off-The-Light.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Turning-Off-The-Lights.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Turning-Off-The-Lights.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Turning-Off-The-Mood-Lights.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Turning-Off-The-Mood-Lights.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Turning-Off-The-TV.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Turning-Off-The-TV.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Turning-On-The-Air-Conditioner.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Turning-On-The-Air-Conditioner.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Turning-On-The-Bar-Lights.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Turning-On-The-Bar-Lights.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Turning-On-The-Chandelier.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Turning-On-The-Chandelier.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Turning-On-The-Family-Room-Lights.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Turning-On-The-Family-Room-Lights.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Turning-On-The-Hallway-Lights.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Turning-On-The-Hallway-Lights.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Turning-On-The-Kitchen-Light.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Turning-On-The-Kitchen-Light.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Turning-On-The-Light.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Turning-On-The-Light.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Turning-On-The-Lights.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Turning-On-The-Lights.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Turning-On-The-Mood-Lights.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Turning-On-The-Mood-Lights.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Turning-On-The-TV.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Turning-On-The-TV.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Vacate-The-Premises.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Vacate-The-Premises.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Water-Detected-In-Basement.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Water-Detected-In-Basement.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Water-Detected-In-Garage.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Water-Detected-In-Garage.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Water-Detected-In-Kitchen.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Water-Detected-In-Kitchen.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Welcome-Home.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Welcome-Home.wav"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "US-EN-Morgan-Freeman-Wife-Is-Arriving.wav"
+                                },
+                                "v": "US-EN-Morgan-Freeman-Wife-Is-Arriving.wav"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "customSound",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "label": {
+                        "en-US": "Custom Sound (Optional - will override pre-installed selection)"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str",
+                            "env"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "interruptionLevel",
+                "type": "str",
+                "value": "active",
+                "ui": {
+                    "label": {
+                        "en-US": "Interruption Level"
+                    },
+                    "type": "select",
+                    "opts": {
+                        "opts": [
+                            {
+                                "l": {
+                                    "en-US": "Passive"
+                                },
+                                "v": "passive"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "Active (Default)"
+                                },
+                                "v": "active"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "Time Sensitive"
+                                },
+                                "v": "time-sensitive"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "Critical"
+                                },
+                                "v": "critical"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "userInfo",
+                "type": "bool",
+                "value": "false",
+                "ui": {
+                    "label": {
+                        "en-US": "Populate User Information"
+                    },
+                    "type": "checkbox"
+                }
+            },
+            {
+                "name": "isClearNotificationsOnAction",
+                "type": "bool",
+                "value": "false",
+                "ui": {
+                    "label": {
+                        "en-US": "Clear notifications on Action Received?"
+                    },
+                    "type": "checkbox"
+                }
+            },
+            {
+                "name": "action1Title",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "label": {
+                        "en-US": "Action 1 Title"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "action1Uri",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "label": {
+                        "en-US": "Action 1 URL (optional)"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "action1ActivationMode",
+                "type": "str",
+                "value": "background",
+                "ui": {
+                    "label": {
+                        "en-US": "Action 1 Activation Mode"
+                    },
+                    "type": "select",
+                    "opts": {
+                        "opts": [
+                            {
+                                "l": {
+                                    "en-US": "Background"
+                                },
+                                "v": "background"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "Foreground"
+                                },
+                                "v": "foreground"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "action1AuthenticationRequired",
+                "type": "bool",
+                "value": "false",
+                "ui": {
+                    "label": {
+                        "en-US": "Action 1 App Authentication Required?"
+                    },
+                    "type": "checkbox"
+                }
+            },
+            {
+                "name": "action1Destructive",
+                "type": "bool",
+                "value": "false",
+                "ui": {
+                    "label": {
+                        "en-US": "Action 1 Destructive?"
+                    },
+                    "type": "checkbox"
+                }
+            },
+            {
+                "name": "action1Behavior",
+                "type": "str",
+                "value": "default",
+                "ui": {
+                    "label": {
+                        "en-US": "Action 1 Behavior"
+                    },
+                    "type": "select",
+                    "opts": {
+                        "opts": [
+                            {
+                                "l": {
+                                    "en-US": "Default"
+                                },
+                                "v": "default"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "Text Input"
+                                },
+                                "v": "textInput"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "action1TextInputButtonTitle",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "label": {
+                        "en-US": "Action 1 Text Input Button Title (Required if behavior is Text Input)"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str",
+                            "env"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "action1TextInputPlaceHolder",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "label": {
+                        "en-US": "Action 1 Text Input Placeholder (Optional - only if behavior is Text Input)"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str",
+                            "env"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "action1Icon",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "label": {
+                        "en-US": "Action 1 Icon (Optional)"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str",
+                            "env"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "action2Title",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "label": {
+                        "en-US": "Action 2 Title"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "action2Uri",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "label": {
+                        "en-US": "Action 2 URL (optional)"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "action2ActivationMode",
+                "type": "str",
+                "value": "background",
+                "ui": {
+                    "label": {
+                        "en-US": "Action 2 Activation Mode"
+                    },
+                    "type": "select",
+                    "opts": {
+                        "opts": [
+                            {
+                                "l": {
+                                    "en-US": "Background"
+                                },
+                                "v": "background"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "Foreground"
+                                },
+                                "v": "foreground"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "action2AuthenticationRequired",
+                "type": "bool",
+                "value": "false",
+                "ui": {
+                    "label": {
+                        "en-US": "Action 2 App Authentication Required?"
+                    },
+                    "type": "checkbox"
+                }
+            },
+            {
+                "name": "action2Destructive",
+                "type": "bool",
+                "value": "false",
+                "ui": {
+                    "label": {
+                        "en-US": "Action 2 Destructive?"
+                    },
+                    "type": "checkbox"
+                }
+            },
+            {
+                "name": "action2Behavior",
+                "type": "str",
+                "value": "default",
+                "ui": {
+                    "label": {
+                        "en-US": "Action 2 Behavior"
+                    },
+                    "type": "select",
+                    "opts": {
+                        "opts": [
+                            {
+                                "l": {
+                                    "en-US": "Default"
+                                },
+                                "v": "default"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "Text Input"
+                                },
+                                "v": "textInput"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "action2TextInputButtonTitle",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "label": {
+                        "en-US": "Action 2 Text Input Button Title (Required if behavior is Text Input)"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str",
+                            "env"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "action2TextInputPlaceHolder",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "label": {
+                        "en-US": "Action 2 Text Input Placeholder (Optional - only if behavior is Text Input)"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str",
+                            "env"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "action2Icon",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "label": {
+                        "en-US": "Action 2 Icon (Optional)"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str",
+                            "env"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "action3Title",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "label": {
+                        "en-US": "Action 3 Title"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "action3Uri",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "label": {
+                        "en-US": "Action 3 URL (optional)"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "action3ActivationMode",
+                "type": "str",
+                "value": "background",
+                "ui": {
+                    "label": {
+                        "en-US": "Action 3 Activation Mode"
+                    },
+                    "type": "select",
+                    "opts": {
+                        "opts": [
+                            {
+                                "l": {
+                                    "en-US": "Background"
+                                },
+                                "v": "background"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "Foreground"
+                                },
+                                "v": "foreground"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "action3AuthenticationRequired",
+                "type": "bool",
+                "value": "false",
+                "ui": {
+                    "label": {
+                        "en-US": "Action 3 App Authentication Required?"
+                    },
+                    "type": "checkbox"
+                }
+            },
+            {
+                "name": "action3Destructive",
+                "type": "bool",
+                "value": "false",
+                "ui": {
+                    "label": {
+                        "en-US": "Action 3 Destructive?"
+                    },
+                    "type": "checkbox"
+                }
+            },
+            {
+                "name": "action3Behavior",
+                "type": "str",
+                "value": "default",
+                "ui": {
+                    "label": {
+                        "en-US": "Action 3 Behavior"
+                    },
+                    "type": "select",
+                    "opts": {
+                        "opts": [
+                            {
+                                "l": {
+                                    "en-US": "Default"
+                                },
+                                "v": "default"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "Text Input"
+                                },
+                                "v": "textInput"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "action3TextInputButtonTitle",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "label": {
+                        "en-US": "Action 3 Text Input Button Title (Required if behavior is Text Input)"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str",
+                            "env"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "action3TextInputPlaceHolder",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "label": {
+                        "en-US": "Action 3 Text Input Placeholder (Optional - only if behavior is Text Input)"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str",
+                            "env"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "action3Icon",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "label": {
+                        "en-US": "Action 3 Icon (Optional)"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str",
+                            "env"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "action4Title",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "label": {
+                        "en-US": "Action 4 Title"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "action4Uri",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "label": {
+                        "en-US": "Action 4 URL (optional)"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "action4ActivationMode",
+                "type": "str",
+                "value": "background",
+                "ui": {
+                    "label": {
+                        "en-US": "Action 4 Activation Mode"
+                    },
+                    "type": "select",
+                    "opts": {
+                        "opts": [
+                            {
+                                "l": {
+                                    "en-US": "Background"
+                                },
+                                "v": "background"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "Foreground"
+                                },
+                                "v": "foreground"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "action4AuthenticationRequired",
+                "type": "bool",
+                "value": "false",
+                "ui": {
+                    "label": {
+                        "en-US": "Action 4 App Authentication Required?"
+                    },
+                    "type": "checkbox"
+                }
+            },
+            {
+                "name": "action4Destructive",
+                "type": "bool",
+                "value": "false",
+                "ui": {
+                    "label": {
+                        "en-US": "Action 4 Destructive?"
+                    },
+                    "type": "checkbox"
+                }
+            },
+            {
+                "name": "action4Behavior",
+                "type": "str",
+                "value": "default",
+                "ui": {
+                    "label": {
+                        "en-US": "Action 4 Behavior"
+                    },
+                    "type": "select",
+                    "opts": {
+                        "opts": [
+                            {
+                                "l": {
+                                    "en-US": "Default"
+                                },
+                                "v": "default"
+                            },
+                            {
+                                "l": {
+                                    "en-US": "Text Input"
+                                },
+                                "v": "textInput"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "action4TextInputButtonTitle",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "label": {
+                        "en-US": "Action 4 Text Input Button Title (Required if behavior is Text Input)"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str",
+                            "env"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "action4TextInputPlaceHolder",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "label": {
+                        "en-US": "Action 4 Text Input Placeholder (Optional - only if behavior is Text Input)"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str",
+                            "env"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "action4Icon",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "label": {
+                        "en-US": "Action 4 Icon (Optional)"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str",
+                            "env"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "latitudeFirst",
+                "type": "num",
+                "value": "",
+                "ui": {
+                    "label": {
+                        "en-US": "Latitude for Pin 1"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "num",
+                            "env"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "longitudeFirst",
+                "type": "num",
+                "value": "",
+                "ui": {
+                    "label": {
+                        "en-US": "Longitude for Pin 1"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "num",
+                            "env"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "latitudeSecond",
+                "type": "num",
+                "value": "",
+                "ui": {
+                    "label": {
+                        "en-US": "Latitude for Pin 2"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "num",
+                            "env"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "longitudeSecond",
+                "type": "num",
+                "value": "",
+                "ui": {
+                    "label": {
+                        "en-US": "Longitude for Pin 2"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "num",
+                            "env"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "showLineBetweenPoints",
+                "type": "bool",
+                "value": "false",
+                "ui": {
+                    "label": {
+                        "en-US": "Show a line between points?"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "bool",
+                            "env"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "showCompass",
+                "type": "bool",
+                "value": "false",
+                "ui": {
+                    "label": {
+                        "en-US": "Show a compass on the map?"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "bool",
+                            "env"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "showPointsOfInterest",
+                "type": "bool",
+                "value": "false",
+                "ui": {
+                    "label": {
+                        "en-US": "Show points of interest?"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "bool",
+                            "env"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "showScale",
+                "type": "bool",
+                "value": "false",
+                "ui": {
+                    "label": {
+                        "en-US": "Show scale information on the map?"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "bool",
+                            "env"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "showTraffic",
+                "type": "bool",
+                "value": "false",
+                "ui": {
+                    "label": {
+                        "en-US": "Show Traffic?"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "bool",
+                            "env"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "showUserLocation",
+                "type": "bool",
+                "value": "false",
+                "ui": {
+                    "label": {
+                        "en-US": "Show User Location?"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "bool",
+                            "env"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "cameraEntity",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "label": {
+                        "en-US": "Camera Entity"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str",
+                            "env"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "imagePath",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "label": {
+                        "en-US": "Image Path (10MB limit)"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str",
+                            "env"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "videoPath",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "label": {
+                        "en-US": "Video Path (50MB limit)"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str",
+                            "env"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "audioPath",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "label": {
+                        "en-US": "Audio Path (5MB limit)"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str",
+                            "env"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "contentUrl",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "label": {
+                        "en-US": "Content URL (overrides image/video/audio)"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str",
+                            "env"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "lazyLoading",
+                "type": "bool",
+                "value": "false",
+                "ui": {
+                    "label": {
+                        "en-US": "Load Media in Notification Lazily?"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "bool",
+                            "env"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "hideThumbnail",
+                "type": "bool",
+                "value": "false",
+                "ui": {
+                    "label": {
+                        "en-US": "Hide thumbnail?"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "bool",
+                            "env"
+                        ]
+                    }
+                }
+            }
+        ],
+        "meta": {},
+        "color": "#D8BFD8",
+        "outputLabels": [
+            "Action 1",
+            "Action 2",
+            "Action 3",
+            "Cleared"
+        ],
+        "icon": "font-awesome/fa-mobile-phone",
+        "status": {
+            "x": 200,
+            "y": 320,
+            "wires": [
+                {
+                    "id": "f87ecb61310bc411",
+                    "port": 0
+                }
+            ]
+        }
+    },
+    {
         "id": "1fb2958d.14f89a",
         "type": "server",
         "name": "Home Assistant",
@@ -134,8 +2112,8 @@
         "ha_boolean": "y|yes|true|on|home|open",
         "connectionDelay": true,
         "cacheJson": true,
-        "heartbeat": false,
-        "heartbeatInterval": 30
+        "heartbeat": true,
+        "heartbeatInterval": "10"
     },
     {
         "id": "4c58280.c1ed4d8",
@@ -306,10 +2284,481 @@
         "wires": []
     },
     {
+        "id": "0c74efbb9a85bee5",
+        "type": "function",
+        "z": "914734122ce79fcd",
+        "name": "create service call",
+        "func": "msg._originalPayload = msg.payload;\nlet flow_msg_variables = {\n    tag: '',\n    service: '',\n    message: msg,\n    date_created: Date.now()\n}\n\n//flow.set('latestMessage', msg);\n\nvar xTitle = \"\";\nvar xSubtitle = \"\";\nvar xMessage = \"\";\nvar xServices = \"\";\nvar xTag = \"\";\nvar xUrl = \"\";\n// overrides\nif (typeof msg.notificationOverride !== 'undefined' && msg.notificationOverride !== null) {\n    if (typeof msg.notificationOverride.title !== 'undefined' && msg.notificationOverride.title !=='' && msg.notificationOverride.title !== null){\n        xTitle = msg.notificationOverride.title;\n    } else {\n        xTitle = env.get('title');\n    }\n    if (typeof msg.notificationOverride.subtitle !== 'undefined' && msg.notificationOverride.subtitle !==''  && msg.notificationOverride.subtitle !== null){\n        xSubtitle = msg.notificationOverride.subtitle;\n    } else {\n        xSubtitle = env.get('subtitle');\n    }\n    if (typeof msg.notificationOverride.message !== 'undefined' && msg.notificationOverride.message !=='' &&  msg.notificationOverride.message !== null){\n        xMessage = msg.notificationOverride.message;\n    } else {\n        xMessage = env.get('message');\n    }\n    if (typeof msg.notificationOverride.url !== 'undefined' && msg.notificationOverride.url !=='' &&  msg.notificationOverride.url !== null){\n        xUrl = msg.notificationOverride.url;\n    } else {\n        xUrl = env.get('notificationUrl');\n    }\n    if (typeof msg.notificationOverride.services !== 'undefined' && msg.notificationOverride.services !=='' && msg.notificationOverride.services !== null){\n        xServices = msg.notificationOverride.services;\n    } else {\n        xServices = env.get('service');\n    }\n//    flow.set('service', xServices);\n    flow_msg_variables.service=xServices;\n    if (typeof msg.notificationOverride.tag !== 'undefined' && msg.notificationOverride.tag !=='' && msg.notificationOverride.tag !== null){\n        xTag = msg.notificationOverride.tag.replace(/[^\\w\\s]/gi, '').replace(/\\s+/g,'_').toUpperCase();\n    } else {\n        if (env.get('tag') !== '') {\n            xTag = `${env.get('tag').replace(/[^\\w\\s]/gi, '').replace(/\\s+/g,'_').toUpperCase()}`;\n        } else {\n            // need to still set this to something in case clear_notification is sent.\n            xTag = `${env.get('title').replace(/[^\\w\\s]/gi, '').replace(/\\s+/g,'_').toUpperCase()}_${flow.get('random')}`;\n        }\n    }\n//support multiple tags per flow\n    //flow.set('tag',xTag);\n    flow_msg_variables.tag=xTag;\n} else {\n    // If no override is sent in...\n    if (env.get('tag') !== '') {\n        xTag = `${env.get('tag').replace(/[^\\w\\s]/gi, '').replace(/\\s+/g,'_').toUpperCase()}`;\n    } else {\n        // need to still set this to something in case clear_notification is sent.\n        xTag = `${env.get('title').replace(/[^\\w\\s]/gi, '').replace(/\\s+/g,'_').toUpperCase()}_${flow.get('random')}`;\n    }\n//support multiple tags per flow\n//    flow.set('tag',xTag);\n    flow_msg_variables.tag=xTag;\n    \n    xServices = env.get('service');\n//    flow.set('service', xServices);\n    flow_msg_variables.service=xServices;\n    \n    xTitle = env.get('title');\n    xSubtitle = env.get('subtitle');\n    xMessage = env.get('message');\n    xUrl = env.get('notificationUrl');\n}\nlet all_flow_messages= flow.get('flow_messages');\nif (!all_flow_messages){\n    all_flow_messages=[];\n}\nlet new_flow_messages=[];\nfor(var i=0;i<all_flow_messages.length;i++){//copy (and reset) the messages array\n    if ((all_flow_messages[i].tag==flow_msg_variables.tag)&&(all_flow_messages[i].service==flow_msg_variables.service)){\n        continue;//don't copy this message\n    }else{\n        if (Date.now()-all_flow_messages[i].date_created<86400000){//only copy messages less than 24h old\n            new_flow_messages.push(all_flow_messages[i]);\n        }\n    }\n}\nnew_flow_messages.push(flow_msg_variables);\nflow.set('flow_messages',new_flow_messages);\n\nconst services = xServices;//flow.get('service');\nif(!services) {\n    node.status({\n        text: 'no services defined',\n        shape: 'ring',\n        fill: 'red'\n    });\n    return;    \n} else if (services == \"NOONE\"){\n    node.status({\n        text: 'No one to send to',\n        shape: 'ring',\n        fill: 'yellow'\n    });\n    return;\n}\n\n// create actions\nconst actions = [];\n[1,2,3,4].forEach(i => {\n    const name = `action${i}`\n    if (env.get(`${name}Title`) !== ''){\n        const action = env.get(`${name}Title`).replace(/[^\\w\\s]/gi, '').replace(/\\s+/g,'_').toUpperCase();\n        const title = env.get(`${name}Title`);\n        const activationMode = env.get(`${name}ActivationMode`);  \n        \n        const uri = env.get(`${name}Uri`);\n        const textInputButtonTitle = env.get(`${name}TextInputButtonTitle`);\n        const textInputPlaceholder = env.get(`${name}TextInputPlaceHolder`);\n        const authenticationRequired = env.get(`${name}AuthenticationRequired`);\n        const destructive = env.get(`${name}Destructive`);\n        const behavior = env.get(`${name}Behavior`);\n        const icon = env.get(`${name}Icon`);\n        \n        const actionObject = {};\n        actionObject.action = action;\n        actionObject.title = title;\n        actionObject.activationMode = activationMode;\n        \n        if (uri != \"\") actionObject.uri = uri;\n        if (textInputButtonTitle != \"\") actionObject.textInputButtonTitle = textInputButtonTitle;\n        if (textInputPlaceholder != \"\") actionObject.textInputPlaceholder = textInputPlaceholder;\n        if (authenticationRequired != \"\") actionObject.authenticationRequired = authenticationRequired;\n        if (destructive != \"\") actionObject.destructive = destructive;\n        if (behavior != \"\") actionObject.behavior = behavior;\n        if (icon != \"\") actionObject.icon = icon;\n        \n        actions.push(actionObject);\n    }\n});\n// create msg object\nmsg.payload = {\n        domain: 'notify',\n        data: {\n            title: xTitle,\n            message: xMessage,\n            data: {\n                push: {},\n                tag: xTag\n            }\n        }\n    };\nif (actions.length > 0) {\n    msg.payload.data.data.action_data = {tag: xTag};\n    msg.payload.data.data.actions = actions;\n}\n// notification url\nif (xUrl !== \"\") {\n    msg.payload.data.data.url = {};\n    msg.payload.data.data.url = xUrl;\n}\n// subtitle\nif (xSubtitle !== '') {\n    msg.payload.data.data.subtitle = xSubtitle;\n}\n// sound information\nmsg.payload.data.data.push.sound = {};\n\nif (env.get('customSound').length > 0){\n    msg.payload.data.data.push.sound.name = env.get('customSound');\n} else if (env.get('customSoundPreInstalled').length > 0) {\n    if(env.get('customSoundPreInstalled')=='none'){\n        msg.payload.data.data.push.sound = 'none';\n    }else{\n        msg.payload.data.data.push.sound.name = env.get('customSoundPreInstalled');\n    }\n} else {\n    msg.payload.data.data.push.sound.name = 'default';\n}\n\n//if (env.get('isCriticalNotification')) {\n//    msg.payload.data.data.push.sound.critical = 1;\n//    msg.payload.data.data.push.sound.volume = 1.0;\n//}\nmsg.payload.data.data.push[\"interruption-level\"] = env.get('interruptionLevel');\n// group thread id\nif (env.get('group') !== '') {\n    msg.payload.data.data.group = env.get('group');\n}\n\n// Map Information\nif (env.get('latitudeFirst') !== 0 && env.get('longitudeFirst') !== 0){\n    msg.payload.data.data.action_data.latitude = env.get('latitudeFirst');\n    msg.payload.data.data.action_data.longitude = env.get('longitudeFirst');\n    if (env.get('latitudeSecond') !== 0 && env.get('longitudeSecond') !== 0){\n        msg.payload.data.data.action_data.second_latitude = env.get('latitudeSecond');\n        msg.payload.data.data.action_data.second_longitude = env.get('longitudeSecond');\n        // add in all the extras, which default to false.\n        msg.payload.data.data.action_data.shows_line_between_points = env.get('showLineBetweenPoints');\n        msg.payload.data.data.action_data.shows_compass = env.get('showCompass');\n        msg.payload.data.data.action_data.shows_points_of_interest = env.get('showPointsOfInterest');\n        msg.payload.data.data.action_data.shows_scale = env.get('showScale');\n        msg.payload.data.data.action_data.shows_traffic = env.get('showTraffic');\n        msg.payload.data.data.action_data.shows_user_location = env.get('showUserLocation');\n    }\n}\n// camera information\nif (env.get('cameraEntity') !== '') {\n    msg.payload.data.data.entity_id = env.get('cameraEntity');\n}\n// media information\nif (env.get('contentUrl') !== '') {\n\n} else {\n    if (env.get('imagePath') !== '') {\n        msg.payload.data.data.image = env.get('imagePath');\n    }\n    if (env.get('videoPath') !== '') {\n        msg.payload.data.data.video = env.get('videoPath');\n    }\n    if (env.get('audioPath') !== '') {\n        msg.payload.data.data.audio = env.get('audioPath');\n    }\n}\nif (env.get('contentUrl') !== '' || env.get('imagePath') !== '' || env.get('videoPath') !== '' || env.get('audioPath') !== '') {\n    if (env.get('lazyLoading')) {\n        msg.payload.data.data.lazy = env.get('lazyLoading');\n    }\n    if (env.get('hideThumbnail')) {\n        msg.payload.data.data.attachment = {};\n        msg.payload.data.data.attachment['hide-thumbnail'] = env.get('hideThumbnail');\n    }\n}\nservices.trim().split(/,\\s*/).forEach(service => {\n    if(!service) return;\n    msg.payload.service = service;\n    node.send(msg);\n});\n\nnode.done();",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "flow.set('random',Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5).toUpperCase());\n",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 40,
+        "wires": [
+            [
+                "623033ccf4ee0715"
+            ]
+        ]
+    },
+    {
+        "id": "7bb055c340123ca6",
+        "type": "switch",
+        "z": "914734122ce79fcd",
+        "name": "which action?",
+        "property": "responseIndex",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "2",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "3",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "4",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 4,
+        "x": 1260,
+        "y": 220,
+        "wires": [
+            [],
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "f87ecb61310bc411",
+        "type": "status",
+        "z": "914734122ce79fcd",
+        "name": "",
+        "scope": [
+            "0c74efbb9a85bee5",
+            "6cdec7ddd37347ca",
+            "d5bbdcb0c9aae966",
+            "a18477a92277fde6"
+        ],
+        "x": 80,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6cdec7ddd37347ca",
+        "type": "function",
+        "z": "914734122ce79fcd",
+        "name": "build message",
+        "func": "const latestMessage = flow.get('latestMessage');\nconst event = msg.payload.event;\n\nlatestMessage.payload = latestMessage._originalPayload;\nlatestMessage.eventData = msg.payload;\ndelete latestMessage._originalPayload;\n\nif(env.get('userInfo')) {\n    const userData = msg.userData.find(u => u.id === msg.payload.context.user_id);\n    latestMessage.userData = userData;\n}\n\n\ntry{ //For Some reason it is called twice, second time with empty env.get values\n    const index = [1,2,3,4].find(i => env.get(`action${i}Title`).replace(/[^\\w\\s]/gi, '').replace(/\\s+/g,'_').toUpperCase() === event.actionName);\n    flow.set(\"responseIndex\",index);\n}catch(e){}\ntry{\n    node.status({\n        text: `${env.get(`action${index}Title`).replace(/[^\\w\\s]/gi, '').replace(/\\s+/g,'_').toUpperCase()} at: ${getPrettyDate()}`,\n        shape: 'dot',\n        fill: 'green'\n    });\n}catch(e){}\nreturn latestMessage;\n\n\nfunction getPrettyDate() {\n    return new Date().toLocaleDateString('en-US', {\n        month: 'short',\n        day: 'numeric',\n        hour12: false,\n        hour: 'numeric',\n        minute: 'numeric',\n    });\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1060,
+        "y": 220,
+        "wires": [
+            [
+                "7bb055c340123ca6"
+            ]
+        ]
+    },
+    {
+        "id": "315c4ad3c3647075",
+        "type": "switch",
+        "z": "914734122ce79fcd",
+        "name": "belongs here?",
+        "property": "payload.event.action_data.tag",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "tag",
+                "vt": "flow"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 380,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "95c45e1dfd4436e0",
+        "type": "ha-api",
+        "z": "914734122ce79fcd",
+        "name": "get user info",
+        "server": "1fb2958d.14f89a",
+        "version": 1,
+        "debugenabled": false,
+        "protocol": "websocket",
+        "method": "get",
+        "path": "",
+        "data": "{\"type\": \"config/auth/list\"}",
+        "dataType": "json",
+        "responseType": "json",
+        "outputProperties": [
+            {
+                "property": "userData",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "results"
+            }
+        ],
+        "x": 850,
+        "y": 260,
+        "wires": [
+            [
+                "6cdec7ddd37347ca"
+            ]
+        ]
+    },
+    {
+        "id": "52754e832dea9cb6",
+        "type": "switch",
+        "z": "914734122ce79fcd",
+        "name": "fetch user info?",
+        "property": "userInfo",
+        "propertyType": "env",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 840,
+        "y": 220,
+        "wires": [
+            [
+                "95c45e1dfd4436e0"
+            ],
+            [
+                "6cdec7ddd37347ca"
+            ]
+        ]
+    },
+    {
+        "id": "66cdad51e119544d",
+        "type": "server-events",
+        "z": "914734122ce79fcd",
+        "name": "ios.notification_action_fired",
+        "server": "1fb2958d.14f89a",
+        "version": 1,
+        "event_type": "ios.notification_action_fired",
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "waitForRunning": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "$outputData(\"eventData\").event_type",
+                "valueType": "jsonata"
+            },
+            {
+                "property": "event_type",
+                "propertyType": "msg",
+                "value": "$outputData(\"eventData\").event_type",
+                "valueType": "jsonata"
+            }
+        ],
+        "x": 130,
+        "y": 180,
+        "wires": [
+            [
+                "1d74d403fab61ed8"
+            ]
+        ]
+    },
+    {
+        "id": "d5bbdcb0c9aae966",
+        "type": "api-call-service",
+        "z": "914734122ce79fcd",
+        "name": "Send Notifications",
+        "server": "1fb2958d.14f89a",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "notify",
+        "service": "",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [],
+        "data": "",
+        "dataType": "json",
+        "mergeContext": "callServiceData",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1130,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a18477a92277fde6",
+        "type": "function",
+        "z": "914734122ce79fcd",
+        "name": "create CLEAR service call",
+        "func": "msg._originalPayload = msg.payload;\n//flow.set('latestMessage', msg);\nvar tag_to_clear = \"\";\nvar services = \"\";\nvar clearAll = false;\nif (typeof msg.notificationOverride !== 'undefined') {\n    if (typeof msg.notificationOverride.clear !== 'undefined' && msg.notificationOverride.clear !== null && msg.notificationOverride.clear) {\n        clearAll = true;\n    }\n    if (typeof msg.notificationOverride.services !== 'undefined' && msg.notificationOverride.services !== null && msg.notificationOverride.services){\n        services = msg.notificationOverride.services;\n    }\n    if (typeof msg.notificationOverride.tag !== 'undefined' && msg.notificationOverride.tag !== null && msg.notificationOverride.tag){\n        tag_to_clear = msg.notificationOverride.tag.replace(/[^\\w\\s]/gi, '').replace(/\\s+/g,'_').toUpperCase();//formatting tags as sent to the phone before\n    }\n}\nif (tag_to_clear==\"\"){//no specific tag sent, clear the last message.\n    var all_flow_messages= flow.get('flow_messages');\n    if(all_flow_messages) {\n        var last_message= all_flow_messages.pop();\n        if (last_message){//on nodeRED restart\n            tag_to_clear= last_message.tag;\n            services = last_message.service;//override service to the one used in last message sent\n            flow.set('flow_messages',all_flow_messages);//clear the message from memory\n        }\n    }\n}\n\nif(services==\"\") {\n    node.status({\n        text: 'no services defined',\n        shape: 'ring',\n        fill: 'red'\n    });\n    return;    \n}\nif(tag_to_clear==\"\") {\n    node.status({\n        text: 'no messages to delete',\n        shape: 'ring',\n        fill: 'red'\n    });\n    return;    \n}\n// create ios msg object\nmsg.payload = {\n        domain: 'notify',\n        data: {\n            message: \"clear_notification\",\n            data: {\n                tag: tag_to_clear //flow.get('tag'),\n            }\n        }\n    };\n\nfunction getPrettyDate() {\n    return new Date().toLocaleDateString('en-US', {\n        month: 'short',\n        day: 'numeric',\n        hour12: false,\n        hour: 'numeric',\n        minute: 'numeric',\n    });\n}\n\nif (clearAll){\n    delete msg.notificationOverride;\n}\n    \nvar xCountCleared = 0;\nservices.trim().split(/,\\s*/).forEach(service => {\n    if(!service) return;\n    // only clear on devices that didn't send the event.\n    if (clearAll){\n        msg.payload.service = service;\n        node.send(msg);\n        xCountCleared++;\n    } else if (!service.includes(msg._originalPayload.event.sourceDeviceID)){\n        msg.payload.service = service;\n        node.send(msg);\n        xCountCleared++;\n    }\n});\nif (xCountCleared > 0) {\n    node.status({\n        text: `${xCountCleared} messages cleared at: ${getPrettyDate()}`,\n        shape: 'dot',\n        fill: 'blue'\n    });\n} else {\n    node.status({\n        text: `No messages cleared: ${getPrettyDate()}`,\n        shape: 'dot',\n        fill: 'red'\n    });\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 550,
+        "y": 80,
+        "wires": [
+            [
+                "b649a0d3bf05a394"
+            ]
+        ]
+    },
+    {
+        "id": "2f18a199fe3023b9",
+        "type": "switch",
+        "z": "914734122ce79fcd",
+        "name": "Clear Notification on Action?",
+        "property": "isClearNotificationsOnAction",
+        "propertyType": "env",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 420,
+        "y": 220,
+        "wires": [
+            [
+                "a18477a92277fde6",
+                "ca88e6add3be35fc"
+            ],
+            [
+                "52754e832dea9cb6"
+            ]
+        ]
+    },
+    {
+        "id": "59d66e6372aaca66",
+        "type": "api-call-service",
+        "z": "914734122ce79fcd",
+        "name": "Clear Notifications",
+        "server": "1fb2958d.14f89a",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "notify",
+        "service": "",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [],
+        "data": "",
+        "dataType": "json",
+        "mergeContext": "callServiceData",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1130,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ca88e6add3be35fc",
+        "type": "delay",
+        "z": "914734122ce79fcd",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "10",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "outputs": 1,
+        "x": 660,
+        "y": 220,
+        "wires": [
+            [
+                "52754e832dea9cb6"
+            ]
+        ]
+    },
+    {
+        "id": "f8d958779acdc007",
+        "type": "switch",
+        "z": "914734122ce79fcd",
+        "name": "clear?",
+        "property": "notificationOverride.clear",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "istype",
+                "v": "undefined",
+                "vt": "undefined"
+            },
+            {
+                "t": "null"
+            },
+            {
+                "t": "false"
+            },
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 4,
+        "x": 170,
+        "y": 60,
+        "wires": [
+            [
+                "0c74efbb9a85bee5"
+            ],
+            [
+                "0c74efbb9a85bee5"
+            ],
+            [
+                "0c74efbb9a85bee5"
+            ],
+            [
+                "a18477a92277fde6"
+            ]
+        ]
+    },
+    {
+        "id": "b649a0d3bf05a394",
+        "type": "delay",
+        "z": "914734122ce79fcd",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "outputs": 1,
+        "x": 910,
+        "y": 80,
+        "wires": [
+            [
+                "59d66e6372aaca66"
+            ]
+        ]
+    },
+    {
+        "id": "623033ccf4ee0715",
+        "type": "delay",
+        "z": "914734122ce79fcd",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 910,
+        "y": 40,
+        "wires": [
+            [
+                "d5bbdcb0c9aae966"
+            ]
+        ]
+    },
+    {
+        "id": "1d74d403fab61ed8",
+        "type": "function",
+        "z": "914734122ce79fcd",
+        "name": "belongs here?",
+        "func": "let msg_tag=msg.payload.event.action_data.tag;\nlet all_flow_messages= flow.get('flow_messages');\n//node.warn({'message tag':msg_tag,'flow_messages':all_flow_messages});\nif(all_flow_messages){\n    for (var i=0;i<all_flow_messages.length;i++){\n        if (all_flow_messages[i].tag.trim()==msg_tag.trim()){\n//node.warn(all_flow_messages[i])\n            flow.set('latestMessage',all_flow_messages[i].message);\n            return [msg,null];\n        }\n    }\n}\nreturn [null,msg];\n",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 180,
+        "wires": [
+            [
+                "2f18a199fe3023b9"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "bbe703d7e0a49acf",
+        "type": "comment",
+        "z": "914734122ce79fcd",
+        "name": "https://gist.github.com/okets/c7baea968aab019a09c9d2c80df29d40",
+        "info": "",
+        "x": 310,
+        "y": 480,
+        "wires": []
+    },
+    {
         "id": "7a6f1441.9bac74",
         "type": "server-state-changed",
         "z": "6c71644f.90490c",
-        "name": "motion detected: front door",
+        "name": "motion detected: front door ⚠️",
         "server": "1fb2958d.14f89a",
         "version": 4,
         "exposeToHomeAssistant": false,
@@ -358,41 +2807,21 @@
                 "propertyType": "msg",
                 "value": "",
                 "valueType": "triggerId"
+            },
+            {
+                "property": "do_notify",
+                "propertyType": "msg",
+                "value": "true",
+                "valueType": "bool"
             }
         ],
-        "x": 140,
+        "x": 150,
         "y": 140,
         "wires": [
             [
                 "3b92f41c.15286c",
                 "eb4f6969e4d6170b"
             ],
-            []
-        ]
-    },
-    {
-        "id": "5662f68e.29e62",
-        "type": "api-call-service",
-        "z": "6c71644f.90490c",
-        "d": true,
-        "name": "in-hass notification",
-        "server": "1fb2958d.14f89a",
-        "version": 5,
-        "debugenabled": false,
-        "domain": "notify",
-        "service": "persistent_notification",
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [],
-        "data": "{\t   \"message\": $substringAfter(topic, \"binary_sensor.motion_\") & \" \" & data.new_state.attributes.event_object,\t   \"title\": data.new_state.attributes.friendly_name\t}",
-        "dataType": "jsonata",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "x": 990,
-        "y": 140,
-        "wires": [
             []
         ]
     },
@@ -413,6 +2842,11 @@
             {
                 "p": "topic",
                 "vt": "str"
+            },
+            {
+                "p": "do_notify",
+                "v": "true",
+                "vt": "bool"
             }
         ],
         "repeat": "",
@@ -422,7 +2856,7 @@
         "topic": "binary_sensor.motion_front_door",
         "payload": "off",
         "payloadType": "str",
-        "x": 90,
+        "x": 210,
         "y": 100,
         "wires": [
             [
@@ -470,11 +2904,10 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 760,
+        "x": 640,
         "y": 180,
         "wires": [
             [
-                "5662f68e.29e62",
                 "3296c10a.9b412e"
             ]
         ]
@@ -498,8 +2931,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 1650,
-        "y": 180,
+        "x": 1890,
+        "y": 80,
         "wires": [
             [
                 "182c79de78648a0c"
@@ -528,14 +2961,15 @@
                 "valueType": "results"
             }
         ],
-        "x": 990,
+        "x": 870,
         "y": 220,
         "wires": [
             [
-                "cdcd22b2.55961",
                 "17801fb8.a006b8",
                 "a1c6a8a6.870ca",
-                "2beff0bd2c5053cc"
+                "2beff0bd2c5053cc",
+                "ec749bf69cfdb677",
+                "b0839e1fe1b83e43"
             ]
         ]
     },
@@ -556,11 +2990,11 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 380,
+        "x": 400,
         "y": 120,
         "wires": [
             [
-                "9807f009.32ba08"
+                "5c1a8d29.db4a24"
             ]
         ]
     },
@@ -599,8 +3033,8 @@
         "OutputSerialization": "",
         "PartNumber": "",
         "name": "upload to s3",
-        "x": 1410,
-        "y": 240,
+        "x": 1690,
+        "y": 100,
         "wires": [
             [
                 "22b532a0.3b8d26"
@@ -623,8 +3057,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1220,
-        "y": 240,
+        "x": 1480,
+        "y": 100,
         "wires": [
             [
                 "e4a86753.94dcf8"
@@ -644,8 +3078,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1670,
-        "y": 240,
+        "x": 1910,
+        "y": 140,
         "wires": []
     },
     {
@@ -667,8 +3101,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 1690,
-        "y": 280,
+        "x": 1930,
+        "y": 180,
         "wires": [
             []
         ]
@@ -677,7 +3111,6 @@
         "id": "7d3b2b3.38c9854",
         "type": "server-state-changed",
         "z": "6c71644f.90490c",
-        "d": true,
         "name": "motion detected: garage/alley",
         "server": "1fb2958d.14f89a",
         "version": 4,
@@ -692,7 +3125,7 @@
                 "value": ""
             }
         ],
-        "entityidfilter": "binary_sensor.motion_garage_alley_camera",
+        "entityidfilter": "binary_sensor.motion_garage_alley",
         "entityidfiltertype": "exact",
         "outputinitially": false,
         "state_type": "str",
@@ -733,7 +3166,7 @@
         "y": 200,
         "wires": [
             [
-                "b91cfe5b.ab617"
+                "5c1a8d29.db4a24"
             ],
             []
         ]
@@ -742,7 +3175,6 @@
         "id": "ef42fb76.2941f",
         "type": "server-state-changed",
         "z": "6c71644f.90490c",
-        "d": true,
         "name": "motion detected: parking pad",
         "server": "1fb2958d.14f89a",
         "version": 4,
@@ -757,7 +3189,7 @@
                 "value": ""
             }
         ],
-        "entityidfilter": "binary_sensor.motion_parking_pad_camera",
+        "entityidfilter": "binary_sensor.motion_parking_pad",
         "entityidfiltertype": "exact",
         "outputinitially": false,
         "state_type": "str",
@@ -798,84 +3230,9 @@
         "y": 260,
         "wires": [
             [
-                "1d1cc78.7d0e139"
+                "5c1a8d29.db4a24"
             ],
             []
-        ]
-    },
-    {
-        "id": "9807f009.32ba08",
-        "type": "trigger",
-        "z": "6c71644f.90490c",
-        "name": "once/5m",
-        "op1": "",
-        "op2": "",
-        "op1type": "pay",
-        "op2type": "nul",
-        "duration": "5",
-        "extend": true,
-        "overrideDelay": false,
-        "units": "min",
-        "reset": "",
-        "bytopic": "all",
-        "topic": "topic",
-        "outputs": 1,
-        "x": 580,
-        "y": 120,
-        "wires": [
-            [
-                "5c1a8d29.db4a24"
-            ]
-        ]
-    },
-    {
-        "id": "b91cfe5b.ab617",
-        "type": "trigger",
-        "z": "6c71644f.90490c",
-        "name": "once/5m",
-        "op1": "",
-        "op2": "",
-        "op1type": "pay",
-        "op2type": "nul",
-        "duration": "5",
-        "extend": true,
-        "overrideDelay": false,
-        "units": "min",
-        "reset": "",
-        "bytopic": "all",
-        "topic": "topic",
-        "outputs": 1,
-        "x": 360,
-        "y": 180,
-        "wires": [
-            [
-                "5c1a8d29.db4a24"
-            ]
-        ]
-    },
-    {
-        "id": "1d1cc78.7d0e139",
-        "type": "trigger",
-        "z": "6c71644f.90490c",
-        "name": "once/5m",
-        "op1": "",
-        "op2": "",
-        "op1type": "pay",
-        "op2type": "nul",
-        "duration": "5",
-        "extend": true,
-        "overrideDelay": false,
-        "units": "min",
-        "reset": "",
-        "bytopic": "all",
-        "topic": "topic",
-        "outputs": 1,
-        "x": 360,
-        "y": 240,
-        "wires": [
-            [
-                "5c1a8d29.db4a24"
-            ]
         ]
     },
     {
@@ -895,6 +3252,11 @@
                 "p": "data",
                 "v": "{\"entity_id\":\"binary_sensor.doorbell_front_door\",\"old_state\":{\"entity_id\":\"binary_sensor.doorbell_front_door\",\"state\":\"off\",\"attributes\":{\"last_tripped_time\":\"2022-03-10T19:01:53.613000+00:00\",\"attribution\":\"Powered by UniFi Protect Server\",\"device_class\":\"occupancy\",\"icon\":\"mdi:doorbell-video\",\"friendly_name\":\"Front Door Doorbell\"},\"last_changed\":\"2022-03-10T19:01:57.575567+00:00\",\"last_updated\":\"2022-03-10T19:01:57.575567+00:00\",\"context\":{\"id\":\"ed1e78f36e6732310a53a988a3bf5573\",\"parent_id\":null,\"user_id\":null},\"original_state\":\"off\"},\"new_state\":{\"entity_id\":\"binary_sensor.doorbell_front_door\",\"state\":\"on\",\"attributes\":{\"last_tripped_time\":\"2022-03-10T19:17:50.455000+00:00\",\"attribution\":\"Powered by UniFi Protect Server\",\"device_class\":\"occupancy\",\"icon\":\"mdi:doorbell-video\",\"friendly_name\":\"Front Door Doorbell\"},\"last_changed\":\"2022-03-10T19:17:50.509564+00:00\",\"last_updated\":\"2022-03-10T19:17:50.509564+00:00\",\"context\":{\"id\":\"dcda339d60e8dc5d2a13e0eb9837de44\",\"parent_id\":null,\"user_id\":null},\"original_state\":\"on\",\"timeSinceChangedMs\":4}}",
                 "vt": "json"
+            },
+            {
+                "p": "do_notify",
+                "v": "true",
+                "vt": "bool"
             }
         ],
         "repeat": "",
@@ -952,7 +3314,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 760,
+        "x": 640,
         "y": 280,
         "wires": [
             [
@@ -973,8 +3335,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 390,
-        "y": 400,
+        "x": 410,
+        "y": 380,
         "wires": []
     },
     {
@@ -1000,7 +3362,7 @@
         "type": "debug",
         "z": "6c71644f.90490c",
         "name": "",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -1008,8 +3370,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1190,
-        "y": 200,
+        "x": 1110,
+        "y": 40,
         "wires": []
     },
     {
@@ -1037,8 +3399,8 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 1200,
-        "y": 320,
+        "x": 1340,
+        "y": 160,
         "wires": [
             []
         ]
@@ -1047,7 +3409,7 @@
         "id": "a1c6a8a6.870ca",
         "type": "change",
         "z": "6c71644f.90490c",
-        "name": "",
+        "name": "timestamped filename",
         "rules": [
             {
                 "t": "set",
@@ -1062,8 +3424,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1210,
-        "y": 280,
+        "x": 1160,
+        "y": 160,
         "wires": [
             [
                 "6c3be341.3c355c"
@@ -1082,8 +3444,8 @@
         "active": true,
         "pass": false,
         "outputs": 0,
-        "x": 1160,
-        "y": 380,
+        "x": 1120,
+        "y": 280,
         "wires": []
     },
     {
@@ -1096,8 +3458,8 @@
         "createDir": false,
         "overwriteFile": "false",
         "encoding": "utf8",
-        "x": 2030,
-        "y": 180,
+        "x": 2270,
+        "y": 80,
         "wires": [
             []
         ]
@@ -1113,8 +3475,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1840,
-        "y": 180,
+        "x": 2080,
+        "y": 80,
         "wires": [
             [
                 "636b01dcb9becc4e"
@@ -1167,8 +3529,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 400,
-        "y": 480,
+        "x": 420,
+        "y": 420,
         "wires": [
             [
                 "636d767f18815a82"
@@ -1185,8 +3547,8 @@
         "createDir": false,
         "overwriteFile": "false",
         "encoding": "utf8",
-        "x": 580,
-        "y": 480,
+        "x": 600,
+        "y": 420,
         "wires": [
             []
         ]
@@ -1195,7 +3557,7 @@
         "id": "3d18bde5f3ad58c3",
         "type": "server-state-changed",
         "z": "6c71644f.90490c",
-        "name": "doorbell rang",
+        "name": "doorbell rang ⚠️",
         "server": "1fb2958d.14f89a",
         "version": 4,
         "exposeToHomeAssistant": false,
@@ -1244,9 +3606,15 @@
                 "propertyType": "msg",
                 "value": "",
                 "valueType": "triggerId"
+            },
+            {
+                "property": "do_notify",
+                "propertyType": "msg",
+                "value": "true",
+                "valueType": "bool"
             }
         ],
-        "x": 90,
+        "x": 100,
         "y": 380,
         "wires": [
             [
@@ -1254,6 +3622,385 @@
             ],
             []
         ]
+    },
+    {
+        "id": "303272f69e6b0348",
+        "type": "catch",
+        "z": "6c71644f.90490c",
+        "name": "",
+        "scope": null,
+        "uncaught": false,
+        "x": 80,
+        "y": 720,
+        "wires": [
+            [
+                "21e7fe0c0ceaf0da"
+            ]
+        ]
+    },
+    {
+        "id": "21e7fe0c0ceaf0da",
+        "type": "debug",
+        "z": "6c71644f.90490c",
+        "name": "motion notifs exceptions",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 300,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "ec749bf69cfdb677",
+        "type": "switch",
+        "z": "6c71644f.90490c",
+        "name": "notify?",
+        "property": "do_notify",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1110,
+        "y": 100,
+        "wires": [
+            [
+                "d0bbf291b1ba2fd0"
+            ]
+        ]
+    },
+    {
+        "id": "b0839e1fe1b83e43",
+        "type": "change",
+        "z": "6c71644f.90490c",
+        "name": "last-motion filename",
+        "rules": [
+            {
+                "t": "set",
+                "p": "filename",
+                "pt": "msg",
+                "to": "\"/media/node-red/last-motion_\" & msg.camera_entity_id & \".jpg\"",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1160,
+        "y": 220,
+        "wires": [
+            [
+                "0667603d32b62acd"
+            ]
+        ]
+    },
+    {
+        "id": "0667603d32b62acd",
+        "type": "file",
+        "z": "6c71644f.90490c",
+        "name": "",
+        "filename": "",
+        "appendNewline": false,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 1360,
+        "y": 240,
+        "wires": [
+            [
+                "0643ad3a26e2bbf7"
+            ]
+        ]
+    },
+    {
+        "id": "d0bbf291b1ba2fd0",
+        "type": "trigger",
+        "z": "6c71644f.90490c",
+        "name": "once/5m",
+        "op1": "",
+        "op2": "",
+        "op1type": "pay",
+        "op2type": "nul",
+        "duration": "5",
+        "extend": true,
+        "overrideDelay": false,
+        "units": "min",
+        "reset": "",
+        "bytopic": "topic",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 1280,
+        "y": 100,
+        "wires": [
+            [
+                "cdcd22b2.55961"
+            ]
+        ]
+    },
+    {
+        "id": "0643ad3a26e2bbf7",
+        "type": "api-call-service",
+        "z": "6c71644f.90490c",
+        "name": "kick camera",
+        "server": "1fb2958d.14f89a",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "local_file",
+        "service": "update_file_path",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [],
+        "data": "{\t    \"entity_id\": camera_entity_id & \"_last_motion\",\t    \"file_path\": filename\t}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1530,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "79d7c6e97440989d",
+        "type": "server-state-changed",
+        "z": "6c71644f.90490c",
+        "name": "garage door",
+        "server": "1fb2958d.14f89a",
+        "version": 4,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "cover.garage_door",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "jsonata",
+        "halt_if_compare": "jsonata",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 150,
+        "y": 580,
+        "wires": [
+            [
+                "010067f12a77e6de"
+            ]
+        ]
+    },
+    {
+        "id": "010067f12a77e6de",
+        "type": "switch",
+        "z": "6c71644f.90490c",
+        "name": "",
+        "property": "data",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "jsonata_exp",
+                "v": "data.old_state.state = \"closed\" and data.new_state.state = \"opening\"",
+                "vt": "jsonata"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 350,
+        "y": 580,
+        "wires": [
+            [
+                "7683a618852a519a",
+                "32fc49940dd1f34c",
+                "1283a79b02eeef99"
+            ]
+        ]
+    },
+    {
+        "id": "32fc49940dd1f34c",
+        "type": "debug",
+        "z": "6c71644f.90490c",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 530,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "d497395d8289a03e",
+        "type": "inject",
+        "z": "6c71644f.90490c",
+        "name": "opening",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "data",
+                "v": "{\"entity_id\":\"cover.garage_door\",\"old_state\":{\"state\":\"closed\"},\"new_state\":{\"state\":\"opening\"}}",
+                "vt": "json"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "opening",
+        "payloadType": "str",
+        "x": 180,
+        "y": 500,
+        "wires": [
+            [
+                "010067f12a77e6de"
+            ]
+        ]
+    },
+    {
+        "id": "7683a618852a519a",
+        "type": "ha-api",
+        "z": "6c71644f.90490c",
+        "name": "garage camera",
+        "server": "1fb2958d.14f89a",
+        "version": 1,
+        "debugenabled": false,
+        "protocol": "http",
+        "method": "get",
+        "path": "camera_proxy/camera.garage_dcs_930l",
+        "data": "{}",
+        "dataType": "jsonata",
+        "responseType": "arraybuffer",
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "results"
+            }
+        ],
+        "x": 560,
+        "y": 580,
+        "wires": [
+            [
+                "b515a12177fda28e"
+            ]
+        ]
+    },
+    {
+        "id": "b515a12177fda28e",
+        "type": "image",
+        "z": "6c71644f.90490c",
+        "name": "preview",
+        "width": "240",
+        "data": "payload",
+        "dataType": "msg",
+        "thumbnail": true,
+        "active": false,
+        "pass": false,
+        "outputs": 0,
+        "x": 820,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "1283a79b02eeef99",
+        "type": "ha-api",
+        "z": "6c71644f.90490c",
+        "name": "garage/alley camera",
+        "server": "1fb2958d.14f89a",
+        "version": 1,
+        "debugenabled": false,
+        "protocol": "http",
+        "method": "get",
+        "path": "camera_proxy/camera.garage_alley",
+        "data": "{}",
+        "dataType": "jsonata",
+        "responseType": "arraybuffer",
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "results"
+            }
+        ],
+        "x": 580,
+        "y": 640,
+        "wires": [
+            [
+                "fe7c94759964f839"
+            ]
+        ]
+    },
+    {
+        "id": "fe7c94759964f839",
+        "type": "image",
+        "z": "6c71644f.90490c",
+        "name": "preview",
+        "width": "240",
+        "data": "payload",
+        "dataType": "msg",
+        "thumbnail": true,
+        "active": false,
+        "pass": false,
+        "outputs": 0,
+        "x": 760,
+        "y": 680,
+        "wires": []
     },
     {
         "id": "7b41b747.6cb21",
@@ -1270,8 +4017,8 @@
         "proxy": "",
         "authType": "",
         "senderr": false,
-        "x": 130,
-        "y": 160,
+        "x": 250,
+        "y": 140,
         "wires": [
             [
                 "26ea157d.c6467a"
@@ -1292,8 +4039,8 @@
         "proxy": "",
         "authType": "",
         "senderr": false,
-        "x": 130,
-        "y": 200,
+        "x": 250,
+        "y": 180,
         "wires": [
             [
                 "59639fc1.9c4b48"
@@ -1321,12 +4068,12 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 120,
-        "y": 100,
+        "x": 130,
+        "y": 60,
         "wires": [
             [
                 "7b41b747.6cb21",
-                "ffb0c10.246174"
+                "c627fd2db5e2d20b"
             ]
         ]
     },
@@ -1387,7 +4134,7 @@
         "outputOnStateChange": false,
         "outputPayload": "$entity().state ? \"on\": \"off\"",
         "outputPayloadType": "jsonata",
-        "x": 490,
+        "x": 610,
         "y": 100,
         "wires": [
             []
@@ -1450,7 +4197,7 @@
         "outputOnStateChange": false,
         "outputPayload": "$entity().state ? \"on\": \"off\"",
         "outputPayloadType": "jsonata",
-        "x": 490,
+        "x": 610,
         "y": 220,
         "wires": [
             []
@@ -1467,7 +4214,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 730,
+        "x": 850,
         "y": 180,
         "wires": [
             [
@@ -1544,7 +4291,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1140,
+        "x": 1260,
         "y": 220,
         "wires": [
             [
@@ -1576,7 +4323,7 @@
         "mapurl": "",
         "mapopt": "",
         "mapwms": false,
-        "x": 1890,
+        "x": 2010,
         "y": 180,
         "wires": []
     },
@@ -1593,7 +4340,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 930,
+        "x": 1050,
         "y": 140,
         "wires": []
     },
@@ -1610,7 +4357,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1370,
+        "x": 1490,
         "y": 220,
         "wires": []
     },
@@ -1629,7 +4376,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 970,
+        "x": 1090,
         "y": 220,
         "wires": [
             [
@@ -1648,7 +4395,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1400,
+        "x": 1520,
         "y": 320,
         "wires": [
             []
@@ -1680,8 +4427,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 300,
-        "y": 160,
+        "x": 420,
+        "y": 140,
         "wires": [
             [
                 "acf0ce6e.b3793",
@@ -1715,8 +4462,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 300,
-        "y": 200,
+        "x": 420,
+        "y": 180,
         "wires": [
             [
                 "deae8479.c40408",
@@ -1737,7 +4484,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 650,
+        "x": 770,
         "y": 140,
         "wires": []
     },
@@ -1746,7 +4493,7 @@
         "type": "fan",
         "z": "8e4e09de.5dedc8",
         "name": "",
-        "x": 490,
+        "x": 610,
         "y": 160,
         "wires": [
             [
@@ -1774,7 +4521,7 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 1990,
+        "x": 2110,
         "y": 40,
         "wires": [
             []
@@ -1797,7 +4544,7 @@
         "bytopic": "all",
         "topic": "topic",
         "outputs": 1,
-        "x": 1800,
+        "x": 1920,
         "y": 40,
         "wires": [
             [
@@ -1815,7 +4562,7 @@
         "createDir": false,
         "overwriteFile": "false",
         "encoding": "utf8",
-        "x": 1850,
+        "x": 1970,
         "y": 120,
         "wires": [
             []
@@ -1838,48 +4585,13 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 1610,
+        "x": 1730,
         "y": 40,
         "wires": [
             [
                 "4dccd86e.1676c8"
             ]
         ]
-    },
-    {
-        "id": "b5ce440c.ce6f9",
-        "type": "status",
-        "z": "8e4e09de.5dedc8",
-        "name": "",
-        "scope": [
-            "4c2eab3e.8298d4",
-            "7b41b747.6cb21",
-            "ffb0c10.246174"
-        ],
-        "x": 80,
-        "y": 320,
-        "wires": [
-            [
-                "cd60e5ac.2003a"
-            ]
-        ]
-    },
-    {
-        "id": "cd60e5ac.2003a",
-        "type": "debug",
-        "z": "8e4e09de.5dedc8",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 210,
-        "y": 320,
-        "wires": []
     },
     {
         "id": "18f6e019.e068d8",
@@ -1908,7 +4620,7 @@
         "topic": "",
         "payload": "{\"hex\":\"a6a425\",\"flight\":\"NKS930  \",\"alt_baro\":1500,\"alt_geom\":1675,\"gs\":169.8,\"baro_rate\":-1280,\"category\":\"A3\",\"nav_qnh\":1019.2,\"nav_altitude_mcp\":1696,\"nav_heading\":87.2,\"lat\":37.57395400685966,\"lon\":-77.48991018535888,\"nic\":8,\"rc\":186,\"seen_pos\":11.3,\"version\":2,\"nic_baro\":1,\"nac_p\":10,\"nac_v\":4,\"sil\":3,\"sil_type\":\"perhour\",\"gva\":2,\"sda\":2,\"mlat\":[],\"tisb\":[],\"messages\":1034,\"seen\":4.2,\"rssi\":-12.4,\"name\":\"a6a425 NKS930  \",\"heading\":145.6,\"bearing\":145.6,\"icon\":\"plane\",\"layer\":\"ADSB\",\"alt\":510.54,\"label\":\"NKS930   510.54\",\"speed\":169.8}",
         "payloadType": "json",
-        "x": 1210,
+        "x": 1330,
         "y": 140,
         "wires": [
             [
@@ -1929,7 +4641,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1810,
+        "x": 1930,
         "y": 80,
         "wires": []
     },
@@ -1942,7 +4654,7 @@
         "depth": "100",
         "layer": "combined",
         "smooth": false,
-        "x": 1590,
+        "x": 1710,
         "y": 220,
         "wires": [
             [
@@ -1971,7 +4683,7 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 1020,
+        "x": 1140,
         "y": 40,
         "wires": [
             [
@@ -1999,7 +4711,7 @@
                 "module": "readline"
             }
         ],
-        "x": 1160,
+        "x": 1280,
         "y": 100,
         "wires": [
             [
@@ -2024,7 +4736,7 @@
         "ceiling": "762",
         "worldmap": true,
         "outputs": 2,
-        "x": 1600,
+        "x": 1720,
         "y": 100,
         "wires": [
             [
@@ -2044,7 +4756,7 @@
         "name": "",
         "path": "/worldmap",
         "events": "connect",
-        "x": 1240,
+        "x": 1360,
         "y": 40,
         "wires": [
             [
@@ -2071,7 +4783,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1410,
+        "x": 1530,
         "y": 40,
         "wires": [
             [
@@ -2084,7 +4796,7 @@
         "type": "fan",
         "z": "8e4e09de.5dedc8",
         "name": "all flights",
-        "x": 1420,
+        "x": 1540,
         "y": 160,
         "wires": [
             [
@@ -2120,11 +4832,125 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1730,
+        "x": 1850,
         "y": 220,
         "wires": [
             [
                 "a322656d.2b5a88"
+            ]
+        ]
+    },
+    {
+        "id": "41494bcf98d352af",
+        "type": "catch",
+        "z": "8e4e09de.5dedc8",
+        "name": "",
+        "scope": null,
+        "uncaught": false,
+        "x": 80,
+        "y": 380,
+        "wires": [
+            [
+                "a9c2d2835d15f038"
+            ]
+        ]
+    },
+    {
+        "id": "a9c2d2835d15f038",
+        "type": "debug",
+        "z": "8e4e09de.5dedc8",
+        "name": "skyaware exceptions",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 290,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "14048411da07c7d8",
+        "type": "server-events",
+        "z": "8e4e09de.5dedc8",
+        "name": "",
+        "server": "1fb2958d.14f89a",
+        "version": 1,
+        "event_type": "home_assistant_client",
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "waitForRunning": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "$outputData(\"eventData\").event_type",
+                "valueType": "jsonata"
+            }
+        ],
+        "x": 140,
+        "y": 480,
+        "wires": [
+            [
+                "6e102c5cb0c73b69"
+            ]
+        ]
+    },
+    {
+        "id": "6e102c5cb0c73b69",
+        "type": "function",
+        "z": "8e4e09de.5dedc8",
+        "name": "track connection state",
+        "func": "flow.set(\"ha_ready\", msg.payload == \"ready\");\n\nvar status_msg = msg.payload + \" → \" + flow.get(\"ha_ready\");\n\nnode.log(status_msg);\nnode.status({text: status_msg, shape: \"dot\", fill: \"blue\"});\n",
+        "outputs": 0,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\n\nnode.status({text: \"🚫✉️ → \" + flow.get(\"ha_ready\"), shape: \"dot\", fill: \"yellow\"});\n",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 480,
+        "wires": [],
+        "info": "The documentation for the events node implies `running` is the final/stable event, but I'm seeing `ready`, so that's what we're tracking."
+    },
+    {
+        "id": "c627fd2db5e2d20b",
+        "type": "switch",
+        "z": "8e4e09de.5dedc8",
+        "name": "ha ready?",
+        "property": "ha_ready",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 100,
+        "y": 120,
+        "wires": [
+            [
+                "7b41b747.6cb21",
+                "ffb0c10.246174"
             ]
         ]
     },
@@ -2842,7 +5668,7 @@
                 "b9ceaf4ed364a968",
                 "dbd2c86c7dc30e49",
                 "ff2c7434b0170cd9",
-                "399344d4d2322d22"
+                "a6ecf7d4b94a946f"
             ],
             [
                 "3a36ab22613b21f6"
@@ -2853,16 +5679,16 @@
         "id": "3a36ab22613b21f6",
         "type": "debug",
         "z": "6f1ebe1822580f11",
-        "name": "conn msgs",
+        "name": "vcore3 conn msgs",
         "active": true,
         "tosidebar": true,
-        "console": false,
+        "console": true,
         "tostatus": false,
         "complete": "true",
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 470,
+        "x": 500,
         "y": 420,
         "wires": []
     },
@@ -3010,7 +5836,8 @@
             [
                 "2b4badb0172ab2fd",
                 "329f345a7612eeb6",
-                "359af246fd0890bb"
+                "359af246fd0890bb",
+                "d197fe175399dd70"
             ]
         ]
     },
@@ -3496,68 +6323,27 @@
         ]
     },
     {
-        "id": "399344d4d2322d22",
-        "type": "trigger",
+        "id": "a6ecf7d4b94a946f",
+        "type": "link out",
         "z": "6f1ebe1822580f11",
-        "name": "watchdog",
-        "op1": "",
-        "op2": "arg wtf",
-        "op1type": "nul",
-        "op2type": "str",
-        "duration": "2",
-        "extend": true,
-        "overrideDelay": false,
-        "units": "s",
-        "reset": "",
-        "bytopic": "all",
-        "topic": "topic",
-        "outputs": 1,
-        "x": 420,
-        "y": 180,
-        "wires": [
-            [
-                "734bac74b9519be0",
-                "cde1e3bfa0a8d42d"
-            ]
-        ]
+        "name": "to watchdog",
+        "mode": "link",
+        "links": [
+            "a3d4d61a0931b94a"
+        ],
+        "x": 495,
+        "y": 240,
+        "wires": []
     },
     {
-        "id": "b3cfb0082c2efc19",
-        "type": "inject",
+        "id": "0df8060213a0bd20",
+        "type": "link in",
         "z": "6f1ebe1822580f11",
-        "name": "restart monitoring",
-        "props": [],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 210,
-        "y": 140,
-        "wires": [
-            [
-                "734bac74b9519be0"
-            ]
-        ]
-    },
-    {
-        "id": "8c2341ad3eeabb94",
-        "type": "trigger",
-        "z": "6f1ebe1822580f11",
-        "name": "toggle connection",
-        "op1": "{\"monitorState\":\"OFF\"}",
-        "op2": "{\"monitorState\":\"ON\"}",
-        "op1type": "json",
-        "op2type": "json",
-        "duration": "2",
-        "extend": false,
-        "overrideDelay": false,
-        "units": "s",
-        "reset": "",
-        "bytopic": "all",
-        "topic": "topic",
-        "outputs": 1,
-        "x": 250,
+        "name": "from watchdog",
+        "links": [
+            "555944a008121006"
+        ],
+        "x": 315,
         "y": 340,
         "wires": [
             [
@@ -3566,39 +6352,58 @@
         ]
     },
     {
-        "id": "734bac74b9519be0",
-        "type": "fan",
+        "id": "d84a55a982929273",
+        "type": "catch",
         "z": "6f1ebe1822580f11",
         "name": "",
-        "x": 250,
-        "y": 280,
+        "scope": null,
+        "uncaught": false,
+        "x": 320,
+        "y": 60,
         "wires": [
             [
-                "8c2341ad3eeabb94"
+                "691868c3c06ae3a6"
             ]
         ]
     },
     {
-        "id": "cde1e3bfa0a8d42d",
+        "id": "691868c3c06ae3a6",
+        "type": "debug",
+        "z": "6f1ebe1822580f11",
+        "name": "vcore3 exceptions",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 520,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "d197fe175399dd70",
         "type": "api-call-service",
         "z": "6f1ebe1822580f11",
-        "name": "in-hass notif",
+        "name": "logbook",
         "server": "1fb2958d.14f89a",
         "version": 5,
         "debugenabled": false,
-        "domain": "persistent_notification",
-        "service": "create",
+        "domain": "logbook",
+        "service": "log",
         "areaId": [],
         "deviceId": [],
         "entityId": [],
-        "data": "{\t   \"notification_id\": \"vcore3_monitor_status\"\t       ,\t   \"title\": \"v-core 3 monitor watchdog timeout\",\t   \"message\": \"some new shit has come to light, man.\"\t}\t",
+        "data": "{ \"name\":\"v-core 3 preheat\", \"message\":\"complete\", \"domain\":\"automation\"\t}",
         "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 590,
-        "y": 120,
+        "x": 1240,
+        "y": 400,
         "wires": [
             []
         ]
@@ -3669,6 +6474,23 @@
         ]
     },
     {
+        "id": "072a1df189194b48",
+        "type": "debug",
+        "z": "6262a64468718f73",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1010,
+        "y": 460,
+        "wires": []
+    },
+    {
         "id": "f4584b61fa26e6ac",
         "type": "influxdb out",
         "z": "429b7a553657396c",
@@ -3683,7 +6505,7 @@
         "org": "org0",
         "bucket": "node-red-monitoring",
         "x": 740,
-        "y": 340,
+        "y": 160,
         "wires": []
     },
     {
@@ -3708,7 +6530,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 230,
-        "y": 340,
+        "y": 160,
         "wires": [
             [
                 "b6f5d1f660c16e39",
@@ -3735,7 +6557,7 @@
             }
         ],
         "x": 460,
-        "y": 380,
+        "y": 200,
         "wires": [
             [
                 "f4584b61fa26e6ac"
@@ -3759,7 +6581,7 @@
             }
         ],
         "x": 460,
-        "y": 440,
+        "y": 260,
         "wires": [
             [
                 "f4584b61fa26e6ac"
@@ -3783,7 +6605,7 @@
             }
         ],
         "x": 450,
-        "y": 320,
+        "y": 140,
         "wires": [
             [
                 "f4584b61fa26e6ac"
@@ -3807,11 +6629,320 @@
             }
         ],
         "x": 460,
-        "y": 260,
+        "y": 80,
         "wires": [
             [
                 "f4584b61fa26e6ac"
             ]
+        ]
+    },
+    {
+        "id": "489e8cdcc3c9e473",
+        "type": "trigger",
+        "z": "429b7a553657396c",
+        "name": "watchdog",
+        "op1": "",
+        "op2": "{\"log\":{\"name\":\"v-core 3 watchdog\",\"message\":\"timer expired\"}}",
+        "op1type": "nul",
+        "op2type": "json",
+        "duration": "30",
+        "extend": true,
+        "overrideDelay": false,
+        "units": "s",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 280,
+        "y": 440,
+        "wires": [
+            [
+                "6b89da7ceec5a056",
+                "29e6bb150e7f1117",
+                "fdbdcc7d98191247",
+                "58fe93e65143252e"
+            ]
+        ]
+    },
+    {
+        "id": "6b89da7ceec5a056",
+        "type": "api-call-service",
+        "z": "429b7a553657396c",
+        "d": true,
+        "name": "in-hass notif",
+        "server": "1fb2958d.14f89a",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "persistent_notification",
+        "service": "create",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [],
+        "data": "{\t   \"notification_id\": \"vcore3_monitor_status\"\t       ,\t   \"title\": \"v-core 3 monitor watchdog timeout\",\t   \"message\": \"some new shit has come to light, man.\"\t}\t",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 510,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9dc0cb39dce3b8fb",
+        "type": "inject",
+        "z": "429b7a553657396c",
+        "name": "restart monitoring",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 250,
+        "y": 500,
+        "wires": [
+            [
+                "29e6bb150e7f1117"
+            ]
+        ]
+    },
+    {
+        "id": "29e6bb150e7f1117",
+        "type": "trigger",
+        "z": "429b7a553657396c",
+        "name": "toggle connection",
+        "op1": "{\"monitorState\":\"OFF\"}",
+        "op2": "{\"monitorState\":\"ON\"}",
+        "op1type": "json",
+        "op2type": "json",
+        "duration": "2",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "s",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 530,
+        "y": 500,
+        "wires": [
+            [
+                "555944a008121006"
+            ]
+        ]
+    },
+    {
+        "id": "a3d4d61a0931b94a",
+        "type": "link in",
+        "z": "429b7a553657396c",
+        "name": "from moonnode",
+        "links": [
+            "a6ecf7d4b94a946f"
+        ],
+        "x": 145,
+        "y": 440,
+        "wires": [
+            [
+                "489e8cdcc3c9e473"
+            ]
+        ]
+    },
+    {
+        "id": "555944a008121006",
+        "type": "link out",
+        "z": "429b7a553657396c",
+        "name": "to moonnode",
+        "mode": "link",
+        "links": [
+            "0df8060213a0bd20"
+        ],
+        "x": 675,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "8cd3e3cecd18c58a",
+        "type": "server-events",
+        "z": "429b7a553657396c",
+        "name": "",
+        "server": "1fb2958d.14f89a",
+        "version": 1,
+        "event_type": "sun.sun",
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "waitForRunning": true,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            }
+        ],
+        "x": 220,
+        "y": 620,
+        "wires": [
+            [
+                "79a0d955c231e255"
+            ]
+        ]
+    },
+    {
+        "id": "79a0d955c231e255",
+        "type": "trigger",
+        "z": "429b7a553657396c",
+        "name": "watchdog",
+        "op1": "",
+        "op2": "arg wtf ha gone?",
+        "op1type": "nul",
+        "op2type": "str",
+        "duration": "10",
+        "extend": true,
+        "overrideDelay": false,
+        "units": "min",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 400,
+        "y": 620,
+        "wires": [
+            [
+                "835e59bad46be84a"
+            ]
+        ]
+    },
+    {
+        "id": "835e59bad46be84a",
+        "type": "debug",
+        "z": "429b7a553657396c",
+        "name": "ha watchdog",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 590,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "ed0cc73aa710ad70",
+        "type": "comment",
+        "z": "429b7a553657396c",
+        "name": "runtime metrics to influxdb",
+        "info": "",
+        "x": 210,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "363520907ca1858d",
+        "type": "comment",
+        "z": "429b7a553657396c",
+        "name": "restart v-core 3 moonraker monitor",
+        "info": "on timeout",
+        "x": 240,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "e8e1470616494223",
+        "type": "comment",
+        "z": "429b7a553657396c",
+        "name": "ha watchdog (ish)",
+        "info": "not sure how to restart HA connection…",
+        "x": 180,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "fdbdcc7d98191247",
+        "type": "debug",
+        "z": "429b7a553657396c",
+        "name": "vcore3 watchdog",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 530,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "d7c0191d41ee0bc0",
+        "type": "catch",
+        "z": "429b7a553657396c",
+        "name": "",
+        "scope": null,
+        "uncaught": false,
+        "x": 100,
+        "y": 720,
+        "wires": [
+            [
+                "495c324615c6b0c4"
+            ]
+        ]
+    },
+    {
+        "id": "495c324615c6b0c4",
+        "type": "debug",
+        "z": "429b7a553657396c",
+        "name": "monitoring exceptions",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 310,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "58fe93e65143252e",
+        "type": "api-call-service",
+        "z": "429b7a553657396c",
+        "name": "logbook",
+        "server": "1fb2958d.14f89a",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "logbook",
+        "service": "log",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [],
+        "data": "{ \"name\":log.name, \"message\":log.message, \"domain\":\"automation\"\t}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 500,
+        "y": 440,
+        "wires": [
+            []
         ]
     },
     {
