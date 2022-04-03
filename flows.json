@@ -3384,8 +3384,7 @@
         "wires": [
             [
                 "bea87f39.bb9c18",
-                "f5de0832.ca3af",
-                "7b22b9da75632e79"
+                "f5de0832.ca3af"
             ]
         ]
     },
@@ -3516,41 +3515,6 @@
             [
                 "6ef4b215938b0cab"
             ]
-        ]
-    },
-    {
-        "id": "7b22b9da75632e79",
-        "type": "function",
-        "z": "6c71644f.90490c",
-        "name": "",
-        "func": "\nreturn {payload: msg};",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 420,
-        "y": 420,
-        "wires": [
-            [
-                "636d767f18815a82"
-            ]
-        ]
-    },
-    {
-        "id": "636d767f18815a82",
-        "type": "file",
-        "z": "6c71644f.90490c",
-        "name": "write front-door rings",
-        "filename": "/media/node-red/front-door-rings.json",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "false",
-        "encoding": "utf8",
-        "x": 600,
-        "y": 420,
-        "wires": [
-            []
         ]
     },
     {
@@ -4000,6 +3964,122 @@
         "outputs": 0,
         "x": 760,
         "y": 680,
+        "wires": []
+    },
+    {
+        "id": "d9eab5cea1d98202",
+        "type": "server-state-changed",
+        "z": "6c71644f.90490c",
+        "name": "",
+        "server": "1fb2958d.14f89a",
+        "version": 4,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "sensor.front_door_detected_object",
+        "entityidfiltertype": "exact",
+        "outputinitially": true,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 210,
+        "y": 820,
+        "wires": [
+            [
+                "6c259a3b249a6e97",
+                "cd2a881a92ce272a"
+            ]
+        ]
+    },
+    {
+        "id": "6c259a3b249a6e97",
+        "type": "function",
+        "z": "6c71644f.90490c",
+        "name": "",
+        "func": "\nreturn {payload: msg};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 820,
+        "wires": [
+            [
+                "ec0c3af984e00989"
+            ]
+        ]
+    },
+    {
+        "id": "ec0c3af984e00989",
+        "type": "file",
+        "z": "6c71644f.90490c",
+        "name": "write front-door detected objects",
+        "filename": "/media/node-red/front-door-detected-objects.json",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "utf8",
+        "x": 720,
+        "y": 820,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cd2a881a92ce272a",
+        "type": "debug",
+        "z": "6c71644f.90490c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 490,
+        "y": 880,
         "wires": []
     },
     {
