@@ -2864,6 +2864,21 @@
                 "p": "do_notify",
                 "v": "true",
                 "vt": "bool"
+            },
+            {
+                "p": "camera_entity_id",
+                "v": "camera.front_door",
+                "vt": "str"
+            },
+            {
+                "p": "is_critical",
+                "v": "0",
+                "vt": "num"
+            },
+            {
+                "p": "snapshot_type",
+                "v": "test",
+                "vt": "str"
             }
         ],
         "repeat": "",
