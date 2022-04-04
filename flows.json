@@ -3622,13 +3622,13 @@
         "id": "b0839e1fe1b83e43",
         "type": "change",
         "z": "6c71644f.90490c",
-        "name": "last-motion filename",
+        "name": "last-snapshot-type filename",
         "rules": [
             {
                 "t": "set",
                 "p": "filename",
                 "pt": "msg",
-                "to": "$flowContext(\"media_root\")\t  & \"last-motion_\"\t  & camera_entity_id\t  & \".jpg\"",
+                "to": " $flowContext(\"media_root\")\t    & \"by_entity/\"\t    & camera_entity_id & \"/\"\t    & \"last_\"\t    & snapshot_type\t    & \".jpg\"\t",
                 "tot": "jsonata"
             }
         ],
@@ -3637,7 +3637,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1280,
+        "x": 1300,
         "y": 220,
         "wires": [
             [
@@ -3655,7 +3655,7 @@
         "createDir": true,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 1480,
+        "x": 1540,
         "y": 240,
         "wires": [
             [
@@ -3701,13 +3701,13 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [],
-        "data": "{\t    \"entity_id\": camera_entity_id & \"_last_motion\",\t    \"file_path\": filename\t}",
+        "data": "{\t    \"entity_id\": camera_entity_id & \"_last_\" & snapshot_type,\t    \"file_path\": filename\t}",
         "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 1650,
+        "x": 1710,
         "y": 220,
         "wires": [
             []
