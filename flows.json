@@ -2813,13 +2813,30 @@
                 "propertyType": "msg",
                 "value": "true",
                 "valueType": "bool"
+            },
+            {
+                "property": "camera_entity_id",
+                "propertyType": "msg",
+                "value": "camera.front_door",
+                "valueType": "str"
+            },
+            {
+                "property": "is_critical",
+                "propertyType": "msg",
+                "value": "0",
+                "valueType": "num"
+            },
+            {
+                "property": "snapshot_type",
+                "propertyType": "msg",
+                "value": "motion",
+                "valueType": "str"
             }
         ],
         "x": 150,
         "y": 140,
         "wires": [
             [
-                "eb4f6969e4d6170b",
                 "5c1a8d29.db4a24"
             ],
             []
@@ -2872,27 +2889,6 @@
         "rules": [
             {
                 "t": "set",
-                "p": "camera_entity_id",
-                "pt": "msg",
-                "to": "\"camera.\" & $substringAfter(topic, \"binary_sensor.motion_\")",
-                "tot": "jsonata"
-            },
-            {
-                "t": "set",
-                "p": "filename",
-                "pt": "msg",
-                "to": "\"motion_snapshot_\" \t    & $now(\"[Y0001]-[M01]-[D01]T[H01]_[m01]_[s01]Z\") \t    & \"_\"\t    & $split(msg.camera_entity_id, \".\")[1]\t    & \".jpg\"",
-                "tot": "jsonata"
-            },
-            {
-                "t": "set",
-                "p": "is_critical",
-                "pt": "msg",
-                "to": "0",
-                "tot": "num"
-            },
-            {
-                "t": "set",
                 "p": "message",
                 "pt": "msg",
                 "to": "$substringAfter(topic, \"binary_sensor.motion_\")",
@@ -2904,7 +2900,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 640,
+        "x": 510,
         "y": 180,
         "wires": [
             [
@@ -2931,7 +2927,7 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 1890,
+        "x": 2010,
         "y": 80,
         "wires": [
             [
@@ -2961,7 +2957,7 @@
                 "valueType": "results"
             }
         ],
-        "x": 870,
+        "x": 990,
         "y": 220,
         "wires": [
             [
@@ -3008,7 +3004,7 @@
         "OutputSerialization": "",
         "PartNumber": "",
         "name": "upload to s3",
-        "x": 1690,
+        "x": 1810,
         "y": 100,
         "wires": [
             [
@@ -3026,13 +3022,13 @@
         "type": "function",
         "z": "6c71644f.90490c",
         "name": "build PutObject",
-        "func": "msg.Body = msg.payload;\nmsg.Bucket = flow.get(\"s3\").bucket;\nmsg.Key = flow.get(\"s3\").prefix + msg.filename;\n\n// node.warn(msg);\n\nreturn msg;",
+        "func": "msg.Body = msg.payload;\nmsg.Bucket = flow.get(\"s3\").bucket;\n\nmsg.Key = flow.get(\"s3\").prefix +\n    msg.snapshot_type +\n    \"_snapshot_\" + (new Date()).toISOString() +\n     \"_\" +\n    msg.camera_entity_id.split(\".\")[1] +\n    \".jpg\";\n\n// node.warn(msg);\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1480,
+        "x": 1600,
         "y": 100,
         "wires": [
             [
@@ -3053,7 +3049,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1910,
+        "x": 2030,
         "y": 140,
         "wires": []
     },
@@ -3076,7 +3072,7 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 1930,
+        "x": 2050,
         "y": 180,
         "wires": [
             []
@@ -3135,6 +3131,24 @@
                 "propertyType": "msg",
                 "value": "",
                 "valueType": "triggerId"
+            },
+            {
+                "property": "camera_entity_id",
+                "propertyType": "msg",
+                "value": "camera.garage_alley",
+                "valueType": "str"
+            },
+            {
+                "property": "is_critical",
+                "propertyType": "msg",
+                "value": "0",
+                "valueType": "num"
+            },
+            {
+                "property": "snapshot_type",
+                "propertyType": "msg",
+                "value": "motion",
+                "valueType": "str"
             }
         ],
         "x": 140,
@@ -3199,6 +3213,24 @@
                 "propertyType": "msg",
                 "value": "",
                 "valueType": "triggerId"
+            },
+            {
+                "property": "camera_entity_id",
+                "propertyType": "msg",
+                "value": "camera.parking_pad",
+                "valueType": "str"
+            },
+            {
+                "property": "is_critical",
+                "propertyType": "msg",
+                "value": "0",
+                "valueType": "num"
+            },
+            {
+                "property": "snapshot_type",
+                "propertyType": "msg",
+                "value": "motion",
+                "valueType": "str"
             }
         ],
         "x": 140,
@@ -3250,54 +3282,6 @@
         ]
     },
     {
-        "id": "f5de0832.ca3af",
-        "type": "change",
-        "z": "6c71644f.90490c",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "camera_entity_id",
-                "pt": "msg",
-                "to": "\"camera.\" & $substringAfter(data.entity_id, \"binary_sensor.doorbell_\")",
-                "tot": "jsonata"
-            },
-            {
-                "t": "set",
-                "p": "filename",
-                "pt": "msg",
-                "to": "\"doorbell_snapshot_\" \t    & $now(\"[Y0001]-[M01]-[D01]T[H01]_[m01]_[s01]Z\") \t    & \"_\"\t    & $split(msg.camera_entity_id, \".\")[1]\t    & \".jpg\"",
-                "tot": "jsonata"
-            },
-            {
-                "t": "set",
-                "p": "is_critical",
-                "pt": "msg",
-                "to": "1",
-                "tot": "num"
-            },
-            {
-                "t": "set",
-                "p": "message",
-                "pt": "msg",
-                "to": "🔔 someone's at the door",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 640,
-        "y": 380,
-        "wires": [
-            [
-                "3296c10a.9b412e"
-            ]
-        ]
-    },
-    {
         "id": "bea87f39.bb9c18",
         "type": "debug",
         "z": "6c71644f.90490c",
@@ -3325,6 +3309,12 @@
                 "pt": "flow",
                 "to": "{     \"bucket\": \"blalor-imgs\",     \"prefix\": \"hass-notif-imgs/\" }",
                 "tot": "json"
+            },
+            {
+                "p": "media_root",
+                "pt": "flow",
+                "to": "/media/node-red/",
+                "tot": "str"
             }
         ],
         "active": true,
@@ -3345,7 +3335,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1110,
+        "x": 1230,
         "y": 40,
         "wires": []
     },
@@ -3359,7 +3349,7 @@
         "wires": [
             [
                 "bea87f39.bb9c18",
-                "f5de0832.ca3af"
+                "3296c10a.9b412e"
             ]
         ]
     },
@@ -3373,7 +3363,7 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 1340,
+        "x": 1460,
         "y": 160,
         "wires": [
             []
@@ -3387,9 +3377,16 @@
         "rules": [
             {
                 "t": "set",
+                "p": "old_filename",
+                "pt": "msg",
+                "to": "$flowContext(\"media_root\")\t    & snapshot_type\t    & \"_snapshot_\" \t    & $now(\"[Y0001]-[M01]-[D01]T[H01]_[m01]_[s01]Z\") \t    & \"_\"\t    & $split(camera_entity_id, \".\")[1]\t    & \".jpg\"",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
                 "p": "filename",
                 "pt": "msg",
-                "to": "\"/media/node-red/\" & msg.filename",
+                "to": "$flowContext(\"media_root\")\t    & \"by_entity/\"\t    & camera_entity_id & \"/\"\t    & $now(\"[Y0001]-[M01]-[D01]T[H01]_[m01]_[s01]Z\")\t    & \"-\"\t    & snapshot_type\t    & \".jpg\"\t",
                 "tot": "jsonata"
             }
         ],
@@ -3398,7 +3395,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1160,
+        "x": 1280,
         "y": 160,
         "wires": [
             [
@@ -3418,7 +3415,7 @@
         "active": true,
         "pass": false,
         "outputs": 0,
-        "x": 1120,
+        "x": 1240,
         "y": 280,
         "wires": []
     },
@@ -3432,7 +3429,7 @@
         "createDir": false,
         "overwriteFile": "false",
         "encoding": "utf8",
-        "x": 2270,
+        "x": 2390,
         "y": 80,
         "wires": [
             []
@@ -3449,46 +3446,11 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2080,
+        "x": 2200,
         "y": 80,
         "wires": [
             [
                 "636b01dcb9becc4e"
-            ]
-        ]
-    },
-    {
-        "id": "6ef4b215938b0cab",
-        "type": "file",
-        "z": "6c71644f.90490c",
-        "name": "write front-door motion notifs",
-        "filename": "/media/node-red/front-door-motion-notifs.json",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "false",
-        "encoding": "utf8",
-        "x": 560,
-        "y": 60,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "eb4f6969e4d6170b",
-        "type": "function",
-        "z": "6c71644f.90490c",
-        "name": "",
-        "func": "\nreturn {payload: msg};",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 360,
-        "y": 60,
-        "wires": [
-            [
-                "6ef4b215938b0cab"
             ]
         ]
     },
@@ -3551,6 +3513,30 @@
                 "propertyType": "msg",
                 "value": "true",
                 "valueType": "bool"
+            },
+            {
+                "property": "camera_entity_id",
+                "propertyType": "msg",
+                "value": "camera.front_door",
+                "valueType": "str"
+            },
+            {
+                "property": "is_critical",
+                "propertyType": "msg",
+                "value": "1",
+                "valueType": "num"
+            },
+            {
+                "property": "snapshot_type",
+                "propertyType": "msg",
+                "value": "doorbell",
+                "valueType": "str"
+            },
+            {
+                "property": "message",
+                "propertyType": "msg",
+                "value": "🔔 someone's at the door",
+                "valueType": "str"
             }
         ],
         "x": 100,
@@ -3609,7 +3595,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 1110,
+        "x": 1230,
         "y": 100,
         "wires": [
             [
@@ -3627,7 +3613,7 @@
                 "t": "set",
                 "p": "filename",
                 "pt": "msg",
-                "to": "\"/media/node-red/last-motion_\" & msg.camera_entity_id & \".jpg\"",
+                "to": "$flowContext(\"media_root\")\t  & \"last-motion_\"\t  & camera_entity_id\t  & \".jpg\"",
                 "tot": "jsonata"
             }
         ],
@@ -3636,7 +3622,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1160,
+        "x": 1280,
         "y": 220,
         "wires": [
             [
@@ -3654,7 +3640,7 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 1360,
+        "x": 1480,
         "y": 240,
         "wires": [
             [
@@ -3679,7 +3665,7 @@
         "bytopic": "topic",
         "topic": "topic",
         "outputs": 1,
-        "x": 1280,
+        "x": 1400,
         "y": 100,
         "wires": [
             [
@@ -3706,7 +3692,7 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 1530,
+        "x": 1650,
         "y": 220,
         "wires": [
             []
@@ -4000,50 +3986,32 @@
                 "propertyType": "msg",
                 "value": "true",
                 "valueType": "bool"
+            },
+            {
+                "property": "camera_entity_id",
+                "propertyType": "msg",
+                "value": "camera.front_door",
+                "valueType": "str"
+            },
+            {
+                "property": "is_critical",
+                "propertyType": "msg",
+                "value": "0",
+                "valueType": "num"
+            },
+            {
+                "property": "snapshot_type",
+                "propertyType": "msg",
+                "value": "object",
+                "valueType": "str"
             }
         ],
         "x": 150,
         "y": 320,
         "wires": [
             [
-                "6c259a3b249a6e97",
                 "59d85c66c88dc05b"
             ],
-            []
-        ]
-    },
-    {
-        "id": "6c259a3b249a6e97",
-        "type": "function",
-        "z": "6c71644f.90490c",
-        "name": "",
-        "func": "\nreturn {payload: msg};",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 860,
-        "y": 300,
-        "wires": [
-            [
-                "ec0c3af984e00989"
-            ]
-        ]
-    },
-    {
-        "id": "ec0c3af984e00989",
-        "type": "file",
-        "z": "6c71644f.90490c",
-        "name": "write front-door detected objects",
-        "filename": "/media/node-red/front-door-detected-objects.json",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "false",
-        "encoding": "utf8",
-        "x": 960,
-        "y": 360,
-        "wires": [
             []
         ]
     },
@@ -4053,27 +4021,6 @@
         "z": "6c71644f.90490c",
         "name": "",
         "rules": [
-            {
-                "t": "set",
-                "p": "camera_entity_id",
-                "pt": "msg",
-                "to": "\"camera.\" & $substringBefore($substringAfter(topic, \"sensor.\"), \"_detected_object\")",
-                "tot": "jsonata"
-            },
-            {
-                "t": "set",
-                "p": "filename",
-                "pt": "msg",
-                "to": "\"object_snapshot_\" \t    & $now(\"[Y0001]-[M01]-[D01]T[H01]_[m01]_[s01]Z\") \t    & \"_\"\t    & $split(msg.camera_entity_id, \".\")[1]\t    & \".jpg\"",
-                "tot": "jsonata"
-            },
-            {
-                "t": "set",
-                "p": "is_critical",
-                "pt": "msg",
-                "to": "0",
-                "tot": "num"
-            },
             {
                 "t": "set",
                 "p": "message",
@@ -4087,7 +4034,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 640,
+        "x": 510,
         "y": 280,
         "wires": [
             [
