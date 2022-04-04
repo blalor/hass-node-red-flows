@@ -6567,7 +6567,7 @@
         "entityidfiltertype": "exact",
         "outputinitially": true,
         "state_type": "num",
-        "haltifstate": "15",
+        "haltifstate": "50",
         "halt_if_type": "num",
         "halt_if_compare": "lt",
         "outputs": 2,
