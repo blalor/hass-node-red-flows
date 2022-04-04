@@ -2819,8 +2819,8 @@
         "y": 140,
         "wires": [
             [
-                "3b92f41c.15286c",
-                "eb4f6969e4d6170b"
+                "eb4f6969e4d6170b",
+                "5c1a8d29.db4a24"
             ],
             []
         ]
@@ -2836,7 +2836,7 @@
             },
             {
                 "p": "data",
-                "v": "{\"entity_id\":\"binary_sensor.motion_front_door\",\"old_state\":{\"entity_id\":\"binary_sensor.motion_front_door\",\"state\":\"on\",\"attributes\":{\"attribution\":\"Powered by Unifi Protect Server\",\"device_model\":\"UVC G4 Doorbell\",\"last_tripped_time\":\"2021-06-24 13:33:51\",\"event_score\":60,\"event_length\":0,\"event_object\":\"vehicle\",\"friendly_name\":\"Motion Front door\",\"device_class\":\"motion\"},\"last_changed\":\"2021-06-24T17:33:58.129315+00:00\",\"last_updated\":\"2021-06-24T17:33:58.129315+00:00\",\"context\":{\"id\":\"8c58f79713391379f139419d9fa4bad5\",\"parent_id\":null,\"user_id\":null},\"original_state\":\"on\"},\"new_state\":{\"entity_id\":\"binary_sensor.motion_front_door\",\"state\":\"off\",\"attributes\":{\"attribution\":\"Powered by Unifi Protect Server\",\"device_model\":\"UVC G4 Doorbell\",\"last_tripped_time\":\"2021-06-24 13:33:51\",\"event_score\":60,\"event_length\":12.37,\"event_object\":\"not_a_vehicle\",\"friendly_name\":\"Motion Front door\",\"device_class\":\"motion\"},\"last_changed\":\"2021-06-24T17:34:02.640208+00:00\",\"last_updated\":\"2021-06-24T17:34:02.640208+00:00\",\"context\":{\"id\":\"a88da8f739fd65279ead3ec5d29d39c4\",\"parent_id\":null,\"user_id\":null},\"original_state\":\"off\",\"timeSinceChangedMs\":5}}",
+                "v": "{\"entity_id\":\"binary_sensor.motion_front_door\",\"old_state\":{\"entity_id\":\"binary_sensor.motion_front_door\",\"state\":\"off\",\"attributes\":{\"last_tripped_time\":\"2022-04-03T23:56:42.072000+00:00\",\"event_score\":0,\"attribution\":\"Powered by UniFi Protect Server\",\"device_class\":\"motion\",\"friendly_name\":\"Front Door Motion\"},\"last_changed\":\"2022-04-03T23:56:43.167677+00:00\",\"last_updated\":\"2022-04-03T23:56:43.201082+00:00\",\"context\":{\"id\":\"3457201483ab6f8d12b74a51de91a54f\",\"parent_id\":null,\"user_id\":null},\"original_state\":\"off\"},\"new_state\":{\"entity_id\":\"binary_sensor.motion_front_door\",\"state\":\"on\",\"attributes\":{\"last_tripped_time\":\"2022-04-04T00:03:02.216000+00:00\",\"event_score\":0,\"attribution\":\"Powered by UniFi Protect Server\",\"device_class\":\"motion\",\"friendly_name\":\"Front Door Motion\"},\"last_changed\":\"2022-04-04T00:03:02.334782+00:00\",\"last_updated\":\"2022-04-04T00:03:02.334782+00:00\",\"context\":{\"id\":\"4620ca65ef9ccd45f7e6773eb9507051\",\"parent_id\":null,\"user_id\":null},\"original_state\":\"on\",\"timeSinceChangedMs\":72}}",
                 "vt": "json"
             },
             {
@@ -2854,13 +2854,13 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "binary_sensor.motion_front_door",
-        "payload": "off",
+        "payload": "on",
         "payloadType": "str",
-        "x": 210,
+        "x": 230,
         "y": 100,
         "wires": [
             [
-                "3b92f41c.15286c"
+                "5c1a8d29.db4a24"
             ]
         ]
     },
@@ -2970,31 +2970,6 @@
                 "2beff0bd2c5053cc",
                 "ec749bf69cfdb677",
                 "b0839e1fe1b83e43"
-            ]
-        ]
-    },
-    {
-        "id": "3b92f41c.15286c",
-        "type": "switch",
-        "z": "6c71644f.90490c",
-        "name": "is not a vehicle?",
-        "property": "data.new_state.attributes.event_object",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "neq",
-                "v": "vehicle",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 400,
-        "y": 120,
-        "wires": [
-            [
-                "5c1a8d29.db4a24"
             ]
         ]
     },
@@ -3267,7 +3242,7 @@
         "payload": "on",
         "payloadType": "str",
         "x": 90,
-        "y": 340,
+        "y": 380,
         "wires": [
             [
                 "117ffffa.58b3a8"
@@ -3315,7 +3290,7 @@
         "to": "",
         "reg": false,
         "x": 640,
-        "y": 280,
+        "y": 380,
         "wires": [
             [
                 "3296c10a.9b412e"
@@ -3336,7 +3311,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 410,
-        "y": 380,
+        "y": 420,
         "wires": []
     },
     {
@@ -3380,7 +3355,7 @@
         "z": "6c71644f.90490c",
         "name": "",
         "x": 270,
-        "y": 360,
+        "y": 400,
         "wires": [
             [
                 "bea87f39.bb9c18",
@@ -3521,7 +3496,7 @@
         "id": "3d18bde5f3ad58c3",
         "type": "server-state-changed",
         "z": "6c71644f.90490c",
-        "name": "doorbell rang ⚠️",
+        "name": "doorbell rang 🚨",
         "server": "1fb2958d.14f89a",
         "version": 4,
         "exposeToHomeAssistant": false,
@@ -3579,7 +3554,7 @@
             }
         ],
         "x": 100,
-        "y": 380,
+        "y": 420,
         "wires": [
             [
                 "117ffffa.58b3a8"
@@ -3866,8 +3841,8 @@
         "topic": "",
         "payload": "opening",
         "payloadType": "str",
-        "x": 180,
-        "y": 500,
+        "x": 160,
+        "y": 540,
         "wires": [
             [
                 "010067f12a77e6de"
@@ -3916,8 +3891,8 @@
         "active": false,
         "pass": false,
         "outputs": 0,
-        "x": 820,
-        "y": 420,
+        "x": 760,
+        "y": 540,
         "wires": []
     },
     {
@@ -3970,7 +3945,7 @@
         "id": "d9eab5cea1d98202",
         "type": "server-state-changed",
         "z": "6c71644f.90490c",
-        "name": "",
+        "name": "object detected: front door ⚠️",
         "server": "1fb2958d.14f89a",
         "version": 4,
         "exposeToHomeAssistant": false,
@@ -3986,12 +3961,12 @@
         ],
         "entityidfilter": "sensor.front_door_detected_object",
         "entityidfiltertype": "exact",
-        "outputinitially": true,
+        "outputinitially": false,
         "state_type": "str",
-        "haltifstate": "",
+        "haltifstate": "none",
         "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "outputs": 1,
+        "halt_if_compare": "is_not",
+        "outputs": 2,
         "output_only_on_state_change": true,
         "for": "0",
         "forType": "num",
@@ -4019,15 +3994,22 @@
                 "propertyType": "msg",
                 "value": "",
                 "valueType": "triggerId"
+            },
+            {
+                "property": "do_notify",
+                "propertyType": "msg",
+                "value": "true",
+                "valueType": "bool"
             }
         ],
-        "x": 210,
-        "y": 820,
+        "x": 150,
+        "y": 320,
         "wires": [
             [
                 "6c259a3b249a6e97",
-                "cd2a881a92ce272a"
-            ]
+                "59d85c66c88dc05b"
+            ],
+            []
         ]
     },
     {
@@ -4041,8 +4023,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 500,
-        "y": 820,
+        "x": 860,
+        "y": 300,
         "wires": [
             [
                 "ec0c3af984e00989"
@@ -4059,28 +4041,59 @@
         "createDir": false,
         "overwriteFile": "false",
         "encoding": "utf8",
-        "x": 720,
-        "y": 820,
+        "x": 960,
+        "y": 360,
         "wires": [
             []
         ]
     },
     {
-        "id": "cd2a881a92ce272a",
-        "type": "debug",
+        "id": "59d85c66c88dc05b",
+        "type": "change",
         "z": "6c71644f.90490c",
         "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 490,
-        "y": 880,
-        "wires": []
+        "rules": [
+            {
+                "t": "set",
+                "p": "camera_entity_id",
+                "pt": "msg",
+                "to": "\"camera.\" & $substringBefore($substringAfter(topic, \"sensor.\"), \"_detected_object\")",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "filename",
+                "pt": "msg",
+                "to": "\"object_snapshot_\" \t    & $now(\"[Y0001]-[M01]-[D01]T[H01]_[m01]_[s01]Z\") \t    & \"_\"\t    & $split(msg.camera_entity_id, \".\")[1]\t    & \".jpg\"",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "is_critical",
+                "pt": "msg",
+                "to": "0",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "message",
+                "pt": "msg",
+                "to": "$substringBefore($substringAfter(topic, \"sensor.\"), \"_detected_object\")\t& \" detected \"\t& payload",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 640,
+        "y": 280,
+        "wires": [
+            [
+                "3296c10a.9b412e"
+            ]
+        ]
     },
     {
         "id": "7b41b747.6cb21",
