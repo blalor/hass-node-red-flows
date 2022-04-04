@@ -6546,6 +6546,106 @@
         "wires": []
     },
     {
+        "id": "618858bbd69aa4a5",
+        "type": "server-state-changed",
+        "z": "6262a64468718f73",
+        "name": "",
+        "server": "1fb2958d.14f89a",
+        "version": 4,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "sensor.zoot_battery_level",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "num",
+        "haltifstate": "15",
+        "halt_if_type": "num",
+        "halt_if_compare": "lt",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": "30",
+        "forType": "num",
+        "forUnits": "seconds",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 300,
+        "y": 440,
+        "wires": [
+            [
+                "fbd1ca67e77be301"
+            ],
+            [
+                "66e8487fca2a5767"
+            ]
+        ]
+    },
+    {
+        "id": "fbd1ca67e77be301",
+        "type": "debug",
+        "z": "6262a64468718f73",
+        "name": "is true",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 610,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "66e8487fca2a5767",
+        "type": "debug",
+        "z": "6262a64468718f73",
+        "name": "is false",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 610,
+        "y": 480,
+        "wires": []
+    },
+    {
         "id": "f4584b61fa26e6ac",
         "type": "influxdb out",
         "z": "429b7a553657396c",
