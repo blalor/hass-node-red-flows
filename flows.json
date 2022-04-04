@@ -6565,7 +6565,7 @@
         ],
         "entityidfilter": "sensor.zoot_battery_level",
         "entityidfiltertype": "exact",
-        "outputinitially": false,
+        "outputinitially": true,
         "state_type": "num",
         "haltifstate": "15",
         "halt_if_type": "num",
