@@ -3678,7 +3678,7 @@
         "units": "min",
         "reset": "",
         "bytopic": "topic",
-        "topic": "topic",
+        "topic": "camera_entity_id",
         "outputs": 1,
         "x": 1400,
         "y": 100,
