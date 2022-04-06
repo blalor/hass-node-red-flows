@@ -7253,6 +7253,7 @@
         "id": "dbbd8f4c80cb4047",
         "type": "trigger-state",
         "z": "b34df73523bd7dfb",
+        "d": true,
         "name": "",
         "server": "1fb2958d.14f89a",
         "version": 2,
