@@ -7248,5 +7248,69 @@
         "wires": [
             []
         ]
+    },
+    {
+        "id": "dbbd8f4c80cb4047",
+        "type": "trigger-state",
+        "z": "b34df73523bd7dfb",
+        "name": "",
+        "server": "1fb2958d.14f89a",
+        "version": 2,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityid": ".",
+        "entityidfiltertype": "regex",
+        "debugenabled": true,
+        "constraints": [
+            {
+                "targetType": "this_entity",
+                "targetValue": "",
+                "propertyType": "current_state",
+                "propertyValue": "new_state.state",
+                "comparatorType": "is",
+                "comparatorValueDatatype": "str",
+                "comparatorValue": "unavailable"
+            }
+        ],
+        "inputs": 0,
+        "outputs": 2,
+        "customoutputs": [],
+        "outputinitially": true,
+        "state_type": "str",
+        "enableInput": false,
+        "x": 110,
+        "y": 400,
+        "wires": [
+            [
+                "8a271d5823ababb0"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "8a271d5823ababb0",
+        "type": "debug",
+        "z": "b34df73523bd7dfb",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 310,
+        "y": 400,
+        "wires": []
     }
 ]
